@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Universo de Amor - Naomi</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body, html { width: 100%; height: 100%; overflow: hidden; background: #000000; font-family: 'Segoe UI', Roboto, sans-serif; touch-action: none; }
+
+    #card-container {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      display: flex; justify-content: center; align-items: center;
+      z-index: 9999;
+      background: radial-gradient(circle, rgba(20, 0, 35, 0.98) 0%, rgba(0, 0, 0, 0.99) 100%);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 105, 180, 0.4);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      padding: 40px 28px; border-radius: 28px; text-align: center;
+      animation: pulseGlow 4s infinite ease-in-out;
+      max-width: 350px; width: 88%;
+      position: relative;
+      z-index: 10000;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 35px rgba(255, 0, 128, 0.35), inset 0 0 15px rgba(255, 0, 128, 0.15); }
+      50% { box-shadow: 0 0 60px rgba(255, 0, 128, 0.65), inset 0 0 25px rgba(255, 0, 128, 0.35); }
+    }
+
+    .heart-badge {
+      font-size: 2.5rem; display: inline-block; margin-bottom: 12px;
+      animation: floatHeart 2.5s infinite ease-in-out;
+      filter: drop-shadow(0 0 12px #ff007f);
+    }
+
+    @keyframes floatHeart {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-7px) scale(1.1); }
+    }
+
+    .tag-sub {
+      color: #ffb7c5; font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase;
+      margin-bottom: 6px; font-weight: 600; opacity: 0.9;
+    }
+
+    .card h1 {
+      color: #ffffff; font-size: 1.6rem; letter-spacing: 1px; margin-bottom: 14px;
+      text-shadow: 0 0 20px rgba(255, 105, 180, 0.9); font-weight: 800; line-height: 1.3;
+    }
+
+    .dedication-text {
+      color: #e0c3fc; font-size: 0.85rem; line-height: 1.5; margin-bottom: 28px;
+      font-style: italic; opacity: 0.9;
+    }
+
+    .btn-start {
+      background: linear-gradient(45deg, #ff007f, #7b2cbf);
+      color: white; border: none; padding: 14px 38px; border-radius: 30px;
+      font-weight: 700; cursor: pointer; font-size: 0.95rem; letter-spacing: 1.5px;
+      box-shadow: 0 0 25px rgba(255, 0, 128, 0.7);
+      transition: all 0.2s ease; outline: none;
+      position: relative;
+      z-index: 10001;
+      pointer-events: auto;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .btn-start:hover { transform: scale(1.06); box-shadow: 0 0 35px rgba(255, 0, 128, 1); }
+    .btn-start:active { transform: scale(0.96); }
+
+    #canvas-container { width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 1; }
+
+    #core-button {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      background: radial-gradient(circle, #ff007f 0%, #7b2cbf 100%);
+      color: white; border: 2px solid #fff;
+      padding: 10px 20px; border-radius: 50px;
+      font-weight: bold; font-size: 0.85rem; cursor: pointer;
+      box-shadow: 0 0 30px #ff007f, inset 0 0 10px #fff;
+      z-index: 10;
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease;
+      opacity: 0;
+      pointer-events: none;
+      letter-spacing: 1px;
+      white-space: nowrap;
+    }
+    #core-button.visible {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+      pointer-events: auto;
+    }
+    #core-button:hover { transform: translate(-50%, -50%) scale(1.1); box-shadow: 0 0 50px #ff007f; }
+
+    .galaxy-3d-phrase {
+      position: absolute;
+      background: rgba(20, 0, 40, 0.85);
+      border: 1px solid rgba(255, 105, 180, 0.5);
+      backdrop-filter: blur(6px);
+      padding: 6px 12px;
+      border-radius: 12px;
+      color: #ffd1dc;
+      font-size: 0.72rem;
+      font-weight: 600;
+      pointer-events: none;
+      z-index: 5;
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.8);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      white-space: nowrap;
+      box-shadow: 0 0 15px rgba(255, 0, 128, 0.3);
+    }
+    .galaxy-3d-phrase.visible {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+
+  <div id="card-container">
+    <div class="card">
+      <div class="heart-badge">💖</div>
+      <p class="tag-sub">UN VIAJE INTERESTELAR PARA</p>
+      <h1>Naomi Oksana Soto Vega</h1>
+      <p class="dedication-text">"Cada estrella en esta galaxia fue creada para iluminar tu camino." ✨</p>
+      <button class="btn-start" id="btnEmpezar">INICIAR VIAJE 🚀</button>
+    </div>
+  </div>
+
+  <button id="core-button">💖 Toca mi corazón, Naomi 💖</button>
+  <div id="galaxy-phrases-container"></div>
+
+  <div id="canvas-container"></div>
+
+  <script>
+    let scene, camera, renderer;
+    let tunnelNebulaGroup, galaxyGroup, backgroundStars, giantStars, shootingStarLine, heartParticlesGroup;
+    let isTraveling = false;
+    let travelFinished = false;
+    let frasesVisibles = false;
+    let isMobile = window.innerWidth <= 768;
+
+    const startZ = 1200;
+    const targetZ = 0;
+    let currentCameraZ = startZ;
+
+    const totalDistance = startZ - targetZ;
+    const tunnelDurationSeconds = 4;
+    const totalFrames = tunnelDurationSeconds * 60;
+    const tunnelSpeed = totalDistance / totalFrames;
+
+    let isDragging = false;
+    let previousMousePosition = { x: 0, y: 0 };
+    let targetRotationX = 0.35;
+    let targetRotationY = 0;
+
+    let shootingStarData = {
+      active: false,
+      progress: 0,
+      startX: -250, startY: 180, startZ: -300,
+      endX: 200, endY: 50, endZ: -250,
+      speed: 0.0012 + Math.random() * 0.001
+    };
+
+    const frasesGalaxia3D = [
+      { text: "Eres mi universo entero, Naomi ✨", pos: new THREE.Vector3(90, 15, -40) },
+      { text: "Tu sonrisa ilumina todas mis galaxias 🌌", pos: new THREE.Vector3(-100, -20, 50) },
+      { text: "Contigo el tiempo se detiene 💖", pos: new THREE.Vector3(40, 25, 90) },
+      { text: "Mi paz, mi destino y mi alegría 🌸", pos: new THREE.Vector3(-80, 10, -80) },
+      { text: "Te amo más allá de las estrellas 🚀", pos: new THREE.Vector3(120, -15, -20) },
+      { text: "Eres la casualidad más hermosa de mi vida 💕", pos: new THREE.Vector3(-30, 20, -110) },
+      { text: "Mi amor eterno 💫", pos: new THREE.Vector3(70, -25, 60) },
+      { text: "Dueña de mi corazón 💓", pos: new THREE.Vector3(-110, 15, 30) },
+      { text: "Luz de mis ojos ⭐", pos: new THREE.Vector3(20, -30, 110) },
+      { text: "Para siempre juntos 🌹", pos: new THREE.Vector3(-60, -15, -60) }
+    ];
+    let galaxyPhraseElements = [];
+
+    function iniciarViaje(e) {
+      if (e) { e.stopPropagation(); e.preventDefault(); }
+      if (isTraveling) return;
+      isTraveling = true;
+      const card = document.getElementById('card-container');
+      if (card) {
+        card.style.opacity = '0';
+        card.style.pointerEvents = 'none';
+        card.style.transform = 'scale(0.9)';
+        setTimeout(() => { card.style.display = 'none'; }, 300);
+      }
+    }
+
+    function crearTexturaEstrella() {
+      const canvas = document.createElement('canvas');
+      canvas.width = 64; canvas.height = 64;
+      const ctx = canvas.getContext('2d');
+      const grad = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
+      grad.addColorStop(0, 'rgba(255,255,255,1)');
+      grad.addColorStop(0.3, 'rgba(255,220,245,0.85)');
+      grad.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, 64, 64);
+      return new THREE.CanvasTexture(canvas);
+    }
+
+    function crearTexturaCorazon() {
+      const canvas = document.createElement('canvas');
+      canvas.width = 64; canvas.height = 64;
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = 'rgba(0,0,0,0)';
+      ctx.fillRect(0,0,64,64);
+      
+      ctx.fillStyle = '#ff3399';
+      ctx.beginPath();
+      let x = 32, y = 20, r = 14;
+      ctx.moveTo(x, y + r);
+      ctx.bezierCurveTo(x, y, x - r * 2, y, x - r * 2, y + r);
+      ctx.bezierCurveTo(x - r * 2, y + r * 2, x, y + r * 2.8, x, y + r * 3.8);
+      ctx.bezierCurveTo(x, y + r * 2.8, x + r * 2, y + r * 2, x + r * 2, y + r);
+      ctx.bezierCurveTo(x + r * 2, y, x, y, x, y + r);
+      ctx.fill();
+
+      return new THREE.CanvasTexture(canvas);
+    }
+
+    function init() {
+      const btn = document.getElementById('btnEmpezar');
+      if (btn) {
+        btn.addEventListener('click', iniciarViaje);
+        btn.addEventListener('pointerdown', iniciarViaje);
+      }
+
+      const coreBtn = document.getElementById('core-button');
+      coreBtn.addEventListener('click', activarFrasesGalaxia);
+      coreBtn.addEventListener('pointerdown', activarFrasesGalaxia);
+
+      scene = new THREE.Scene();
+      camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 3000);
+      camera.position.set(0, 0, startZ);
+
+      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+      crearFondoEspacialRealista();
+      crearTunelNebulosaHiperRealista();
+      crearGalaxiaMajestuosa();
+      crearFrasesEstelaDOM();
+      setupInteractions();
+
+      window.addEventListener('resize', onWindowResize);
+      animate();
+    }
+
+    function crearFrasesEstelaDOM() {
+      const container = document.getElementById('galaxy-phrases-container');
+      container.innerHTML = '';
+      frasesGalaxia3D.forEach((item) => {
+        const div = document.createElement('div');
+        div.className = 'galaxy-3d-phrase';
+        div.innerText = item.text;
+        container.appendChild(div);
+        galaxyPhraseElements.push({ el: div, pos: item.pos });
+      });
+    }
+
+    function activarFrasesGalaxia(e) {
+      if (e) { e.stopPropagation(); e.preventDefault(); }
+      frasesVisibles = true;
+      const coreBtn = document.getElementById('core-button');
+      coreBtn.style.transform = 'translate(-50%, -50%) scale(0)';
+      coreBtn.style.opacity = '0';
+      coreBtn.style.pointerEvents = 'none';
+    }
+
+    function crearFondoEspacialRealista() {
+      const starTexture = crearTexturaEstrella();
+      const countDust = 7000;
+      const dustGeo = new THREE.BufferGeometry();
+      const dustPos = new Float32Array(countDust * 3);
+      for (let i = 0; i < countDust; i++) {
+        dustPos[i*3] = (Math.random() - 0.5) * 2000;
+        dustPos[i*3+1] = (Math.random() - 0.5) * 2000;
+        dustPos[i*3+2] = (Math.random() - 0.5) * 2000;
+      }
+      dustGeo.setAttribute('position', new THREE.BufferAttribute(dustPos, 3));
+      backgroundStars = new THREE.Points(dustGeo, new THREE.PointsMaterial({
+        size: 1.0, map: starTexture, transparent: true, opacity: 0.5,
+        blending: THREE.AdditiveBlending, depthWrite: false
+      }));
+      scene.add(backgroundStars);
+
+      const countGiants = 200;
+      const giantGeo = new THREE.BufferGeometry();
+      const giantPos = new Float32Array(countGiants * 3);
+      const giantColors = new Float32Array(countGiants * 3);
+      const giantPalette = [
+        new THREE.Color('#ffffff'), new THREE.Color('#ffdf73'),
+        new THREE.Color('#ff9e3b'), new THREE.Color('#4cd3ff'), new THREE.Color('#ff70c7')
+      ];
+
+      for (let i = 0; i < countGiants; i++) {
+        giantPos[i*3] = (Math.random() - 0.5) * 1600;
+        giantPos[i*3+1] = (Math.random() - 0.5) * 1600;
+        giantPos[i*3+2] = (Math.random() - 0.5) * 1600;
+        const col = giantPalette[Math.floor(Math.random() * giantPalette.length)];
+        giantColors[i*3] = col.r; giantColors[i*3+1] = col.g; giantColors[i*3+2] = col.b;
+      }
+      giantGeo.setAttribute('position', new THREE.BufferAttribute(giantPos, 3));
+      giantGeo.setAttribute('color', new THREE.BufferAttribute(giantColors, 3));
+
+      giantStars = new THREE.Points(giantGeo, new THREE.PointsMaterial({
+        size: 3.5, map: starTexture, vertexColors: true, transparent: true, opacity: 0.9,
+        blending: THREE.AdditiveBlending, depthWrite: false
+      }));
+      scene.add(giantStars);
+
+      const lineGeo = new THREE.BufferGeometry();
+      lineGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(6), 3));
+      shootingStarLine = new THREE.Line(lineGeo, new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0 }));
+      scene.add(shootingStarLine);
+    }
+
+    function crearTunelNebulosaHiperRealista() {
+      tunnelNebulaGroup = new THREE.Group();
+      const starTexture = crearTexturaEstrella();
+      const layers = 5;
+      const countPerLayer = isMobile ? 4000 : 8000;
+      const nebulaColors = [
+        new THREE.Color('#ff007f'), new THREE.Color('#7b2cbf'),
+        new THREE.Color('#00f0ff'), new THREE.Color('#ffffff'),
+        new THREE.Color('#ffaa00'), new THREE.Color('#240838')
+      ];
+
+      for (let l = 0; l < layers; l++) {
+        const geo = new THREE.BufferGeometry();
+        const pos = new Float32Array(countPerLayer * 3);
+        const colors = new Float32Array(countPerLayer * 3);
+        const baseRadius = 12 + l * 4.0;
+
+        for (let i = 0; i < countPerLayer; i++) {
+          const u = i / countPerLayer;
+          const angle = u * Math.PI * 30 + (l * 1.5);
+          const radius = baseRadius + Math.sin(u * Math.PI * 6 + l) * 3.0 + Math.random() * 1.5;
+          const z = (u * 1800) - 300;
+
+          pos[i*3] = Math.cos(angle) * radius;
+          pos[i*3+1] = Math.sin(angle) * radius;
+          pos[i*3+2] = z;
+
+          const c = nebulaColors[Math.floor(Math.random() * nebulaColors.length)];
+          colors[i*3] = c.r; colors[i*3+1] = c.g; colors[i*3+2] = c.b;
+        }
+
+        geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+        geo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+        const mat = new THREE.PointsMaterial({
+          size: 1.2, map: starTexture, vertexColors: true,
+          transparent: true, opacity: 0.9, blending: THREE.AdditiveBlending, depthWrite: false
+        });
+
+        tunnelNebulaGroup.add(new THREE.Points(geo, mat));
+      }
+      scene.add(tunnelNebulaGroup);
+    }
+
+    function crearGalaxiaMajestuosa() {
+      galaxyGroup = new THREE.Group();
+      const starTexture = crearTexturaEstrella();
+      const heartTexture = crearTexturaCorazon();
+      
+      const count = isMobile ? 60000 : 120000;
+      const geo = new THREE.BufferGeometry();
+      const pos = new Float32Array(count * 3);
+      const colors = new Float32Array(count * 3);
+
+      const colorCore = new THREE.Color('#ffffff');
+      const colorInner = new THREE.Color('#ffdf73');
+      const colorPink = new THREE.Color('#ff007f');
+      const colorPurple = new THREE.Color('#8a2be2');
+      const colorBlue = new THREE.Color('#00bfff');
+      const colorEdge = new THREE.Color('#050014');
+
+      for (let i = 0; i < count; i++) {
+        const r = Math.pow(Math.random(), 1.4) * 200 + 2;
+        const arms = 2;
+        const armAngle = ((i % arms) / arms) * Math.PI * 2;
+        const spiralAngle = r * 0.035;
+        const angle = armAngle + spiralAngle + (Math.random() - 0.5) * 0.4;
+        const spreadY = (Math.random() - 0.5) * (200 - r) * 0.1;
+
+        pos[i*3] = Math.cos(angle) * r;
+        pos[i*3+1] = spreadY;
+        pos[i*3+2] = Math.sin(angle) * r;
+
+        const ratio = r / 200;
+        let mixed;
+        if (ratio < 0.08) {
+          mixed = colorCore.clone().lerp(colorInner, ratio / 0.08);
+        } else if (ratio < 0.3) {
+          mixed = colorInner.clone().lerp(colorPink, (ratio - 0.08) / 0.22);
+        } else if (ratio < 0.6) {
+          mixed = colorPink.clone().lerp(colorPurple, (ratio - 0.3) / 0.3);
+        } else if (ratio < 0.85) {
+          mixed = colorPurple.clone().lerp(colorBlue, (ratio - 0.6) / 0.25);
+        } else {
+          mixed = colorBlue.clone().lerp(colorEdge, (ratio - 0.85) / 0.15);
+        }
+
+        colors[i*3] = mixed.r; colors[i*3+1] = mixed.g; colors[i*3+2] = mixed.b;
+      }
+
+      geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+      geo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+      const mat = new THREE.PointsMaterial({
+        size: 0.65, map: starTexture, vertexColors: true,
+        transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false
+      });
+      const galaxyPoints = new THREE.Points(geo, mat);
+      galaxyPoints.name = "galaxyPoints";
+      galaxyGroup.add(galaxyPoints);
+
+      const heartCount = 250;
+      const heartGeo = new THREE.BufferGeometry();
+      const heartPos = new Float32Array(heartCount * 3);
+      for(let i=0; i<heartCount; i++) {
+        const r = Math.random() * 160 + 10;
+        const angle = Math.random() * Math.PI * 2;
+        heartPos[i*3] = Math.cos(angle) * r;
+        heartPos[i*3+1] = (Math.random() - 0.5) * 25;
+        heartPos[i*3+2] = Math.sin(angle) * r;
+      }
+      heartGeo.setAttribute('position', new THREE.BufferAttribute(heartPos, 3));
+      const heartMat = new THREE.PointsMaterial({
+        size: 4.0, map: heartTexture, transparent: true, opacity: 0,
+        blending: THREE.AdditiveBlending, depthWrite: false
+      });
+      heartParticlesGroup = new THREE.Points(heartGeo, heartMat);
+      heartParticlesGroup.name = "heartParticles";
+      galaxyGroup.add(heartParticlesGroup);
+
+      const coreGeo = new THREE.SphereGeometry(6, 32, 32);
+      const coreMat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0 });
+      const coreMesh = new THREE.Mesh(coreGeo, coreMat);
+      coreMesh.name = "coreMesh";
+      galaxyGroup.add(coreMesh);
+
+      galaxyGroup.scale.set(0.2, 0.2, 0.2);
+      galaxyGroup.position.set(0, 0, -200);
+      scene.add(galaxyGroup);
+    }
+
+    function setupInteractions() {
+      const dom = renderer.domElement;
+      let touchStartDist = 0;
+
+      const onPointerDown = (e) => {
+        if (!travelFinished) return;
+        
+        // Soporte para zoom táctil de 2 dedos (Pinch-to-zoom)
+        if (e.touches && e.touches.length === 2) {
+          touchStartDist = Math.hypot(
+            e.touches[0].clientX - e.touches[1].clientX,
+            e.touches[0].clientY - e.touches[1].clientY
+          );
+          return;
+        }
+
+        isDragging = true;
+        const x = e.touches ? e.touches[0].clientX : e.clientX;
+        const y = e.touches ? e.touches[0].clientY : e.clientY;
+        previousMousePosition = { x, y };
+      };
+
+      const onPointerMove = (e) => {
+        if (!travelFinished) return;
+
+        // Manejo del gesto de alejar/acercar con dos dedos en celular
+        if (e.touches && e.touches.length === 2) {
+          const currentDist = Math.hypot(
+            e.touches[0].clientX - e.touches[1].clientX,
+            e.touches[0].clientY - e.touches[1].clientY
+          );
+          const deltaDist = touchStartDist - currentDist;
+          currentCameraZ += deltaDist * 0.8;
+          currentCameraZ = Math.max(30, Math.min(450, currentCameraZ));
+          touchStartDist = currentDist;
+          return;
+        }
+
+        if (!isDragging) return;
+        const x = e.touches ? e.touches[0].clientX : e.clientX;
+        const y = e.touches ? e.touches[0].clientY : e.clientY;
+
+        const deltaX = x - previousMousePosition.x;
+        const deltaY = y - previousMousePosition.y;
+
+        targetRotationY += deltaX * 0.005;
+        targetRotationX += deltaY * 0.005;
+
+        previousMousePosition = { x, y };
+      };
+
+      const onPointerUp = () => { isDragging = false; };
+
+      const onWheel = (e) => {
+        if (!travelFinished) return;
+        currentCameraZ += e.deltaY * 0.25;
+        currentCameraZ = Math.max(30, Math.min(450, currentCameraZ));
+      };
+
+      dom.addEventListener('mousedown', onPointerDown);
+      dom.addEventListener('mousemove', onPointerMove);
+      window.addEventListener('mouseup', onPointerUp);
+      dom.addEventListener('wheel', onWheel, { passive: true });
+
+      dom.addEventListener('touchstart', onPointerDown, { passive: true });
+      dom.addEventListener('touchmove', onPointerMove, { passive: true });
+      window.addEventListener('touchend', onPointerUp);
+    }
+
+    function actualizarBotonNucleo() {
+      if (!travelFinished || frasesVisibles) return;
+      const coreBtn = document.getElementById('core-button');
+      
+      let centerWorldPos = new THREE.Vector3(0, 0, 0);
+      centerWorldPos.applyMatrix4(galaxyGroup.matrixWorld);
+      centerWorldPos.project(camera);
+
+      const widthHalf = window.innerWidth / 2;
+      const heightHalf = window.innerHeight / 2;
+
+      const x = (centerWorldPos.x * widthHalf) + widthHalf;
+      const y = -(centerWorldPos.y * heightHalf) + heightHalf;
+
+      if (centerWorldPos.z < 1) {
+        coreBtn.style.left = `${x}px`;
+        coreBtn.style.top = `${y}px`;
+        coreBtn.classList.add('visible');
+      } else {
+        coreBtn.classList.remove('visible');
+      }
+    }
+
+    function actualizarFrasesEstela() {
+      if (!travelFinished || !frasesVisibles) {
+        galaxyPhraseElements.forEach(item => item.el.classList.remove('visible'));
+        return;
+      }
+
+      const widthHalf = window.innerWidth / 2;
+      const heightHalf = window.innerHeight / 2;
+
+      galaxyPhraseElements.forEach(item => {
+        let worldPos = item.pos.clone();
+        worldPos.applyMatrix4(galaxyGroup.matrixWorld);
+        worldPos.project(camera);
+
+        if (worldPos.z < 1) {
+          const x = (worldPos.x * widthHalf) + widthHalf;
+          const y = -(worldPos.y * heightHalf) + heightHalf;
+          item.el.style.left = `${x}px`;
+          item.el.style.top = `${y}px`;
+          item.el.classList.add('visible');
+        } else {
+          item.el.classList.remove('visible');
+        }
+      });
+    }
+
+    function actualizarEstrellaFugaz() {
+      if (!travelFinished) return;
+      if (!shootingStarData.active) {
+        if (Math.random() < 0.015) {
+          shootingStarData.active = true;
+          shootingStarData.progress = 0;
+          shootingStarData.startX = (Math.random() - 0.5) * 400;
+          shootingStarData.startY = 120 + Math.random() * 100;
+          shootingStarData.startZ = -300 - Math.random() * 100;
+          shootingStarData.endX = shootingStarData.startX + (Math.random() * 180 - 90);
+          shootingStarData.endY = shootingStarData.startY - 80 - Math.random() * 40;
+          shootingStarData.endZ = shootingStarData.startZ;
+          shootingStarData.speed = 0.0012 + Math.random() * 0.001;
+        }
+      } else {
+        shootingStarData.progress += shootingStarData.speed;
+        if (shootingStarData.progress >= 1) {
+          shootingStarData.active = false;
+          shootingStarLine.material.opacity = 0;
+          return;
+        }
+        const p = shootingStarData.progress;
+        const curX = shootingStarData.startX + (shootingStarData.endX - shootingStarData.startX) * p;
+        const curY = shootingStarData.startY + (shootingStarData.endY - shootingStarData.startY) * p;
+        const curZ = shootingStarData.startZ;
+
+        const tailLen = 0.15;
+        const tailP = Math.max(0, p - tailLen);
+        const tailX = shootingStarData.startX + (shootingStarData.endX - shootingStarData.startX) * tailP;
+        const tailY = shootingStarData.startY + (shootingStarData.endY - shootingStarData.startY) * tailP;
+
+        const positions = shootingStarLine.geometry.attributes.position.array;
+        positions[0] = curX; positions[1] = curY; positions[2] = curZ;
+        positions[3] = tailX; positions[4] = tailY; positions[5] = curZ;
+        shootingStarLine.geometry.attributes.position.needsUpdate = true;
+        shootingStarLine.material.opacity = Math.sin(p * Math.PI) * 0.85;
+      }
+    }
+
+    function animate() {
+      requestAnimationFrame(animate);
+
+      if (tunnelNebulaGroup && !travelFinished) {
+        tunnelNebulaGroup.rotation.z += 0.02;
+      }
+
+      if (isTraveling && !travelFinished) {
+        if (camera.position.z > targetZ) {
+          camera.position.z -= tunnelSpeed;
+          currentCameraZ = camera.position.z;
+
+          if (camera.position.z < 300) {
+            let progressFactor = camera.position.z / 300;
+            let alpha = Math.min(1, Math.max(0, 1 - (progressFactor / 1)));
+
+            let currentScale = 0.2 + (0.8 * alpha);
+            galaxyGroup.scale.set(currentScale, currentScale, currentScale);
+
+            let gPoints = galaxyGroup.getObjectByName("galaxyPoints");
+            let hPoints = galaxyGroup.getObjectByName("heartParticles");
+            let cMesh = galaxyGroup.getObjectByName("coreMesh");
+
+            if(gPoints) gPoints.material.opacity = alpha * 0.95;
+            if(hPoints) hPoints.material.opacity = alpha * 0.9;
+            if(cMesh) cMesh.material.opacity = alpha;
+
+            tunnelNebulaGroup.children.forEach(mesh => {
+              if (mesh.material.opacity > 0.02) mesh.material.opacity -= 0.02;
+            });
+          }
+        } else {
+          travelFinished = true;
+          camera.position.z = 0;
+          currentCameraZ = 0;
+          galaxyGroup.position.set(0, 0, -200);
+          galaxyGroup.scale.set(1, 1, 1);
+          scene.remove(tunnelNebulaGroup);
+
+          let gPoints = galaxyGroup.getObjectByName("galaxyPoints");
+          let hPoints = galaxyGroup.getObjectByName("heartParticles");
+          let cMesh = galaxyGroup.getObjectByName("coreMesh");
+          if(gPoints) gPoints.material.opacity = 0.95;
+          if(hPoints) hPoints.material.opacity = 0.9;
+          if(cMesh) cMesh.material.opacity = 1.0;
+        }
+      } else if (travelFinished) {
+        camera.position.z += (currentCameraZ - camera.position.z) * 0.1;
+      }
+
+      if (galaxyGroup) {
+        if (!isDragging) {
+          targetRotationY += 0.002;
+        }
+        galaxyGroup.rotation.y += (targetRotationY - galaxyGroup.rotation.y) * 0.1;
+        galaxyGroup.rotation.x += (targetRotationX - galaxyGroup.rotation.x) * 0.1;
+        galaxyGroup.updateMatrixWorld();
+      }
+
+      if (giantStars) {
+        giantStars.material.opacity = 0.85 + Math.sin(Date.now() * 0.0025) * 0.12;
+      }
+
+      actualizarEstrellaFugaz();
+      actualizarBotonNucleo();
+      actualizarFrasesEstela();
+
+      renderer.render(scene, camera);
+    }
+
+    function onWindowResize() {
+      isMobile = window.innerWidth <= 768;
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    }
+
+    window.onload = init;
+  </script>
+</body>
+</html>
