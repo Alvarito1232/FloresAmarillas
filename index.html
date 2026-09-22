@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>21 de Septiembre — Ramos de Flores Amarillas 🌻✨</title>
+  <title>21 de Septiembre — Especial Flores Amarillas 🌻✨</title>
   <style>
     /* ==========================================================================
-       1. VARIABLES GLOBALES Y PALETA DE COLORES
+       1. CONFIGURACIÓN BÁSICA Y PALETA CÁLIDA
        ========================================================================== */
     :root {
-      --bg-gradient: radial-gradient(circle at center, #1e1604 0%, #060401 100%);
-      --card-bg: rgba(18, 14, 4, 0.92);
-      --card-border: rgba(245, 197, 24, 0.45);
+      --bg-dark: radial-gradient(circle at center, #1a1303 0%, #050401 100%);
+      --card-bg: rgba(22, 17, 5, 0.94);
+      --card-border: rgba(245, 197, 24, 0.5);
       --gold-primary: #f5c518;
-      --gold-light: #fff0aa;
-      --gold-glow: rgba(245, 197, 24, 0.25);
-      --text-main: #fffcf0;
+      --gold-light: #ffeb99;
+      --gold-glow: rgba(245, 197, 24, 0.2);
+      --text-main: #fffdf5;
     }
 
     * {
@@ -30,13 +30,13 @@
       width: 100%;
       height: 100%;
       font-family: 'Segoe UI', system-ui, -apple-system, Roboto, sans-serif;
-      background: var(--bg-gradient);
+      background: var(--bg-dark);
       color: var(--text-main);
       overflow: hidden;
       position: relative;
     }
 
-    /* Canvas para Efectos de Pétalos y Luces */
+    /* Canvas de Partículas */
     #fx-canvas {
       position: fixed;
       top: 0;
@@ -48,7 +48,7 @@
     }
 
     /* ==========================================================================
-       2. PANTALLA DE ENTRADA CON RAMO DE FLORES GIGANTE
+       2. PANTALLA DE ENTRADA CON RAMO DETALLADO
        ========================================================================== */
     #welcome-screen {
       position: fixed;
@@ -61,9 +61,9 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      background: radial-gradient(circle at center, rgba(32, 23, 5, 0.98) 0%, rgba(4, 3, 1, 0.99) 100%);
+      background: radial-gradient(circle at center, rgba(35, 25, 5, 0.98) 0%, rgba(4, 3, 1, 0.99) 100%);
       transition: opacity 0.8s ease, visibility 0.8s ease;
-      padding: 20px;
+      padding: 24px;
       text-align: center;
     }
 
@@ -81,12 +81,12 @@
       margin-bottom: 20px;
     }
 
-    /* Ramo de Flores SVG Ilustrado de Entrada */
-    .hero-bouquet-svg {
-      width: 180px;
-      height: 200px;
+    /* SVG Ramo de Flores Detallado */
+    .hero-bouquet-detailed {
+      width: 210px;
+      height: 230px;
       margin-bottom: 20px;
-      filter: drop-shadow(0 10px 25px rgba(245, 197, 24, 0.35));
+      filter: drop-shadow(0 12px 28px rgba(245, 197, 24, 0.35));
       animation: floatBouquet 4s ease-in-out infinite;
     }
 
@@ -133,7 +133,7 @@
     }
 
     /* ==========================================================================
-       3. CARTA GRANDE CON RAMOS EN LAS ESQUINAS
+       3. CARTA MEJORADA Y CORREGIDA
        ========================================================================== */
     #main-wrapper {
       position: absolute;
@@ -145,7 +145,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 18px;
+      padding: 20px;
       opacity: 0;
       visibility: hidden;
       transition: opacity 1s ease, transform 1s ease;
@@ -166,9 +166,9 @@
       -webkit-backdrop-filter: blur(25px);
       max-width: 680px;
       width: 100%;
-      max-height: 88vh;
-      border-radius: 36px;
-      padding: 45px 32px 35px 32px;
+      max-height: 85vh;
+      border-radius: 32px;
+      padding: 45px 35px 35px 35px;
       box-shadow: 0 15px 50px rgba(0, 0, 0, 0.9), var(--gold-glow);
       overflow-y: auto;
       scrollbar-width: thin;
@@ -184,25 +184,23 @@
       border-radius: 10px;
     }
 
-    /* Ramos de Flores SVG en Esquinas */
-    .corner-bouquet-svg {
+    /* Esquinas Ilustradas integradas al borde */
+    .corner-garland-svg {
       position: absolute;
-      width: 110px;
-      height: 110px;
+      width: 90px;
+      height: 90px;
       pointer-events: none;
-      opacity: 0.92;
-      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.6));
+      opacity: 0.95;
+      filter: drop-shadow(0 3px 8px rgba(0,0,0,0.5));
     }
 
-    .corner-bouquet-svg.tl { top: -25px; left: -25px; transform: rotate(-15deg); }
-    .corner-bouquet-svg.tr { top: -25px; right: -25px; transform: rotate(15deg) scaleX(-1); }
-    .corner-bouquet-svg.bl { bottom: -25px; left: -25px; transform: rotate(-105deg); }
-    .corner-bouquet-svg.br { bottom: -25px; right: -25px; transform: rotate(105deg) scaleX(-1); }
+    .corner-garland-svg.tl { top: -12px; left: -12px; }
+    .corner-garland-svg.tr { top: -12px; right: -12px; transform: scaleX(-1); }
 
     /* Encabezado */
     .card-header-block {
       text-align: center;
-      margin-bottom: 30px;
+      margin-bottom: 28px;
     }
 
     .card-header-tag {
@@ -221,10 +219,10 @@
       color: var(--gold-primary);
       font-weight: 800;
       letter-spacing: 0.5px;
-      line-height: 1.3;
+      line-height: 1.35;
     }
 
-    /* Texto exacto integrado */
+    /* Cuerpo del texto */
     .letter-text-body {
       font-size: clamp(0.98rem, 2.6vw, 1.08rem);
       line-height: 1.95;
@@ -237,12 +235,35 @@
       opacity: 0.94;
     }
 
-    .letter-footer-badge {
-      text-align: center;
-      margin-top: 35px;
+    /* Controles de Música en la Carta */
+    .audio-controls-block {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      margin-top: 30px;
       padding-top: 20px;
-      border-top: 1px dashed rgba(245, 197, 24, 0.25);
-      font-size: 1.5rem;
+      border-top: 1px dashed rgba(245, 197, 24, 0.3);
+    }
+
+    .btn-audio-toggle {
+      background: rgba(245, 197, 24, 0.12);
+      border: 1px solid rgba(245, 197, 24, 0.4);
+      color: var(--gold-light);
+      padding: 10px 22px;
+      border-radius: 25px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-audio-toggle:hover {
+      background: rgba(245, 197, 24, 0.25);
+      border-color: var(--gold-primary);
     }
 
     audio { display: none; }
@@ -250,81 +271,80 @@
 </head>
 <body>
 
-  <!-- Audio Configurado -->
+  <!-- Elemento Audio -->
   <audio id="bg-audio" loop preload="auto">
     <source src="Floricienta — Flores Amarillas [Letra].mp3" type="audio/mpeg">
   </audio>
 
-  <!-- Canvas para Efectos Visuales -->
+  <!-- Canvas de Efectos Visuales -->
   <canvas id="fx-canvas"></canvas>
 
   <!-- Pantalla de Entrada con Ramo Ilustrado -->
   <div id="welcome-screen">
     <span class="badge-september">21 de Septiembre</span>
     
-    <!-- SVG Ramo de Flores Amarillas Gigante de Entrada -->
-    <svg class="hero-bouquet-svg" viewBox="0 0 200 220">
-      <!-- Envoltorio y Lazo del Ramo -->
-      <polygon points="60,130 140,130 115,210 85,210" fill="#d4a359" opacity="0.9"/>
-      <polygon points="55,120 145,120 135,145 65,145" fill="#e8bc74"/>
-      <path d="M 85,140 Q 100,150 115,140 Q 120,165 100,160 Q 80,165 85,140 Z" fill="#ff4757"/>
+    <!-- SVG Ramo de Flores Amarillas Detallado -->
+    <svg class="hero-bouquet-detailed" viewBox="0 0 200 220">
+      <defs>
+        <linearGradient id="wrapperGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#f3d088"/>
+          <stop offset="100%" stop-color="#c79548"/>
+        </linearGradient>
+        <linearGradient id="ribbonGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#ff4757"/>
+          <stop offset="100%" stop-color="#ff6b81"/>
+        </linearGradient>
+      </defs>
+
+      <!-- Envoltorio y Papel del Ramo -->
+      <polygon points="50,110 150,110 120,210 80,210" fill="url(#wrapperGrad)" />
+      <polygon points="45,100 155,100 140,120 60,120" fill="#e8be74"/>
       
-      <!-- Hojas del Ramo -->
-      <path d="M 40,90 Q 20,70 50,60 Z" fill="#2ed573"/>
-      <path d="M 160,90 Q 180,70 150,60 Z" fill="#2ed573"/>
-      <path d="M 100,50 Q 80,20 100,10 Q 120,20 100,50 Z" fill="#26de81"/>
+      <!-- Hojas Verdes de Fondo -->
+      <path d="M 30,85 Q 10,50 50,45 Z" fill="#2ed573"/>
+      <path d="M 170,85 Q 190,50 150,45 Z" fill="#2ed573"/>
+      <path d="M 100,40 Q 80,10 100,0 Q 120,10 100,40 Z" fill="#26de81"/>
 
-      <!-- Flor Central Principal (Girasol Grande) -->
-      <g transform="translate(100,75)">
-        <g id="petals-main">
-          <path d="M0,-35 C3,-20 3,-10 0,-5 C-3,-10 -3,-20 0,-35 Z" fill="#f5c233" />
-          <path d="M0,-35 C3,-20 3,-10 0,-5 C-3,-10 -3,-20 0,-35 Z" fill="#f5c233" transform="rotate(30)" />
-          <path d="M0,-35 C3,-20 3,-10 0,-5 C-3,-10 -3,-20 0,-35 Z" fill="#e67e22" transform="rotate(60)" />
-          <path d="M0,-35 C3,-20 3,-10 0,-5 C-3,-10 -3,-20 0,-35 Z" fill="#f5c233" transform="rotate(90)" />
-          <path d="M0,-35 C3,-20 3,-10 0,-5 C-3,-10 -3,-20 0,-35 Z" fill="#f5c233" transform="rotate(120)" />
-          <path d="M0,-35 C3,-20 3,-10 0,-5 C-3,-10 -3,-20 0,-35 Z" fill="#e67e22" transform="rotate(150)" />
-          <path d="M0,-35 C3,-20 3,-10 0,-5 C-3,-10 -3,-20 0,-35 Z" fill="#f5c233" transform="rotate(180)" />
-          <path d="M0,-35 C3,-20 3,-10 0,-5 C-3,-10 -3,-20 0,-35 Z" fill="#f5c233" transform="rotate(210)" />
-          <path d="M0,-35 C3,-20 3,-10 0,-5 C-3,-10 -3,-20 0,-35 Z" fill="#e67e22" transform="rotate(240)" />
-          <path d="M0,-35 C3,-20 3,-10 0,-5 C-3,-10 -3,-20 0,-35 Z" fill="#f5c233" transform="rotate(270)" />
-          <path d="M0,-35 C3,-20 3,-10 0,-5 C-3,-10 -3,-20 0,-35 Z" fill="#f5c233" transform="rotate(300)" />
-          <path d="M0,-35 C3,-20 3,-10 0,-5 C-3,-10 -3,-20 0,-35 Z" fill="#e67e22" transform="rotate(330)" />
+      <!-- Flores Principales del Ramo -->
+      <!-- Girasol Central -->
+      <g transform="translate(100,65)">
+        <g id="sunflower-center-petals">
+          <path d="M0,-36 C4,-20 4,-10 0,-4 C-4,-10 -4,-20 0,-36 Z" fill="#f5c233" />
+          <path d="M0,-36 C4,-20 4,-10 0,-4 C-4,-10 -4,-20 0,-36 Z" fill="#f5c233" transform="rotate(22.5)" />
+          <path d="M0,-36 C4,-20 4,-10 0,-4 C-4,-10 -4,-20 0,-36 Z" fill="#e67e22" transform="rotate(45)" />
+          <path d="M0,-36 C4,-20 4,-10 0,-4 C-4,-10 -4,-20 0,-36 Z" fill="#f5c233" transform="rotate(67.5)" />
+          <path d="M0,-36 C4,-20 4,-10 0,-4 C-4,-10 -4,-20 0,-36 Z" fill="#f5c233" transform="rotate(90)" />
+          <path d="M0,-36 C4,-20 4,-10 0,-4 C-4,-10 -4,-20 0,-36 Z" fill="#e67e22" transform="rotate(112.5)" />
+          <path d="M0,-36 C4,-20 4,-10 0,-4 C-4,-10 -4,-20 0,-36 Z" fill="#f5c233" transform="rotate(135)" />
+          <path d="M0,-36 C4,-20 4,-10 0,-4 C-4,-10 -4,-20 0,-36 Z" fill="#f5c233" transform="rotate(157.5)" />
+          <path d="M0,-36 C4,-20 4,-10 0,-4 C-4,-10 -4,-20 0,-36 Z" fill="#e67e22" transform="rotate(180)" />
+          <path d="M0,-36 C4,-20 4,-10 0,-4 C-4,-10 -4,-20 0,-36 Z" fill="#f5c233" transform="rotate(202.5)" />
+          <path d="M0,-36 C4,-20 4,-10 0,-4 C-4,-10 -4,-20 0,-36 Z" fill="#f5c233" transform="rotate(225)" />
+          <path d="M0,-36 C4,-20 4,-10 0,-4 C-4,-10 -4,-20 0,-36 Z" fill="#e67e22" transform="rotate(247.5)" />
+          <path d="M0,-36 C4,-20 4,-10 0,-4 C-4,-10 -4,-20 0,-36 Z" fill="#f5c233" transform="rotate(270)" />
+          <path d="M0,-36 C4,-20 4,-10 0,-4 C-4,-10 -4,-20 0,-36 Z" fill="#f5c233" transform="rotate(292.5)" />
+          <path d="M0,-36 C4,-20 4,-10 0,-4 C-4,-10 -4,-20 0,-36 Z" fill="#e67e22" transform="rotate(315)" />
+          <path d="M0,-36 C4,-20 4,-10 0,-4 C-4,-10 -4,-20 0,-36 Z" fill="#f5c233" transform="rotate(337.5)" />
         </g>
-        <circle cx="0" cy="0" r="13" fill="#3a2307" />
-        <circle cx="0" cy="0" r="9" fill="#241402" />
+        <circle cx="0" cy="0" r="14" fill="#3a2307" />
+        <circle cx="0" cy="0" r="10" fill="#241402" />
       </g>
 
-      <!-- Flor Izquierda -->
-      <g transform="translate(60,60) scale(0.75)">
-        <g id="petals-left">
-          <path d="M0,-35 C3,-20 3,-10 0,-5 C-3,-10 -3,-20 0,-35 Z" fill="#f5c233" />
-          <path d="M0,-35 C3,-20 3,-10 0,-5 C-3,-10 -3,-20 0,-35 Z" fill="#f5c233" transform="rotate(40)" />
-          <path d="M0,-35 C3,-20 3,-10 0,-5 C-3,-10 -3,-20 0,-35 Z" fill="#e67e22" transform="rotate(80)" />
-          <path d="M0,-35 C3,-20 3,-10 0,-5 C-3,-10 -3,-20 0,-35 Z" fill="#f5c233" transform="rotate(120)" />
-          <path d="M0,-35 C3,-20 3,-10 0,-5 C-3,-10 -3,-20 0,-35 Z" fill="#f5c233" transform="rotate(160)" />
-          <path d="M0,-35 C3,-20 3,-10 0,-5 C-3,-10 -3,-20 0,-35 Z" fill="#e67e22" transform="rotate(200)" />
-          <path d="M0,-35 C3,-20 3,-10 0,-5 C-3,-10 -3,-20 0,-35 Z" fill="#f5c233" transform="rotate(240)" />
-          <path d="M0,-35 C3,-20 3,-10 0,-5 C-3,-10 -3,-20 0,-35 Z" fill="#f5c233" transform="rotate(280)" />
-          <path d="M0,-35 C3,-20 3,-10 0,-5 C-3,-10 -3,-20 0,-35 Z" fill="#e67e22" transform="rotate(320)" />
-        </g>
-        <circle cx="0" cy="0" r="12" fill="#3a2307" />
+      <!-- Girasol Izquierdo -->
+      <g transform="translate(60,50) scale(0.8)">
+        <circle cx="0" cy="0" r="32" fill="#f5c233"/>
+        <circle cx="0" cy="0" r="14" fill="#3a2307"/>
       </g>
 
-      <!-- Flor Derecha -->
-      <g transform="translate(140,60) scale(0.75)">
-        <g id="petals-right">
-          <path d="M0,-35 C3,-20 3,-10 0,-5 C-3,-10 -3,-20 0,-35 Z" fill="#f5c233" />
-          <path d="M0,-35 C3,-20 3,-10 0,-5 C-3,-10 -3,-20 0,-35 Z" fill="#f5c233" transform="rotate(40)" />
-          <path d="M0,-35 C3,-20 3,-10 0,-5 C-3,-10 -3,-20 0,-35 Z" fill="#e67e22" transform="rotate(80)" />
-          <path d="M0,-35 C3,-20 3,-10 0,-5 C-3,-10 -3,-20 0,-35 Z" fill="#f5c233" transform="rotate(120)" />
-          <path d="M0,-35 C3,-20 3,-10 0,-5 C-3,-10 -3,-20 0,-35 Z" fill="#f5c233" transform="rotate(160)" />
-          <path d="M0,-35 C3,-20 3,-10 0,-5 C-3,-10 -3,-20 0,-35 Z" fill="#e67e22" transform="rotate(200)" />
-          <path d="M0,-35 C3,-20 3,-10 0,-5 C-3,-10 -3,-20 0,-35 Z" fill="#f5c233" transform="rotate(240)" />
-          <path d="M0,-35 C3,-20 3,-10 0,-5 C-3,-10 -3,-20 0,-35 Z" fill="#f5c233" transform="rotate(280)" />
-          <path d="M0,-35 C3,-20 3,-10 0,-5 C-3,-10 -3,-20 0,-35 Z" fill="#e67e22" transform="rotate(320)" />
-        </g>
-        <circle cx="0" cy="0" r="12" fill="#3a2307" />
+      <!-- Girasol Derecho -->
+      <g transform="translate(140,50) scale(0.8)">
+        <circle cx="0" cy="0" r="32" fill="#f5c233"/>
+        <circle cx="0" cy="0" r="14" fill="#3a2307"/>
       </g>
+
+      <!-- Moño Rojo del Ramo -->
+      <path d="M 80,120 C 95,130 105,130 120,120 C 130,140 115,150 100,135 C 85,150 70,140 80,120 Z" fill="url(#ribbonGrad)"/>
+      <circle cx="100" cy="127" r="6" fill="#d63031"/>
     </svg>
 
     <h1 class="hero-title">Flores Amarillas para Ti</h1>
@@ -332,27 +352,26 @@
     <button class="btn-open-experience" id="btn-open">ABRIR CARTA ✨</button>
   </div>
 
-  <!-- Vista Principal: Cartilla Grande con Ramos en las Esquinas -->
+  <!-- Vista Principal: Cartilla con Guirnaldas en las Esquinas -->
   <div id="main-wrapper">
     <div class="letter-card">
       
-      <!-- Ramos Vectoriales en las Esquinas -->
-      <svg class="corner-bouquet-svg tl" viewBox="0 0 120 120">
-        <polygon points="30,70 80,70 65,110 45,110" fill="#d4a359"/>
-        <path d="M 15,40 Q 30,20 50,40 Z" fill="#2ed573"/>
-        <g transform="translate(50,45) scale(0.6)">
-          <circle cx="0" cy="0" r="30" fill="#f5c233"/>
-          <circle cx="0" cy="0" r="12" fill="#3a2307"/>
-        </g>
+      <!-- Guirnalda Superior Izquierda -->
+      <svg class="corner-garland-svg tl" viewBox="0 0 100 100">
+        <path d="M 10,10 Q 50,20 80,10" stroke="#2ed573" stroke-width="4" fill="none"/>
+        <circle cx="25" cy="20" r="14" fill="#f5c233"/>
+        <circle cx="25" cy="20" r="6" fill="#3a2307"/>
+        <circle cx="65" cy="22" r="12" fill="#f5c233"/>
+        <circle cx="65" cy="22" r="5" fill="#3a2307"/>
       </svg>
 
-      <svg class="corner-bouquet-svg tr" viewBox="0 0 120 120">
-        <polygon points="30,70 80,70 65,110 45,110" fill="#d4a359"/>
-        <path d="M 15,40 Q 30,20 50,40 Z" fill="#2ed573"/>
-        <g transform="translate(50,45) scale(0.6)">
-          <circle cx="0" cy="0" r="30" fill="#f5c233"/>
-          <circle cx="0" cy="0" r="12" fill="#3a2307"/>
-        </g>
+      <!-- Guirnalda Superior Derecha -->
+      <svg class="corner-garland-svg tr" viewBox="0 0 100 100">
+        <path d="M 10,10 Q 50,20 80,10" stroke="#2ed573" stroke-width="4" fill="none"/>
+        <circle cx="25" cy="20" r="14" fill="#f5c233"/>
+        <circle cx="25" cy="20" r="6" fill="#3a2307"/>
+        <circle cx="65" cy="22" r="12" fill="#f5c233"/>
+        <circle cx="65" cy="22" r="5" fill="#3a2307"/>
       </svg>
 
       <div class="card-header-block">
@@ -380,7 +399,12 @@
         <p>Y espero que nuestra amistad siga siendo parte de muchas historias bonitas. ❤️</p>
       </div>
 
-      <div class="letter-footer-badge">🌻 ✨ 💐 ✨ 🌻</div>
+      <!-- Control de Música -->
+      <div class="audio-controls-block">
+        <button class="btn-audio-toggle" id="btn-audio-toggle">
+          <span id="audio-icon">🎵</span> <span id="audio-text">Pausar Música</span>
+        </button>
+      </div>
 
     </div>
   </div>
@@ -391,11 +415,18 @@
       const welcomeScreen = document.getElementById('welcome-screen');
       const mainWrapper = document.getElementById('main-wrapper');
       const bgAudio = document.getElementById('bg-audio');
+      const btnAudioToggle = document.getElementById('btn-audio-toggle');
+      const audioIcon = document.getElementById('audio-icon');
+      const audioText = document.getElementById('audio-text');
 
-      // Reproducción e Inicios
+      let isPlaying = false;
+
+      // Abrir Carta e Iniciar Audio
       btnOpen.addEventListener('click', () => {
         if (bgAudio) {
-          bgAudio.play().catch(e => console.log("Audio reproducción:", e));
+          bgAudio.play().then(() => {
+            isPlaying = true;
+          }).catch(e => console.log("Audio reproducción:", e));
         }
 
         welcomeScreen.style.opacity = '0';
@@ -403,13 +434,28 @@
 
         setTimeout(() => {
           mainWrapper.classList.add('active');
-          triggerFlowerBurst(window.innerWidth / 2, window.innerHeight / 2, 20);
+          triggerFlowerBurst(window.innerWidth / 2, window.innerHeight / 2, 22);
         }, 400);
       });
 
-      // Toca en cualquier lugar para crear flores estelares
+      // Control manual de Música
+      btnAudioToggle.addEventListener('click', () => {
+        if (isPlaying) {
+          bgAudio.pause();
+          isPlaying = false;
+          audioIcon.innerText = '🔇';
+          audioText.innerText = 'Reproducir Música';
+        } else {
+          bgAudio.play();
+          isPlaying = true;
+          audioIcon.innerText = '🎵';
+          audioText.innerText = 'Pausar Música';
+        }
+      });
+
+      // Efecto interactivo al tocar la pantalla
       window.addEventListener('click', (e) => {
-        if (mainWrapper.classList.contains('active')) {
+        if (mainWrapper.classList.contains('active') && e.target.id !== 'btn-audio-toggle' && !btnAudioToggle.contains(e.target)) {
           triggerFlowerBurst(e.clientX, e.clientY, 8);
         }
       });
@@ -493,7 +539,7 @@
         draw() {
           ctx.beginPath();
           ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-          ctx.fillStyle = '#fff0aa';
+          ctx.fillStyle = '#ffeb99';
           ctx.globalAlpha = this.opacity;
           ctx.fill();
         }
