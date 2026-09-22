@@ -3,24 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Una Carta Especial para Ti 🌻</title>
+  <title>Una Carta Especial para Ti 🌻✨</title>
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      user-select: none;
     }
 
     body, html {
       width: 100%;
       height: 100%;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: radial-gradient(circle at center, #2e2200 0%, #0d0a00 100%);
+      background: radial-gradient(circle at center, #2e2200 0%, #0a0800 100%);
       color: #ffffff;
       overflow: hidden;
     }
 
-    /* Fondo de Partículas */
+    /* Canvas para partículas y pétalos cayendo */
     #particles-canvas {
       position: absolute;
       top: 0;
@@ -31,7 +32,7 @@
       pointer-events: none;
     }
 
-    /* Pantalla Inicial */
+    /* Pantalla de Entrada */
     #welcome-screen {
       position: absolute;
       top: 0;
@@ -42,33 +43,33 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      z-index: 10;
+      z-index: 20;
       transition: opacity 0.8s ease, visibility 0.8s;
-      background: radial-gradient(circle, rgba(45, 35, 0, 0.95) 0%, rgba(10, 8, 0, 0.98) 100%);
+      background: radial-gradient(circle, rgba(45, 35, 0, 0.98) 0%, rgba(10, 8, 0, 0.99) 100%);
     }
 
     .initial-flower {
-      font-size: 5rem;
-      margin-bottom: 20px;
-      animation: float 3s infinite ease-in-out;
-      filter: drop-shadow(0 0 20px #ffd700);
+      font-size: 5.5rem;
+      margin-bottom: 25px;
+      animation: floatFlower 3s infinite ease-in-out;
+      filter: drop-shadow(0 0 25px #ffd700);
     }
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0) scale(1); }
-      50% { transform: translateY(-12px) scale(1.08); }
+    @keyframes floatFlower {
+      0%, 100% { transform: translateY(0) scale(1) rotate(0deg); }
+      50% { transform: translateY(-15px) scale(1.1) rotate(5deg); }
     }
 
     .btn-open {
-      background: linear-gradient(45deg, #ffd700, #ff9100);
-      color: #1c1300;
+      background: linear-gradient(45deg, #ffd700, #ff8c00);
+      color: #1a1000;
       border: none;
-      padding: 18px 45px;
-      font-size: 1.15rem;
+      padding: 18px 48px;
+      font-size: 1.2rem;
       font-weight: 800;
       border-radius: 50px;
       cursor: pointer;
-      box-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+      box-shadow: 0 0 35px rgba(255, 215, 0, 0.8);
       letter-spacing: 2px;
       transition: all 0.3s ease;
       text-transform: uppercase;
@@ -76,10 +77,10 @@
 
     .btn-open:hover {
       transform: scale(1.08);
-      box-shadow: 0 0 50px rgba(255, 215, 0, 1);
+      box-shadow: 0 0 55px rgba(255, 215, 0, 1);
     }
 
-    /* Cartilla Grande */
+    /* Contenedor de la Cartilla */
     #card-wrapper {
       position: absolute;
       top: 0;
@@ -103,60 +104,65 @@
       transform: translateY(0);
     }
 
+    /* Cartilla Grande Mejorada */
     .letter-card {
-      background: rgba(25, 20, 5, 0.85);
-      border: 2px solid rgba(255, 215, 0, 0.6);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      max-width: 650px;
+      background: rgba(20, 16, 4, 0.88);
+      border: 2px solid rgba(255, 215, 0, 0.75);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      max-width: 680px;
       width: 100%;
       max-height: 85vh;
-      border-radius: 28px;
+      border-radius: 32px;
       padding: 45px 35px;
-      box-shadow: 0 0 50px rgba(255, 215, 0, 0.35), inset 0 0 20px rgba(255, 215, 0, 0.15);
+      box-shadow: 0 0 60px rgba(255, 215, 0, 0.4), inset 0 0 25px rgba(255, 215, 0, 0.2);
       overflow-y: auto;
       position: relative;
       scrollbar-width: thin;
       scrollbar-color: #ffd700 rgba(255, 255, 255, 0.1);
     }
 
-    .letter-card::-webkit-scrollbar {
-      width: 6px;
+    /* Flores Decorativas en Esquinas */
+    .corner-flower {
+      position: absolute;
+      font-size: 2.2rem;
+      filter: drop-shadow(0 0 12px #ffd700);
+      pointer-events: none;
     }
-
-    .letter-card::-webkit-scrollbar-thumb {
-      background-color: #ffd700;
-      border-radius: 10px;
-    }
+    .top-left { top: 15px; left: 18px; }
+    .top-right { top: 15px; right: 18px; }
+    .bottom-left { bottom: 15px; left: 18px; }
+    .bottom-right { bottom: 15px; right: 18px; }
 
     .header-flowers {
       display: flex;
       justify-content: center;
+      align-items: center;
       gap: 15px;
-      font-size: 2.5rem;
+      font-size: 2.6rem;
       margin-bottom: 20px;
-      filter: drop-shadow(0 0 10px #ffd700);
+      filter: drop-shadow(0 0 12px #ffd700);
     }
 
     .card-title {
       text-align: center;
       color: #ffd700;
-      font-size: 1.8rem;
+      font-size: 1.9rem;
       font-weight: 800;
       margin-bottom: 25px;
-      text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+      text-shadow: 0 0 20px rgba(255, 215, 0, 0.9);
       letter-spacing: 1px;
     }
 
     .card-body {
-      color: #fff9e6;
+      color: #fff8e1;
       font-size: 1.05rem;
-      line-height: 1.9;
+      line-height: 1.95;
       text-align: left;
     }
 
     .card-body p {
-      margin-bottom: 16px;
+      margin-bottom: 18px;
       opacity: 0.95;
     }
 
@@ -164,13 +170,76 @@
       text-align: center;
       margin-top: 30px;
       font-size: 2rem;
-      filter: drop-shadow(0 0 10px #ffd700);
+      filter: drop-shadow(0 0 12px #ffd700);
     }
 
-    /* Reproductor Oculto */
-    audio {
-      display: none;
+    /* Botón de Juego Interactivo */
+    .game-btn {
+      display: block;
+      margin: 25px auto 10px auto;
+      background: linear-gradient(45deg, #ff8c00, #ffd700);
+      color: #1a1000;
+      border: none;
+      padding: 12px 28px;
+      font-size: 0.95rem;
+      font-weight: 800;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+      transition: all 0.3s ease;
     }
+
+    .game-btn:hover {
+      transform: scale(1.06);
+      box-shadow: 0 0 35px rgba(255, 215, 0, 0.9);
+    }
+
+    /* Modal de Sorpresa / Juego */
+    #surprise-modal {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      background: rgba(25, 18, 2, 0.96);
+      border: 2px solid #ffd700;
+      box-shadow: 0 0 50px rgba(255, 215, 0, 0.8);
+      border-radius: 25px;
+      padding: 30px 25px;
+      z-index: 100;
+      text-align: center;
+      max-width: 400px;
+      width: 88%;
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    #surprise-modal.active {
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    #surprise-modal h2 {
+      color: #ffd700;
+      margin-bottom: 15px;
+      font-size: 1.4rem;
+    }
+
+    #surprise-modal p {
+      color: #fff8e1;
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .close-modal {
+      background: #ffd700;
+      color: #1a1000;
+      border: none;
+      padding: 10px 25px;
+      border-radius: 20px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    audio { display: none; }
   </style>
 </head>
 <body>
@@ -180,7 +249,7 @@
     <source src="Floricienta — Flores Amarillas [Letra].mp3" type="audio/mpeg">
   </audio>
 
-  <!-- Canvas de Partículas -->
+  <!-- Canvas de Partículas y Pétalos -->
   <canvas id="particles-canvas"></canvas>
 
   <!-- Pantalla de Entrada -->
@@ -192,7 +261,12 @@
   <!-- Cartilla Grande -->
   <div id="card-wrapper">
     <div class="letter-card">
-      <div class="header-flowers">🌻 💛 🌻</div>
+      <div class="corner-flower top-left">🌻</div>
+      <div class="corner-flower top-right">🌻</div>
+      <div class="corner-flower bottom-left">🌻</div>
+      <div class="corner-flower bottom-right">🌻</div>
+
+      <div class="header-flowers">🌻 🌼 🌻</div>
       <h1 class="card-title">Para Alguien Muy Especial ✨</h1>
       
       <div class="card-body">
@@ -214,33 +288,49 @@
         <p>Y espero que nuestra amistad siga siendo parte de muchas historias bonitas. ❤️</p>
       </div>
 
-      <div class="card-footer">🌻✨🌼</div>
+      <button class="game-btn" onclick="mostrarSorpresa()">🎁 Descubre tu Regalo Sorpresa ✨</button>
+
+      <div class="card-footer">🌻✨🌼✨🌻</div>
     </div>
+  </div>
+
+  <!-- Ventana Sorpresa -->
+  <div id="surprise-modal">
+    <h2>🌻 ¡Un Deseo para Ti! 🌻</h2>
+    <p id="surprise-text">"Que cada día de tu vida esté lleno de la misma luz, calidez y alegría que transmites a los demás. ¡Gracias por tu hermosa amistad!" 💛✨</p>
+    <button class="close-modal" onclick="cerrarSorpresa()">Aceptar 🤍</button>
   </div>
 
   <script>
     function abrirCartilla() {
-      // Reproducir música
       const music = document.getElementById('bg-music');
       if (music) {
-        music.play().catch(e => console.log("Audio reproducción permitida tras interacción:", e));
+        music.play().catch(e => console.log("Audio reproducción:", e));
       }
 
-      // Ocultar pantalla inicial
       const welcome = document.getElementById('welcome-screen');
       welcome.style.opacity = '0';
       welcome.style.visibility = 'hidden';
 
-      // Mostrar cartilla
       setTimeout(() => {
         document.getElementById('card-wrapper').classList.add('visible');
       }, 400);
     }
 
-    // Animación de Fondo de Partículas Amarillas y Destellos
+    function mostrarSorpresa() {
+      document.getElementById('surprise-modal').classList.add('active');
+      crearExplosionFlores(window.innerWidth / 2, window.innerHeight / 2, 30);
+    }
+
+    function cerrarSorpresa() {
+      document.getElementById('surprise-modal').classList.remove('active');
+    }
+
+    // Canvas & Sistema de Pétalos Cayendo y Partículas
     const canvas = document.getElementById('particles-canvas');
     const ctx = canvas.getContext('2d');
     let particles = [];
+    let petals = [];
 
     function resizeCanvas() {
       canvas.width = window.innerWidth;
@@ -249,56 +339,117 @@
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
 
-    class Particle {
+    // Clase para Pétalos Cayendo
+    class Petal {
       constructor() {
         this.reset();
       }
 
       reset() {
         this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height + canvas.height;
-        this.size = Math.random() * 4 + 1;
-        this.speedY = Math.random() * 1.5 + 0.5;
-        this.speedX = (Math.random() - 0.5) * 0.8;
+        this.y = -20;
+        this.size = Math.random() * 8 + 6;
+        this.speedY = Math.random() * 1.5 + 0.8;
+        this.speedX = Math.random() * 1 - 0.5;
+        this.angle = Math.random() * Math.PI * 2;
+        this.spin = (Math.random() - 0.5) * 0.03;
         this.opacity = Math.random() * 0.7 + 0.3;
-        this.color = Math.random() > 0.3 ? '#ffd700' : '#ffffff';
+      }
+
+      update() {
+        this.y += this.speedY;
+        this.x += Math.sin(this.angle) * 0.8 + this.speedX;
+        this.angle += this.spin;
+
+        if (this.y > canvas.height + 20) {
+          this.reset();
+        }
+      }
+
+      draw() {
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.angle);
+        ctx.beginPath();
+        ctx.ellipse(0, 0, this.size, this.size / 2, 0, 0, Math.PI * 2);
+        ctx.fillStyle = '#ffd700';
+        ctx.globalAlpha = this.opacity;
+        ctx.shadowBlur = 8;
+        ctx.shadowColor = '#ffaa00';
+        ctx.fill();
+        ctx.restore();
+      }
+    }
+
+    // Clase para Destellos Dorados
+    class Sparkle {
+      constructor() {
+        this.reset();
+      }
+
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 3 + 1;
+        this.speedY = Math.random() * 0.5 + 0.2;
+        this.opacity = Math.random() * 0.8 + 0.2;
       }
 
       update() {
         this.y -= this.speedY;
-        this.x += this.speedX;
-        if (this.y < -10) {
+        if (this.y < 0) {
           this.reset();
-          this.y = canvas.height + 10;
+          this.y = canvas.height;
         }
       }
 
       draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = this.color;
+        ctx.fillStyle = Math.random() > 0.4 ? '#ffd700' : '#ffffff';
         ctx.globalAlpha = this.opacity;
-        ctx.shadowBlur = 12;
+        ctx.shadowBlur = 10;
         ctx.shadowColor = '#ffd700';
         ctx.fill();
-        ctx.globalAlpha = 1;
       }
     }
 
-    for (let i = 0; i < 70; i++) {
-      particles.push(new Particle());
+    // Explosión interactiva de flores al hacer clic
+    window.addEventListener('click', (e) => {
+      crearExplosionFlores(e.clientX, e.clientY, 12);
+    });
+
+    function crearExplosionFlores(x, y, cantidad) {
+      for (let i = 0; i < cantidad; i++) {
+        let p = new Petal();
+        p.x = x;
+        p.y = y;
+        p.speedY = (Math.random() - 0.5) * 6;
+        p.speedX = (Math.random() - 0.5) * 6;
+        petals.push(p);
+      }
     }
 
-    function animateParticles() {
+    for (let i = 0; i < 40; i++) petals.push(new Petal());
+    for (let i = 0; i < 60; i++) particles.push(new Sparkle());
+
+    function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+
       particles.forEach(p => {
         p.update();
         p.draw();
       });
-      requestAnimationFrame(animateParticles);
+
+      petals.forEach(p => {
+        p.update();
+        p.draw();
+      });
+
+      requestAnimationFrame(animate);
     }
 
-    animateParticles();
+    animate();
   </script>
 </body>
 </html>
