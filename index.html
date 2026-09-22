@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>Universo de Amor - Naomi</title>
+  <title>Universo de Flores Amarillas</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body, html { width: 100%; height: 100%; overflow: hidden; background: #000000; font-family: 'Segoe UI', Roboto, sans-serif; touch-action: none; }
@@ -13,65 +13,65 @@
       top: 0; left: 0; width: 100%; height: 100%;
       display: flex; justify-content: center; align-items: center;
       z-index: 9999;
-      background: radial-gradient(circle, rgba(20, 0, 35, 0.98) 0%, rgba(0, 0, 0, 0.99) 100%);
+      background: radial-gradient(circle, rgba(35, 28, 0, 0.98) 0%, rgba(0, 0, 0, 0.99) 100%);
       transition: opacity 0.4s ease, transform 0.4s ease;
     }
 
     .card {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 105, 180, 0.4);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 215, 0, 0.5);
       backdrop-filter: blur(25px);
       -webkit-backdrop-filter: blur(25px);
       padding: 40px 28px; border-radius: 28px; text-align: center;
       animation: pulseGlow 4s infinite ease-in-out;
-      max-width: 350px; width: 88%;
+      max-width: 360px; width: 88%;
       position: relative;
       z-index: 10000;
     }
 
     @keyframes pulseGlow {
-      0%, 100% { box-shadow: 0 0 35px rgba(255, 0, 128, 0.35), inset 0 0 15px rgba(255, 0, 128, 0.15); }
-      50% { box-shadow: 0 0 60px rgba(255, 0, 128, 0.65), inset 0 0 25px rgba(255, 0, 128, 0.35); }
+      0%, 100% { box-shadow: 0 0 35px rgba(255, 215, 0, 0.35), inset 0 0 15px rgba(255, 215, 0, 0.15); }
+      50% { box-shadow: 0 0 60px rgba(255, 215, 0, 0.65), inset 0 0 25px rgba(255, 215, 0, 0.35); }
     }
 
-    .heart-badge {
-      font-size: 2.5rem; display: inline-block; margin-bottom: 12px;
-      animation: floatHeart 2.5s infinite ease-in-out;
-      filter: drop-shadow(0 0 12px #ff007f);
+    .flower-badge {
+      font-size: 2.8rem; display: inline-block; margin-bottom: 12px;
+      animation: floatFlower 2.5s infinite ease-in-out;
+      filter: drop-shadow(0 0 12px #ffd700);
     }
 
-    @keyframes floatHeart {
+    @keyframes floatFlower {
       0%, 100% { transform: translateY(0) scale(1); }
       50% { transform: translateY(-7px) scale(1.1); }
     }
 
     .tag-sub {
-      color: #ffb7c5; font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase;
-      margin-bottom: 6px; font-weight: 600; opacity: 0.9;
+      color: #ffe680; font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase;
+      margin-bottom: 8px; font-weight: 600; opacity: 0.95;
     }
 
     .card h1 {
-      color: #ffffff; font-size: 1.6rem; letter-spacing: 1px; margin-bottom: 14px;
-      text-shadow: 0 0 20px rgba(255, 105, 180, 0.9); font-weight: 800; line-height: 1.3;
+      color: #ffffff; font-size: 1.5rem; letter-spacing: 1px; margin-bottom: 14px;
+      text-shadow: 0 0 20px rgba(255, 215, 0, 0.9); font-weight: 800; line-height: 1.3;
     }
 
     .dedication-text {
-      color: #e0c3fc; font-size: 0.85rem; line-height: 1.5; margin-bottom: 28px;
-      font-style: italic; opacity: 0.9;
+      color: #fff3b0; font-size: 0.9rem; line-height: 1.5; margin-bottom: 28px;
+      font-style: italic; opacity: 0.95;
     }
 
     .btn-start {
-      background: linear-gradient(45deg, #ff007f, #7b2cbf);
-      color: white; border: none; padding: 14px 38px; border-radius: 30px;
-      font-weight: 700; cursor: pointer; font-size: 0.95rem; letter-spacing: 1.5px;
-      box-shadow: 0 0 25px rgba(255, 0, 128, 0.7);
+      background: linear-gradient(45deg, #ffd700, #ff8c00);
+      color: #1a1300; border: none; padding: 14px 38px; border-radius: 30px;
+      font-weight: 800; cursor: pointer; font-size: 0.95rem; letter-spacing: 1.5px;
+      box-shadow: 0 0 25px rgba(255, 215, 0, 0.7);
       transition: all 0.2s ease; outline: none;
       position: relative;
       z-index: 10001;
       pointer-events: auto;
       -webkit-tap-highlight-color: transparent;
     }
-    .btn-start:hover { transform: scale(1.06); box-shadow: 0 0 35px rgba(255, 0, 128, 1); }
+    .btn-start:hover { transform: scale(1.06); box-shadow: 0 0 35px rgba(255, 215, 0, 1); }
     .btn-start:active { transform: scale(0.96); }
 
     #canvas-container { width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 1; }
@@ -80,11 +80,11 @@
       position: absolute;
       top: 50%; left: 50%;
       transform: translate(-50%, -50%) scale(0);
-      background: radial-gradient(circle, #ff007f 0%, #7b2cbf 100%);
-      color: white; border: 2px solid #fff;
+      background: radial-gradient(circle, #ffd700 0%, #ff8c00 100%);
+      color: #111; border: 2px solid #fff;
       padding: 10px 20px; border-radius: 50px;
       font-weight: bold; font-size: 0.85rem; cursor: pointer;
-      box-shadow: 0 0 30px #ff007f, inset 0 0 10px #fff;
+      box-shadow: 0 0 30px #ffd700, inset 0 0 10px #fff;
       z-index: 10;
       transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease;
       opacity: 0;
@@ -97,16 +97,16 @@
       opacity: 1;
       pointer-events: auto;
     }
-    #core-button:hover { transform: translate(-50%, -50%) scale(1.1); box-shadow: 0 0 50px #ff007f; }
+    #core-button:hover { transform: translate(-50%, -50%) scale(1.1); box-shadow: 0 0 50px #ffd700; }
 
     .galaxy-3d-phrase {
       position: absolute;
-      background: rgba(20, 0, 40, 0.85);
-      border: 1px solid rgba(255, 105, 180, 0.5);
+      background: rgba(30, 25, 0, 0.85);
+      border: 1px solid rgba(255, 215, 0, 0.6);
       backdrop-filter: blur(6px);
       padding: 6px 12px;
       border-radius: 12px;
-      color: #ffd1dc;
+      color: #fff3b0;
       font-size: 0.72rem;
       font-weight: 600;
       pointer-events: none;
@@ -115,7 +115,7 @@
       transform: translate(-50%, -50%) scale(0.8);
       transition: opacity 0.5s ease, transform 0.5s ease;
       white-space: nowrap;
-      box-shadow: 0 0 15px rgba(255, 0, 128, 0.3);
+      box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
     }
     .galaxy-3d-phrase.visible {
       opacity: 1;
@@ -128,22 +128,22 @@
 
   <div id="card-container">
     <div class="card">
-      <div class="heart-badge">💖</div>
-      <p class="tag-sub">UN VIAJE INTERESTELAR PARA</p>
-      <h1>Naomi Oksana Soto Vega</h1>
-      <p class="dedication-text">"Cada estrella en esta galaxia fue creada para iluminar tu camino." ✨</p>
+      <div class="flower-badge">🌻</div>
+      <p class="tag-sub">FLORES AMARILLAS</p>
+      <h1>Con mucho cariño, hice esto para ti</h1>
+      <p class="dedication-text">"Que estas flores amarillas iluminen siempre tu camino y alegren tu día." ✨💛</p>
       <button class="btn-start" id="btnEmpezar">INICIAR VIAJE 🚀</button>
     </div>
   </div>
 
-  <button id="core-button">💖 Toca mi corazón, Naomi 💖</button>
+  <button id="core-button">🌻 Presiona aquí 🌻</button>
   <div id="galaxy-phrases-container"></div>
 
   <div id="canvas-container"></div>
 
   <script>
     let scene, camera, renderer;
-    let tunnelNebulaGroup, galaxyGroup, backgroundStars, giantStars, shootingStarLine, heartParticlesGroup;
+    let tunnelNebulaGroup, galaxyGroup, backgroundStars, giantStars, shootingStarLine, yellowPetalsGroup;
     let isTraveling = false;
     let travelFinished = false;
     let frasesVisibles = false;
@@ -172,16 +172,16 @@
     };
 
     const frasesGalaxia3D = [
-      { text: "Eres mi universo entero, Naomi ✨", pos: new THREE.Vector3(90, 15, -40) },
-      { text: "Tu sonrisa ilumina todas mis galaxias 🌌", pos: new THREE.Vector3(-100, -20, 50) },
-      { text: "Contigo el tiempo se detiene 💖", pos: new THREE.Vector3(40, 25, 90) },
-      { text: "Mi paz, mi destino y mi alegría 🌸", pos: new THREE.Vector3(-80, 10, -80) },
-      { text: "Te amo más allá de las estrellas 🚀", pos: new THREE.Vector3(120, -15, -20) },
-      { text: "Eres la casualidad más hermosa de mi vida 💕", pos: new THREE.Vector3(-30, 20, -110) },
-      { text: "Mi amor eterno 💫", pos: new THREE.Vector3(70, -25, 60) },
-      { text: "Dueña de mi corazón 💓", pos: new THREE.Vector3(-110, 15, 30) },
-      { text: "Luz de mis ojos ⭐", pos: new THREE.Vector3(20, -30, 110) },
-      { text: "Para siempre juntos 🌹", pos: new THREE.Vector3(-60, -15, -60) }
+      { text: "Flores amarillas para iluminar tu vida 🌻", pos: new THREE.Vector3(90, 15, -40) },
+      { text: "Tu alegría es tan brillante como el sol ☀️", pos: new THREE.Vector3(-100, -20, 50) },
+      { text: "Gracias por existir y brindar tu luz 💛", pos: new THREE.Vector3(40, 25, 90) },
+      { text: "Que nunca te falten motivos para sonreír 🌟", pos: new THREE.Vector3(-80, 10, -80) },
+      { text: "Un detalle lleno de luz y cariño ✨", pos: new THREE.Vector3(120, -15, -20) },
+      { text: "Florece siempre con alegría y paz 🌼", pos: new THREE.Vector3(-30, 20, -110) },
+      { text: "Luz, armonía y amistad siempre 💫", pos: new THREE.Vector3(70, -25, 60) },
+      { text: "Un universo amarillo lleno de buena vibra 🌻", pos: new THREE.Vector3(-110, 15, 30) },
+      { text: "Infinitos momentos de felicidad ⭐", pos: new THREE.Vector3(20, -30, 110) },
+      { text: "Con mucho cariño para ti 💛", pos: new THREE.Vector3(-60, -15, -60) }
     ];
     let galaxyPhraseElements = [];
 
@@ -204,28 +204,28 @@
       const ctx = canvas.getContext('2d');
       const grad = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
       grad.addColorStop(0, 'rgba(255,255,255,1)');
-      grad.addColorStop(0.3, 'rgba(255,220,245,0.85)');
+      grad.addColorStop(0.3, 'rgba(255,230,128,0.85)');
       grad.addColorStop(1, 'rgba(0,0,0,0)');
       ctx.fillStyle = grad;
       ctx.fillRect(0, 0, 64, 64);
       return new THREE.CanvasTexture(canvas);
     }
 
-    function crearTexturaCorazon() {
+    function crearTexturaPetaloAmarillo() {
       const canvas = document.createElement('canvas');
       canvas.width = 64; canvas.height = 64;
       const ctx = canvas.getContext('2d');
       ctx.fillStyle = 'rgba(0,0,0,0)';
-      ctx.fillRect(0,0,64,64);
+      ctx.fillRect(0, 0, 64, 64);
       
-      ctx.fillStyle = '#ff3399';
+      ctx.fillStyle = '#ffd700';
       ctx.beginPath();
-      let x = 32, y = 20, r = 14;
-      ctx.moveTo(x, y + r);
-      ctx.bezierCurveTo(x, y, x - r * 2, y, x - r * 2, y + r);
-      ctx.bezierCurveTo(x - r * 2, y + r * 2, x, y + r * 2.8, x, y + r * 3.8);
-      ctx.bezierCurveTo(x, y + r * 2.8, x + r * 2, y + r * 2, x + r * 2, y + r);
-      ctx.bezierCurveTo(x + r * 2, y, x, y, x, y + r);
+      ctx.ellipse(32, 32, 20, 10, Math.PI / 4, 0, 2 * Math.PI);
+      ctx.fill();
+
+      ctx.fillStyle = '#ffaa00';
+      ctx.beginPath();
+      ctx.ellipse(30, 30, 14, 6, Math.PI / 4, 0, 2 * Math.PI);
       ctx.fill();
 
       return new THREE.CanvasTexture(canvas);
@@ -304,8 +304,8 @@
       const giantPos = new Float32Array(countGiants * 3);
       const giantColors = new Float32Array(countGiants * 3);
       const giantPalette = [
-        new THREE.Color('#ffffff'), new THREE.Color('#ffdf73'),
-        new THREE.Color('#ff9e3b'), new THREE.Color('#4cd3ff'), new THREE.Color('#ff70c7')
+        new THREE.Color('#ffffff'), new THREE.Color('#ffd700'),
+        new THREE.Color('#ffaa00'), new THREE.Color('#fff2a3'), new THREE.Color('#ff8c00')
       ];
 
       for (let i = 0; i < countGiants; i++) {
@@ -326,7 +326,7 @@
 
       const lineGeo = new THREE.BufferGeometry();
       lineGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(6), 3));
-      shootingStarLine = new THREE.Line(lineGeo, new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0 }));
+      shootingStarLine = new THREE.Line(lineGeo, new THREE.LineBasicMaterial({ color: 0xffe680, transparent: true, opacity: 0 }));
       scene.add(shootingStarLine);
     }
 
@@ -336,9 +336,9 @@
       const layers = 5;
       const countPerLayer = isMobile ? 4000 : 8000;
       const nebulaColors = [
-        new THREE.Color('#ff007f'), new THREE.Color('#7b2cbf'),
-        new THREE.Color('#00f0ff'), new THREE.Color('#ffffff'),
-        new THREE.Color('#ffaa00'), new THREE.Color('#240838')
+        new THREE.Color('#ffd700'), new THREE.Color('#ffaa00'),
+        new THREE.Color('#ff8c00'), new THREE.Color('#ffffff'),
+        new THREE.Color('#fff2a3'), new THREE.Color('#382800')
       ];
 
       for (let l = 0; l < layers; l++) {
@@ -377,7 +377,7 @@
     function crearGalaxiaMajestuosa() {
       galaxyGroup = new THREE.Group();
       const starTexture = crearTexturaEstrella();
-      const heartTexture = crearTexturaCorazon();
+      const petalTexture = crearTexturaPetaloAmarillo();
       
       const count = isMobile ? 60000 : 120000;
       const geo = new THREE.BufferGeometry();
@@ -385,11 +385,11 @@
       const colors = new Float32Array(count * 3);
 
       const colorCore = new THREE.Color('#ffffff');
-      const colorInner = new THREE.Color('#ffdf73');
-      const colorPink = new THREE.Color('#ff007f');
-      const colorPurple = new THREE.Color('#8a2be2');
-      const colorBlue = new THREE.Color('#00bfff');
-      const colorEdge = new THREE.Color('#050014');
+      const colorInner = new THREE.Color('#fff2a3');
+      const colorYellow = new THREE.Color('#ffd700');
+      const colorOrange = new THREE.Color('#ff8c00');
+      const colorAmber = new THREE.Color('#d47a00');
+      const colorEdge = new THREE.Color('#140f00');
 
       for (let i = 0; i < count; i++) {
         const r = Math.pow(Math.random(), 1.4) * 200 + 2;
@@ -408,13 +408,13 @@
         if (ratio < 0.08) {
           mixed = colorCore.clone().lerp(colorInner, ratio / 0.08);
         } else if (ratio < 0.3) {
-          mixed = colorInner.clone().lerp(colorPink, (ratio - 0.08) / 0.22);
+          mixed = colorInner.clone().lerp(colorYellow, (ratio - 0.08) / 0.22);
         } else if (ratio < 0.6) {
-          mixed = colorPink.clone().lerp(colorPurple, (ratio - 0.3) / 0.3);
+          mixed = colorYellow.clone().lerp(colorOrange, (ratio - 0.3) / 0.3);
         } else if (ratio < 0.85) {
-          mixed = colorPurple.clone().lerp(colorBlue, (ratio - 0.6) / 0.25);
+          mixed = colorOrange.clone().lerp(colorAmber, (ratio - 0.6) / 0.25);
         } else {
-          mixed = colorBlue.clone().lerp(colorEdge, (ratio - 0.85) / 0.15);
+          mixed = colorAmber.clone().lerp(colorEdge, (ratio - 0.85) / 0.15);
         }
 
         colors[i*3] = mixed.r; colors[i*3+1] = mixed.g; colors[i*3+2] = mixed.b;
@@ -431,27 +431,27 @@
       galaxyPoints.name = "galaxyPoints";
       galaxyGroup.add(galaxyPoints);
 
-      const heartCount = 250;
-      const heartGeo = new THREE.BufferGeometry();
-      const heartPos = new Float32Array(heartCount * 3);
-      for(let i=0; i<heartCount; i++) {
-        const r = Math.random() * 160 + 10;
+      const petalCount = 350;
+      const petalGeo = new THREE.BufferGeometry();
+      const petalPos = new Float32Array(petalCount * 3);
+      for(let i=0; i<petalCount; i++) {
+        const r = Math.random() * 170 + 10;
         const angle = Math.random() * Math.PI * 2;
-        heartPos[i*3] = Math.cos(angle) * r;
-        heartPos[i*3+1] = (Math.random() - 0.5) * 25;
-        heartPos[i*3+2] = Math.sin(angle) * r;
+        petalPos[i*3] = Math.cos(angle) * r;
+        petalPos[i*3+1] = (Math.random() - 0.5) * 35;
+        petalPos[i*3+2] = Math.sin(angle) * r;
       }
-      heartGeo.setAttribute('position', new THREE.BufferAttribute(heartPos, 3));
-      const heartMat = new THREE.PointsMaterial({
-        size: 4.0, map: heartTexture, transparent: true, opacity: 0,
+      petalGeo.setAttribute('position', new THREE.BufferAttribute(petalPos, 3));
+      const petalMat = new THREE.PointsMaterial({
+        size: 4.5, map: petalTexture, transparent: true, opacity: 0,
         blending: THREE.AdditiveBlending, depthWrite: false
       });
-      heartParticlesGroup = new THREE.Points(heartGeo, heartMat);
-      heartParticlesGroup.name = "heartParticles";
-      galaxyGroup.add(heartParticlesGroup);
+      yellowPetalsGroup = new THREE.Points(petalGeo, petalMat);
+      yellowPetalsGroup.name = "yellowPetals";
+      galaxyGroup.add(yellowPetalsGroup);
 
       const coreGeo = new THREE.SphereGeometry(6, 32, 32);
-      const coreMat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0 });
+      const coreMat = new THREE.MeshBasicMaterial({ color: 0xfff2a3, transparent: true, opacity: 0 });
       const coreMesh = new THREE.Mesh(coreGeo, coreMat);
       coreMesh.name = "coreMesh";
       galaxyGroup.add(coreMesh);
@@ -468,7 +468,6 @@
       const onPointerDown = (e) => {
         if (!travelFinished) return;
         
-        // Soporte para zoom táctil de 2 dedos (Pinch-to-zoom)
         if (e.touches && e.touches.length === 2) {
           touchStartDist = Math.hypot(
             e.touches[0].clientX - e.touches[1].clientX,
@@ -486,7 +485,6 @@
       const onPointerMove = (e) => {
         if (!travelFinished) return;
 
-        // Manejo del gesto de alejar/acercar con dos dedos en celular
         if (e.touches && e.touches.length === 2) {
           const currentDist = Math.hypot(
             e.touches[0].clientX - e.touches[1].clientX,
@@ -638,11 +636,11 @@
             galaxyGroup.scale.set(currentScale, currentScale, currentScale);
 
             let gPoints = galaxyGroup.getObjectByName("galaxyPoints");
-            let hPoints = galaxyGroup.getObjectByName("heartParticles");
+            let yPetals = galaxyGroup.getObjectByName("yellowPetals");
             let cMesh = galaxyGroup.getObjectByName("coreMesh");
 
             if(gPoints) gPoints.material.opacity = alpha * 0.95;
-            if(hPoints) hPoints.material.opacity = alpha * 0.9;
+            if(yPetals) yPetals.material.opacity = alpha * 0.9;
             if(cMesh) cMesh.material.opacity = alpha;
 
             tunnelNebulaGroup.children.forEach(mesh => {
@@ -658,10 +656,10 @@
           scene.remove(tunnelNebulaGroup);
 
           let gPoints = galaxyGroup.getObjectByName("galaxyPoints");
-          let hPoints = galaxyGroup.getObjectByName("heartParticles");
+          let yPetals = galaxyGroup.getObjectByName("yellowPetals");
           let cMesh = galaxyGroup.getObjectByName("coreMesh");
           if(gPoints) gPoints.material.opacity = 0.95;
-          if(hPoints) hPoints.material.opacity = 0.9;
+          if(yPetals) yPetals.material.opacity = 0.9;
           if(cMesh) cMesh.material.opacity = 1.0;
         }
       } else if (travelFinished) {
