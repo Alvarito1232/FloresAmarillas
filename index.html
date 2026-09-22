@@ -13,7 +13,7 @@
       top: 0; left: 0; width: 100%; height: 100%;
       display: flex; justify-content: center; align-items: center;
       z-index: 9999;
-      background: radial-gradient(circle, rgba(35, 28, 0, 0.98) 0%, rgba(0, 0, 0, 0.99) 100%);
+      background: radial-gradient(circle, rgba(35, 28, 5, 0.98) 0%, rgba(0, 0, 0, 0.99) 100%);
       transition: opacity 0.4s ease, transform 0.4s ease;
     }
 
@@ -101,13 +101,13 @@
 
     .galaxy-3d-phrase {
       position: absolute;
-      background: rgba(30, 25, 0, 0.85);
-      border: 1px solid rgba(255, 215, 0, 0.6);
-      backdrop-filter: blur(6px);
-      padding: 6px 12px;
-      border-radius: 12px;
-      color: #fff3b0;
-      font-size: 0.72rem;
+      background: rgba(20, 15, 5, 0.88);
+      border: 1px solid rgba(255, 215, 0, 0.7);
+      backdrop-filter: blur(8px);
+      padding: 6px 14px;
+      border-radius: 14px;
+      color: #fff8d6;
+      font-size: 0.75rem;
       font-weight: 600;
       pointer-events: none;
       z-index: 5;
@@ -115,7 +115,7 @@
       transform: translate(-50%, -50%) scale(0.8);
       transition: opacity 0.5s ease, transform 0.5s ease;
       white-space: nowrap;
-      box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+      box-shadow: 0 0 18px rgba(255, 215, 0, 0.4);
     }
     .galaxy-3d-phrase.visible {
       opacity: 1;
@@ -154,7 +154,7 @@
     let currentCameraZ = startZ;
 
     const totalDistance = startZ - targetZ;
-    const tunnelDurationSeconds = 2.0; // Túnel más rápido
+    const tunnelDurationSeconds = 2.0; 
     const totalFrames = tunnelDurationSeconds * 60;
     const tunnelSpeed = totalDistance / totalFrames;
 
@@ -204,54 +204,61 @@
       const ctx = canvas.getContext('2d');
       const grad = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
       grad.addColorStop(0, 'rgba(255,255,255,1)');
-      grad.addColorStop(0.3, 'rgba(255,230,128,0.85)');
+      grad.addColorStop(0.3, 'rgba(255,225,120,0.85)');
       grad.addColorStop(1, 'rgba(0,0,0,0)');
       ctx.fillStyle = grad;
       ctx.fillRect(0, 0, 64, 64);
       return new THREE.CanvasTexture(canvas);
     }
 
-    function crearTexturaGirasol() {
+    function crearTexturaGirasolMejorada() {
       const canvas = document.createElement('canvas');
       canvas.width = 128; canvas.height = 128;
       const ctx = canvas.getContext('2d');
       const cx = 64, cy = 64;
 
-      // Pétalos
-      const petals = 16;
-      ctx.fillStyle = '#ffd700';
+      // Resplandor exterior suave del girasol
+      const bgGrad = ctx.createRadialGradient(cx, cy, 10, cx, cy, 60);
+      bgGrad.addColorStop(0, 'rgba(255, 215, 0, 0.4)');
+      bgGrad.addColorStop(1, 'rgba(255, 215, 0, 0)');
+      ctx.fillStyle = bgGrad;
+      ctx.fillRect(0, 0, 128, 128);
+
+      // Pétalos externos (dorados)
+      const petals = 18;
+      ctx.fillStyle = '#ffcc00';
       for (let i = 0; i < petals; i++) {
         const angle = (i * Math.PI * 2) / petals;
         ctx.save();
         ctx.translate(cx, cy);
         ctx.rotate(angle);
         ctx.beginPath();
-        ctx.ellipse(0, -38, 10, 24, 0, 0, Math.PI * 2);
+        ctx.ellipse(0, -36, 8, 22, 0, 0, Math.PI * 2);
         ctx.fill();
         ctx.restore();
       }
 
-      // Capa interna de pétalos
-      ctx.fillStyle = '#ffaa00';
+      // Pétalos internos (amarillo cálido)
+      ctx.fillStyle = '#ffea66';
       for (let i = 0; i < petals; i++) {
         const angle = (i * Math.PI * 2) / petals + (Math.PI / petals);
         ctx.save();
         ctx.translate(cx, cy);
         ctx.rotate(angle);
         ctx.beginPath();
-        ctx.ellipse(0, -32, 8, 18, 0, 0, Math.PI * 2);
+        ctx.ellipse(0, -30, 7, 17, 0, 0, Math.PI * 2);
         ctx.fill();
         ctx.restore();
       }
 
-      // Centro marrón del girasol
-      const grad = ctx.createRadialGradient(cx, cy, 2, cx, cy, 22);
-      grad.addColorStop(0, '#5a3d12');
-      grad.addColorStop(0.8, '#3b2507');
-      grad.addColorStop(1, '#201300');
+      // Centro del girasol
+      const grad = ctx.createRadialGradient(cx, cy, 2, cx, cy, 20);
+      grad.addColorStop(0, '#4a2f0f');
+      grad.addColorStop(0.7, '#2e1b05');
+      grad.addColorStop(1, '#150a00');
       ctx.fillStyle = grad;
       ctx.beginPath();
-      ctx.arc(cx, cy, 22, 0, Math.PI * 2);
+      ctx.arc(cx, cy, 20, 0, Math.PI * 2);
       ctx.fill();
 
       return new THREE.CanvasTexture(canvas);
@@ -261,17 +268,15 @@
       const canvas = document.createElement('canvas');
       canvas.width = 64; canvas.height = 64;
       const ctx = canvas.getContext('2d');
-      ctx.fillStyle = 'rgba(0,0,0,0)';
-      ctx.fillRect(0, 0, 64, 64);
       
       ctx.fillStyle = '#ffd700';
       ctx.beginPath();
-      ctx.ellipse(32, 32, 20, 10, Math.PI / 4, 0, 2 * Math.PI);
+      ctx.ellipse(32, 32, 18, 9, Math.PI / 4, 0, 2 * Math.PI);
       ctx.fill();
 
       ctx.fillStyle = '#ffaa00';
       ctx.beginPath();
-      ctx.ellipse(30, 30, 14, 6, Math.PI / 4, 0, 2 * Math.PI);
+      ctx.ellipse(30, 30, 12, 5, Math.PI / 4, 0, 2 * Math.PI);
       ctx.fill();
 
       return new THREE.CanvasTexture(canvas);
@@ -327,7 +332,6 @@
       coreBtn.style.opacity = '0';
       coreBtn.style.pointerEvents = 'none';
 
-      // Ocultar núcleo esférico y desplegar ramo de girasoles
       let cMesh = galaxyGroup.getObjectByName("coreMesh");
       if (cMesh) cMesh.visible = false;
       if (bouquetGroup) bouquetGroup.visible = true;
@@ -350,13 +354,15 @@
       }));
       scene.add(backgroundStars);
 
-      const countGiants = 200;
+      const countGiants = 250;
       const giantGeo = new THREE.BufferGeometry();
       const giantPos = new Float32Array(countGiants * 3);
       const giantColors = new Float32Array(countGiants * 3);
+      
+      // Colores armónicos que complementan el amarillo
       const giantPalette = [
         new THREE.Color('#ffffff'), new THREE.Color('#ffd700'),
-        new THREE.Color('#ffaa00'), new THREE.Color('#fff2a3'), new THREE.Color('#ff8c00')
+        new THREE.Color('#ffaa00'), new THREE.Color('#e0b0ff'), new THREE.Color('#ff8c00')
       ];
 
       for (let i = 0; i < countGiants; i++) {
@@ -384,24 +390,26 @@
     function crearTunelNebulosaHiperRealista() {
       tunnelNebulaGroup = new THREE.Group();
       const starTexture = crearTexturaEstrella();
-      const layers = 5;
-      const countPerLayer = isMobile ? 5000 : 10000;
+      
+      // Anillos más juntos y densos como en la primera foto
+      const layers = 10; 
+      const countPerLayer = isMobile ? 3500 : 7000;
       const nebulaColors = [
-        new THREE.Color('#ffd700'), new THREE.Color('#ffaa00'),
+        new THREE.Color('#ffd700'), new THREE.Color('#ffb700'),
         new THREE.Color('#ff8c00'), new THREE.Color('#ffffff'),
-        new THREE.Color('#fff2a3'), new THREE.Color('#382800')
+        new THREE.Color('#b388ff'), new THREE.Color('#402b00')
       ];
 
       for (let l = 0; l < layers; l++) {
         const geo = new THREE.BufferGeometry();
         const pos = new Float32Array(countPerLayer * 3);
         const colors = new Float32Array(countPerLayer * 3);
-        const baseRadius = 12 + l * 4.0;
+        const baseRadius = 8 + l * 2.2; 
 
         for (let i = 0; i < countPerLayer; i++) {
           const u = i / countPerLayer;
-          const angle = u * Math.PI * 30 + (l * 1.5);
-          const radius = baseRadius + Math.sin(u * Math.PI * 6 + l) * 3.0 + Math.random() * 1.5;
+          const angle = u * Math.PI * 40 + (l * 0.8);
+          const radius = baseRadius + Math.sin(u * Math.PI * 10 + l) * 1.5 + Math.random() * 0.8;
           const z = (u * 1800) - 300;
 
           pos[i*3] = Math.cos(angle) * radius;
@@ -415,9 +423,8 @@
         geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
         geo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 
-        // Partículas más finas para un túnel más estético y delicado
         const mat = new THREE.PointsMaterial({
-          size: 0.65, map: starTexture, vertexColors: true,
+          size: 0.55, map: starTexture, vertexColors: true,
           transparent: true, opacity: 0.85, blending: THREE.AdditiveBlending, depthWrite: false
         });
 
@@ -429,17 +436,17 @@
     function crearRamoGirasoles3D() {
       bouquetGroup = new THREE.Group();
       bouquetGroup.name = "bouquetGroup";
-      const sunflowerTexture = crearTexturaGirasol();
-      const sunflowerMat = new THREE.SpriteMaterial({ map: sunflowerTexture, transparent: true });
+      const sunflowerTexture = crearTexturaGirasolMejorada();
+      const sunflowerMat = new THREE.SpriteMaterial({ map: sunflowerTexture, transparent: true, opacity: 0.98 });
 
-      // Posiciones para arreglar un ramo de girasoles inspirado en la imagen
+      // Ramo armónico y compacto de girasoles
       const positions = [
-        { x: 0, y: 3, z: 2, scale: 22 },
-        { x: -11, y: 11, z: -1, scale: 20 },
-        { x: 11, y: 11, z: -1, scale: 20 },
-        { x: -14, y: -6, z: 1, scale: 19 },
-        { x: 14, y: -6, z: 1, scale: 19 },
-        { x: 0, y: -12, z: 3, scale: 21 }
+        { x: 0, y: 2, z: 4, scale: 18 },
+        { x: -8, y: 7, z: 2, scale: 15 },
+        { x: 8, y: 7, z: 2, scale: 15 },
+        { x: -10, y: -4, z: 3, scale: 15 },
+        { x: 10, y: -4, z: 3, scale: 15 },
+        { x: 0, y: -8, z: 5, scale: 16 }
       ];
 
       positions.forEach(p => {
@@ -448,14 +455,6 @@
         sprite.scale.set(p.scale, p.scale, 1);
         bouquetGroup.add(sprite);
       });
-
-      // Envoltorio / Lazos inferiores estilizados
-      const wrapGeo = new THREE.ConeGeometry(14, 28, 5);
-      const wrapMat = new THREE.MeshBasicMaterial({ color: 0xc87b96, wireframe: true, transparent: true, opacity: 0.6 });
-      const wrapMesh = new THREE.Mesh(wrapGeo, wrapMat);
-      wrapMesh.position.set(0, -18, -2);
-      wrapMesh.rotation.x = Math.PI;
-      bouquetGroup.add(wrapMesh);
 
       bouquetGroup.visible = false;
       return bouquetGroup;
@@ -466,25 +465,25 @@
       const starTexture = crearTexturaEstrella();
       const petalTexture = crearTexturaPetaloAmarillo();
       
-      const count = isMobile ? 60000 : 120000;
+      const count = isMobile ? 65000 : 130000;
       const geo = new THREE.BufferGeometry();
       const pos = new Float32Array(count * 3);
       const colors = new Float32Array(count * 3);
 
       const colorCore = new THREE.Color('#ffffff');
-      const colorInner = new THREE.Color('#fff2a3');
+      const colorInner = new THREE.Color('#fff099');
       const colorYellow = new THREE.Color('#ffd700');
       const colorOrange = new THREE.Color('#ff8c00');
-      const colorAmber = new THREE.Color('#d47a00');
-      const colorEdge = new THREE.Color('#140f00');
+      const colorPurpleAccent = new THREE.Color('#6a0dad');
+      const colorEdge = new THREE.Color('#0c0900');
 
       for (let i = 0; i < count; i++) {
         const r = Math.pow(Math.random(), 1.4) * 200 + 2;
         const arms = 2;
         const armAngle = ((i % arms) / arms) * Math.PI * 2;
-        const spiralAngle = r * 0.035;
-        const angle = armAngle + spiralAngle + (Math.random() - 0.5) * 0.4;
-        const spreadY = (Math.random() - 0.5) * (200 - r) * 0.1;
+        const spiralAngle = r * 0.038;
+        const angle = armAngle + spiralAngle + (Math.random() - 0.5) * 0.35;
+        const spreadY = (Math.random() - 0.5) * (200 - r) * 0.08;
 
         pos[i*3] = Math.cos(angle) * r;
         pos[i*3+1] = spreadY;
@@ -494,14 +493,14 @@
         let mixed;
         if (ratio < 0.08) {
           mixed = colorCore.clone().lerp(colorInner, ratio / 0.08);
-        } else if (ratio < 0.3) {
-          mixed = colorInner.clone().lerp(colorYellow, (ratio - 0.08) / 0.22);
-        } else if (ratio < 0.6) {
-          mixed = colorYellow.clone().lerp(colorOrange, (ratio - 0.3) / 0.3);
-        } else if (ratio < 0.85) {
-          mixed = colorOrange.clone().lerp(colorAmber, (ratio - 0.6) / 0.25);
+        } else if (ratio < 0.35) {
+          mixed = colorInner.clone().lerp(colorYellow, (ratio - 0.08) / 0.27);
+        } else if (ratio < 0.65) {
+          mixed = colorYellow.clone().lerp(colorOrange, (ratio - 0.35) / 0.3);
+        } else if (ratio < 0.88) {
+          mixed = colorOrange.clone().lerp(colorPurpleAccent, (ratio - 0.65) / 0.23);
         } else {
-          mixed = colorAmber.clone().lerp(colorEdge, (ratio - 0.85) / 0.15);
+          mixed = colorPurpleAccent.clone().lerp(colorEdge, (ratio - 0.88) / 0.12);
         }
 
         colors[i*3] = mixed.r; colors[i*3+1] = mixed.g; colors[i*3+2] = mixed.b;
@@ -511,39 +510,38 @@
       geo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 
       const mat = new THREE.PointsMaterial({
-        size: 0.55, map: starTexture, vertexColors: true,
+        size: 0.5, map: starTexture, vertexColors: true,
         transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false
       });
       const galaxyPoints = new THREE.Points(geo, mat);
       galaxyPoints.name = "galaxyPoints";
       galaxyGroup.add(galaxyPoints);
 
-      const petalCount = 350;
+      const petalCount = 400;
       const petalGeo = new THREE.BufferGeometry();
       const petalPos = new Float32Array(petalCount * 3);
       for(let i=0; i<petalCount; i++) {
         const r = Math.random() * 170 + 10;
         const angle = Math.random() * Math.PI * 2;
         petalPos[i*3] = Math.cos(angle) * r;
-        petalPos[i*3+1] = (Math.random() - 0.5) * 35;
+        petalPos[i*3+1] = (Math.random() - 0.5) * 30;
         petalPos[i*3+2] = Math.sin(angle) * r;
       }
       petalGeo.setAttribute('position', new THREE.BufferAttribute(petalPos, 3));
       const petalMat = new THREE.PointsMaterial({
-        size: 3.8, map: petalTexture, transparent: true, opacity: 0,
+        size: 3.2, map: petalTexture, transparent: true, opacity: 0,
         blending: THREE.AdditiveBlending, depthWrite: false
       });
       yellowPetalsGroup = new THREE.Points(petalGeo, petalMat);
       yellowPetalsGroup.name = "yellowPetals";
       galaxyGroup.add(yellowPetalsGroup);
 
-      const coreGeo = new THREE.SphereGeometry(6, 32, 32);
-      const coreMat = new THREE.MeshBasicMaterial({ color: 0xfff2a3, transparent: true, opacity: 0 });
+      const coreGeo = new THREE.SphereGeometry(5, 32, 32);
+      const coreMat = new THREE.MeshBasicMaterial({ color: 0xfff099, transparent: true, opacity: 0 });
       const coreMesh = new THREE.Mesh(coreGeo, coreMat);
       coreMesh.name = "coreMesh";
       galaxyGroup.add(coreMesh);
 
-      // Agregar ramo de girasoles en el núcleo
       galaxyGroup.add(crearRamoGirasoles3D());
 
       galaxyGroup.scale.set(0.2, 0.2, 0.2);
@@ -710,7 +708,7 @@
       requestAnimationFrame(animate);
 
       if (tunnelNebulaGroup && !travelFinished) {
-        tunnelNebulaGroup.rotation.z += 0.035; // Rotación de túnel ajustada
+        tunnelNebulaGroup.rotation.z += 0.035;
       }
 
       if (isTraveling && !travelFinished) {
