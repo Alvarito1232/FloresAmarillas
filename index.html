@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>21 de Septiembre — Especial Flores Amarillas 🌻✨</title>
+  <title>21 de Septiembre — Flores Amarillas 🌻✨</title>
   <style>
     /* ==========================================================================
-       1. CONFIGURACIÓN BÁSICA Y PALETA CÁLIDA
+       1. VARIABLES Y ESTILOS PRINCIPALES
        ========================================================================== */
     :root {
-      --bg-dark: radial-gradient(circle at center, #1a1303 0%, #050401 100%);
-      --card-bg: rgba(22, 17, 5, 0.94);
-      --card-border: rgba(245, 197, 24, 0.5);
+      --bg-gradient: radial-gradient(circle at center, #1f1704 0%, #050401 100%);
+      --card-bg: rgba(18, 14, 4, 0.92);
+      --card-border: rgba(245, 197, 24, 0.4);
       --gold-primary: #f5c518;
-      --gold-light: #ffeb99;
-      --gold-glow: rgba(245, 197, 24, 0.2);
-      --text-main: #fffdf5;
+      --gold-light: #fff0aa;
+      --gold-glow: rgba(245, 197, 24, 0.25);
+      --text-main: #fffcf0;
     }
 
     * {
@@ -30,13 +30,13 @@
       width: 100%;
       height: 100%;
       font-family: 'Segoe UI', system-ui, -apple-system, Roboto, sans-serif;
-      background: var(--bg-dark);
+      background: var(--bg-gradient);
       color: var(--text-main);
       overflow: hidden;
       position: relative;
     }
 
-    /* Canvas de Partículas */
+    /* Canvas para Efectos de Pétalos */
     #fx-canvas {
       position: fixed;
       top: 0;
@@ -48,7 +48,7 @@
     }
 
     /* ==========================================================================
-       2. PANTALLA DE ENTRADA CON RAMO DETALLADO
+       2. PANTALLA DE ENTRADA ELEGANTE
        ========================================================================== */
     #welcome-screen {
       position: fixed;
@@ -61,9 +61,9 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      background: radial-gradient(circle at center, rgba(35, 25, 5, 0.98) 0%, rgba(4, 3, 1, 0.99) 100%);
+      background: radial-gradient(circle at center, rgba(32, 23, 5, 0.98) 0%, rgba(4, 3, 1, 0.99) 100%);
       transition: opacity 0.8s ease, visibility 0.8s ease;
-      padding: 24px;
+      padding: 20px;
       text-align: center;
     }
 
@@ -81,12 +81,13 @@
       margin-bottom: 20px;
     }
 
-    /* SVG Ramo de Flores Detallado */
-    .hero-bouquet-detailed {
-      width: 210px;
-      height: 230px;
+    /* Imagen Realista del Ramo de Girasoles */
+    .hero-bouquet-img {
+      width: 200px;
+      height: 200px;
+      object-fit: contain;
       margin-bottom: 20px;
-      filter: drop-shadow(0 12px 28px rgba(245, 197, 24, 0.35));
+      filter: drop-shadow(0 12px 25px rgba(245, 197, 24, 0.35));
       animation: floatBouquet 4s ease-in-out infinite;
     }
 
@@ -133,7 +134,7 @@
     }
 
     /* ==========================================================================
-       3. CARTA MEJORADA Y CORREGIDA
+       3. CARTA PRINCIPAL LIMPIA Y MODERNA
        ========================================================================== */
     #main-wrapper {
       position: absolute;
@@ -145,7 +146,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 20px;
+      padding: 18px;
       opacity: 0;
       visibility: hidden;
       transition: opacity 1s ease, transform 1s ease;
@@ -166,7 +167,7 @@
       -webkit-backdrop-filter: blur(25px);
       max-width: 680px;
       width: 100%;
-      max-height: 85vh;
+      max-height: 88vh;
       border-radius: 32px;
       padding: 45px 35px 35px 35px;
       box-shadow: 0 15px 50px rgba(0, 0, 0, 0.9), var(--gold-glow);
@@ -184,23 +185,10 @@
       border-radius: 10px;
     }
 
-    /* Esquinas Ilustradas integradas al borde */
-    .corner-garland-svg {
-      position: absolute;
-      width: 90px;
-      height: 90px;
-      pointer-events: none;
-      opacity: 0.95;
-      filter: drop-shadow(0 3px 8px rgba(0,0,0,0.5));
-    }
-
-    .corner-garland-svg.tl { top: -12px; left: -12px; }
-    .corner-garland-svg.tr { top: -12px; right: -12px; transform: scaleX(-1); }
-
     /* Encabezado */
     .card-header-block {
       text-align: center;
-      margin-bottom: 28px;
+      margin-bottom: 30px;
     }
 
     .card-header-tag {
@@ -222,7 +210,7 @@
       line-height: 1.35;
     }
 
-    /* Cuerpo del texto */
+    /* Texto exacto proporcionado */
     .letter-text-body {
       font-size: clamp(0.98rem, 2.6vw, 1.08rem);
       line-height: 1.95;
@@ -235,7 +223,7 @@
       opacity: 0.94;
     }
 
-    /* Controles de Música en la Carta */
+    /* Control de Audio */
     .audio-controls-block {
       display: flex;
       justify-content: center;
@@ -271,7 +259,7 @@
 </head>
 <body>
 
-  <!-- Elemento Audio -->
+  <!-- Elemento Audio para Floricienta -->
   <audio id="bg-audio" loop preload="auto">
     <source src="Floricienta — Flores Amarillas [Letra].mp3" type="audio/mpeg">
   </audio>
@@ -279,100 +267,21 @@
   <!-- Canvas de Efectos Visuales -->
   <canvas id="fx-canvas"></canvas>
 
-  <!-- Pantalla de Entrada con Ramo Ilustrado -->
+  <!-- Pantalla de Entrada -->
   <div id="welcome-screen">
     <span class="badge-september">21 de Septiembre</span>
     
-    <!-- SVG Ramo de Flores Amarillas Detallado -->
-    <svg class="hero-bouquet-detailed" viewBox="0 0 200 220">
-      <defs>
-        <linearGradient id="wrapperGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#f3d088"/>
-          <stop offset="100%" stop-color="#c79548"/>
-        </linearGradient>
-        <linearGradient id="ribbonGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="#ff4757"/>
-          <stop offset="100%" stop-color="#ff6b81"/>
-        </linearGradient>
-      </defs>
-
-      <!-- Envoltorio y Papel del Ramo -->
-      <polygon points="50,110 150,110 120,210 80,210" fill="url(#wrapperGrad)" />
-      <polygon points="45,100 155,100 140,120 60,120" fill="#e8be74"/>
-      
-      <!-- Hojas Verdes de Fondo -->
-      <path d="M 30,85 Q 10,50 50,45 Z" fill="#2ed573"/>
-      <path d="M 170,85 Q 190,50 150,45 Z" fill="#2ed573"/>
-      <path d="M 100,40 Q 80,10 100,0 Q 120,10 100,40 Z" fill="#26de81"/>
-
-      <!-- Flores Principales del Ramo -->
-      <!-- Girasol Central -->
-      <g transform="translate(100,65)">
-        <g id="sunflower-center-petals">
-          <path d="M0,-36 C4,-20 4,-10 0,-4 C-4,-10 -4,-20 0,-36 Z" fill="#f5c233" />
-          <path d="M0,-36 C4,-20 4,-10 0,-4 C-4,-10 -4,-20 0,-36 Z" fill="#f5c233" transform="rotate(22.5)" />
-          <path d="M0,-36 C4,-20 4,-10 0,-4 C-4,-10 -4,-20 0,-36 Z" fill="#e67e22" transform="rotate(45)" />
-          <path d="M0,-36 C4,-20 4,-10 0,-4 C-4,-10 -4,-20 0,-36 Z" fill="#f5c233" transform="rotate(67.5)" />
-          <path d="M0,-36 C4,-20 4,-10 0,-4 C-4,-10 -4,-20 0,-36 Z" fill="#f5c233" transform="rotate(90)" />
-          <path d="M0,-36 C4,-20 4,-10 0,-4 C-4,-10 -4,-20 0,-36 Z" fill="#e67e22" transform="rotate(112.5)" />
-          <path d="M0,-36 C4,-20 4,-10 0,-4 C-4,-10 -4,-20 0,-36 Z" fill="#f5c233" transform="rotate(135)" />
-          <path d="M0,-36 C4,-20 4,-10 0,-4 C-4,-10 -4,-20 0,-36 Z" fill="#f5c233" transform="rotate(157.5)" />
-          <path d="M0,-36 C4,-20 4,-10 0,-4 C-4,-10 -4,-20 0,-36 Z" fill="#e67e22" transform="rotate(180)" />
-          <path d="M0,-36 C4,-20 4,-10 0,-4 C-4,-10 -4,-20 0,-36 Z" fill="#f5c233" transform="rotate(202.5)" />
-          <path d="M0,-36 C4,-20 4,-10 0,-4 C-4,-10 -4,-20 0,-36 Z" fill="#f5c233" transform="rotate(225)" />
-          <path d="M0,-36 C4,-20 4,-10 0,-4 C-4,-10 -4,-20 0,-36 Z" fill="#e67e22" transform="rotate(247.5)" />
-          <path d="M0,-36 C4,-20 4,-10 0,-4 C-4,-10 -4,-20 0,-36 Z" fill="#f5c233" transform="rotate(270)" />
-          <path d="M0,-36 C4,-20 4,-10 0,-4 C-4,-10 -4,-20 0,-36 Z" fill="#f5c233" transform="rotate(292.5)" />
-          <path d="M0,-36 C4,-20 4,-10 0,-4 C-4,-10 -4,-20 0,-36 Z" fill="#e67e22" transform="rotate(315)" />
-          <path d="M0,-36 C4,-20 4,-10 0,-4 C-4,-10 -4,-20 0,-36 Z" fill="#f5c233" transform="rotate(337.5)" />
-        </g>
-        <circle cx="0" cy="0" r="14" fill="#3a2307" />
-        <circle cx="0" cy="0" r="10" fill="#241402" />
-      </g>
-
-      <!-- Girasol Izquierdo -->
-      <g transform="translate(60,50) scale(0.8)">
-        <circle cx="0" cy="0" r="32" fill="#f5c233"/>
-        <circle cx="0" cy="0" r="14" fill="#3a2307"/>
-      </g>
-
-      <!-- Girasol Derecho -->
-      <g transform="translate(140,50) scale(0.8)">
-        <circle cx="0" cy="0" r="32" fill="#f5c233"/>
-        <circle cx="0" cy="0" r="14" fill="#3a2307"/>
-      </g>
-
-      <!-- Moño Rojo del Ramo -->
-      <path d="M 80,120 C 95,130 105,130 120,120 C 130,140 115,150 100,135 C 85,150 70,140 80,120 Z" fill="url(#ribbonGrad)"/>
-      <circle cx="100" cy="127" r="6" fill="#d63031"/>
-    </svg>
+    <!-- Imagen HD del Ramo de Girasoles -->
+    <img class="hero-bouquet-img" src="https://images.unsplash.com/photo-1597848212624-a19eb35e2651?auto=format&fit=crop&w=500&q=80" alt="Ramo de Flores Amarillas">
 
     <h1 class="hero-title">Flores Amarillas para Ti</h1>
     <p class="hero-subtitle">Un detalle preparado para celebrar nuestra amistad y recordar lo especial que eres en este 21 de septiembre.</p>
     <button class="btn-open-experience" id="btn-open">ABRIR CARTA ✨</button>
   </div>
 
-  <!-- Vista Principal: Cartilla con Guirnaldas en las Esquinas -->
+  <!-- Vista Principal: Cartilla -->
   <div id="main-wrapper">
     <div class="letter-card">
-      
-      <!-- Guirnalda Superior Izquierda -->
-      <svg class="corner-garland-svg tl" viewBox="0 0 100 100">
-        <path d="M 10,10 Q 50,20 80,10" stroke="#2ed573" stroke-width="4" fill="none"/>
-        <circle cx="25" cy="20" r="14" fill="#f5c233"/>
-        <circle cx="25" cy="20" r="6" fill="#3a2307"/>
-        <circle cx="65" cy="22" r="12" fill="#f5c233"/>
-        <circle cx="65" cy="22" r="5" fill="#3a2307"/>
-      </svg>
-
-      <!-- Guirnalda Superior Derecha -->
-      <svg class="corner-garland-svg tr" viewBox="0 0 100 100">
-        <path d="M 10,10 Q 50,20 80,10" stroke="#2ed573" stroke-width="4" fill="none"/>
-        <circle cx="25" cy="20" r="14" fill="#f5c233"/>
-        <circle cx="25" cy="20" r="6" fill="#3a2307"/>
-        <circle cx="65" cy="22" r="12" fill="#f5c233"/>
-        <circle cx="65" cy="22" r="5" fill="#3a2307"/>
-      </svg>
 
       <div class="card-header-block">
         <span class="card-header-tag">21 de Septiembre</span>
@@ -539,7 +448,7 @@
         draw() {
           ctx.beginPath();
           ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-          ctx.fillStyle = '#ffeb99';
+          ctx.fillStyle = '#fff0aa';
           ctx.globalAlpha = this.opacity;
           ctx.fill();
         }
