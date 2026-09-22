@@ -143,7 +143,7 @@
 
   <script>
     let scene, camera, renderer;
-    let tunnelNebulaGroup, galaxyGroup, backgroundStars, giantStars, shootingStarLine, yellowPetalsGroup;
+    let tunnelNebulaGroup, galaxyGroup, backgroundStars, giantStars, shootingStarLine, yellowPetalsGroup, bouquetGroup;
     let isTraveling = false;
     let travelFinished = false;
     let frasesVisibles = false;
@@ -154,7 +154,7 @@
     let currentCameraZ = startZ;
 
     const totalDistance = startZ - targetZ;
-    const tunnelDurationSeconds = 4;
+    const tunnelDurationSeconds = 2.0; // Túnel más rápido
     const totalFrames = tunnelDurationSeconds * 60;
     const tunnelSpeed = totalDistance / totalFrames;
 
@@ -208,6 +208,52 @@
       grad.addColorStop(1, 'rgba(0,0,0,0)');
       ctx.fillStyle = grad;
       ctx.fillRect(0, 0, 64, 64);
+      return new THREE.CanvasTexture(canvas);
+    }
+
+    function crearTexturaGirasol() {
+      const canvas = document.createElement('canvas');
+      canvas.width = 128; canvas.height = 128;
+      const ctx = canvas.getContext('2d');
+      const cx = 64, cy = 64;
+
+      // Pétalos
+      const petals = 16;
+      ctx.fillStyle = '#ffd700';
+      for (let i = 0; i < petals; i++) {
+        const angle = (i * Math.PI * 2) / petals;
+        ctx.save();
+        ctx.translate(cx, cy);
+        ctx.rotate(angle);
+        ctx.beginPath();
+        ctx.ellipse(0, -38, 10, 24, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+
+      // Capa interna de pétalos
+      ctx.fillStyle = '#ffaa00';
+      for (let i = 0; i < petals; i++) {
+        const angle = (i * Math.PI * 2) / petals + (Math.PI / petals);
+        ctx.save();
+        ctx.translate(cx, cy);
+        ctx.rotate(angle);
+        ctx.beginPath();
+        ctx.ellipse(0, -32, 8, 18, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+
+      // Centro marrón del girasol
+      const grad = ctx.createRadialGradient(cx, cy, 2, cx, cy, 22);
+      grad.addColorStop(0, '#5a3d12');
+      grad.addColorStop(0.8, '#3b2507');
+      grad.addColorStop(1, '#201300');
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.arc(cx, cy, 22, 0, Math.PI * 2);
+      ctx.fill();
+
       return new THREE.CanvasTexture(canvas);
     }
 
@@ -280,6 +326,11 @@
       coreBtn.style.transform = 'translate(-50%, -50%) scale(0)';
       coreBtn.style.opacity = '0';
       coreBtn.style.pointerEvents = 'none';
+
+      // Ocultar núcleo esférico y desplegar ramo de girasoles
+      let cMesh = galaxyGroup.getObjectByName("coreMesh");
+      if (cMesh) cMesh.visible = false;
+      if (bouquetGroup) bouquetGroup.visible = true;
     }
 
     function crearFondoEspacialRealista() {
@@ -294,7 +345,7 @@
       }
       dustGeo.setAttribute('position', new THREE.BufferAttribute(dustPos, 3));
       backgroundStars = new THREE.Points(dustGeo, new THREE.PointsMaterial({
-        size: 1.0, map: starTexture, transparent: true, opacity: 0.5,
+        size: 0.8, map: starTexture, transparent: true, opacity: 0.5,
         blending: THREE.AdditiveBlending, depthWrite: false
       }));
       scene.add(backgroundStars);
@@ -319,7 +370,7 @@
       giantGeo.setAttribute('color', new THREE.BufferAttribute(giantColors, 3));
 
       giantStars = new THREE.Points(giantGeo, new THREE.PointsMaterial({
-        size: 3.5, map: starTexture, vertexColors: true, transparent: true, opacity: 0.9,
+        size: 2.2, map: starTexture, vertexColors: true, transparent: true, opacity: 0.9,
         blending: THREE.AdditiveBlending, depthWrite: false
       }));
       scene.add(giantStars);
@@ -334,7 +385,7 @@
       tunnelNebulaGroup = new THREE.Group();
       const starTexture = crearTexturaEstrella();
       const layers = 5;
-      const countPerLayer = isMobile ? 4000 : 8000;
+      const countPerLayer = isMobile ? 5000 : 10000;
       const nebulaColors = [
         new THREE.Color('#ffd700'), new THREE.Color('#ffaa00'),
         new THREE.Color('#ff8c00'), new THREE.Color('#ffffff'),
@@ -364,14 +415,50 @@
         geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
         geo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 
+        // Partículas más finas para un túnel más estético y delicado
         const mat = new THREE.PointsMaterial({
-          size: 1.2, map: starTexture, vertexColors: true,
-          transparent: true, opacity: 0.9, blending: THREE.AdditiveBlending, depthWrite: false
+          size: 0.65, map: starTexture, vertexColors: true,
+          transparent: true, opacity: 0.85, blending: THREE.AdditiveBlending, depthWrite: false
         });
 
         tunnelNebulaGroup.add(new THREE.Points(geo, mat));
       }
       scene.add(tunnelNebulaGroup);
+    }
+
+    function crearRamoGirasoles3D() {
+      bouquetGroup = new THREE.Group();
+      bouquetGroup.name = "bouquetGroup";
+      const sunflowerTexture = crearTexturaGirasol();
+      const sunflowerMat = new THREE.SpriteMaterial({ map: sunflowerTexture, transparent: true });
+
+      // Posiciones para arreglar un ramo de girasoles inspirado en la imagen
+      const positions = [
+        { x: 0, y: 3, z: 2, scale: 22 },
+        { x: -11, y: 11, z: -1, scale: 20 },
+        { x: 11, y: 11, z: -1, scale: 20 },
+        { x: -14, y: -6, z: 1, scale: 19 },
+        { x: 14, y: -6, z: 1, scale: 19 },
+        { x: 0, y: -12, z: 3, scale: 21 }
+      ];
+
+      positions.forEach(p => {
+        const sprite = new THREE.Sprite(sunflowerMat);
+        sprite.position.set(p.x, p.y, p.z);
+        sprite.scale.set(p.scale, p.scale, 1);
+        bouquetGroup.add(sprite);
+      });
+
+      // Envoltorio / Lazos inferiores estilizados
+      const wrapGeo = new THREE.ConeGeometry(14, 28, 5);
+      const wrapMat = new THREE.MeshBasicMaterial({ color: 0xc87b96, wireframe: true, transparent: true, opacity: 0.6 });
+      const wrapMesh = new THREE.Mesh(wrapGeo, wrapMat);
+      wrapMesh.position.set(0, -18, -2);
+      wrapMesh.rotation.x = Math.PI;
+      bouquetGroup.add(wrapMesh);
+
+      bouquetGroup.visible = false;
+      return bouquetGroup;
     }
 
     function crearGalaxiaMajestuosa() {
@@ -424,7 +511,7 @@
       geo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 
       const mat = new THREE.PointsMaterial({
-        size: 0.65, map: starTexture, vertexColors: true,
+        size: 0.55, map: starTexture, vertexColors: true,
         transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false
       });
       const galaxyPoints = new THREE.Points(geo, mat);
@@ -443,7 +530,7 @@
       }
       petalGeo.setAttribute('position', new THREE.BufferAttribute(petalPos, 3));
       const petalMat = new THREE.PointsMaterial({
-        size: 4.5, map: petalTexture, transparent: true, opacity: 0,
+        size: 3.8, map: petalTexture, transparent: true, opacity: 0,
         blending: THREE.AdditiveBlending, depthWrite: false
       });
       yellowPetalsGroup = new THREE.Points(petalGeo, petalMat);
@@ -455,6 +542,9 @@
       const coreMesh = new THREE.Mesh(coreGeo, coreMat);
       coreMesh.name = "coreMesh";
       galaxyGroup.add(coreMesh);
+
+      // Agregar ramo de girasoles en el núcleo
+      galaxyGroup.add(crearRamoGirasoles3D());
 
       galaxyGroup.scale.set(0.2, 0.2, 0.2);
       galaxyGroup.position.set(0, 0, -200);
@@ -620,7 +710,7 @@
       requestAnimationFrame(animate);
 
       if (tunnelNebulaGroup && !travelFinished) {
-        tunnelNebulaGroup.rotation.z += 0.02;
+        tunnelNebulaGroup.rotation.z += 0.035; // Rotación de túnel ajustada
       }
 
       if (isTraveling && !travelFinished) {
@@ -644,7 +734,7 @@
             if(cMesh) cMesh.material.opacity = alpha;
 
             tunnelNebulaGroup.children.forEach(mesh => {
-              if (mesh.material.opacity > 0.02) mesh.material.opacity -= 0.02;
+              if (mesh.material.opacity > 0.02) mesh.material.opacity -= 0.03;
             });
           }
         } else {
