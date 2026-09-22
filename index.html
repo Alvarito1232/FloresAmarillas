@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>Universo de Flores Amarillas</title>
+  <title>Jardín Galáctico de Flores Amarillas</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body, html { width: 100%; height: 100%; overflow: hidden; background: #000000; font-family: 'Segoe UI', Roboto, sans-serif; touch-action: none; }
@@ -13,66 +13,64 @@
       top: 0; left: 0; width: 100%; height: 100%;
       display: flex; justify-content: center; align-items: center;
       z-index: 9999;
-      background: radial-gradient(circle, rgba(35, 28, 5, 0.98) 0%, rgba(0, 0, 0, 0.99) 100%);
-      transition: opacity 0.4s ease, transform 0.4s ease;
+      background: radial-gradient(circle, rgba(40, 30, 0, 0.98) 0%, rgba(0, 0, 0, 0.99) 100%);
+      transition: opacity 0.6s ease, transform 0.6s ease;
     }
 
     .card {
       background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 215, 0, 0.5);
-      backdrop-filter: blur(25px);
-      -webkit-backdrop-filter: blur(25px);
-      padding: 40px 28px; border-radius: 28px; text-align: center;
+      border: 1px solid rgba(255, 215, 0, 0.6);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+      padding: 42px 30px; border-radius: 30px; text-align: center;
       animation: pulseGlow 4s infinite ease-in-out;
-      max-width: 360px; width: 88%;
+      max-width: 370px; width: 88%;
       position: relative;
       z-index: 10000;
     }
 
     @keyframes pulseGlow {
-      0%, 100% { box-shadow: 0 0 35px rgba(255, 215, 0, 0.35), inset 0 0 15px rgba(255, 215, 0, 0.15); }
-      50% { box-shadow: 0 0 60px rgba(255, 215, 0, 0.65), inset 0 0 25px rgba(255, 215, 0, 0.35); }
+      0%, 100% { box-shadow: 0 0 35px rgba(255, 215, 0, 0.4), inset 0 0 15px rgba(255, 215, 0, 0.2); }
+      50% { box-shadow: 0 0 70px rgba(255, 215, 0, 0.75), inset 0 0 30px rgba(255, 215, 0, 0.4); }
     }
 
     .flower-badge {
-      font-size: 2.8rem; display: inline-block; margin-bottom: 12px;
+      font-size: 3rem; display: inline-block; margin-bottom: 12px;
       animation: floatFlower 2.5s infinite ease-in-out;
-      filter: drop-shadow(0 0 12px #ffd700);
+      filter: drop-shadow(0 0 16px #ffd700);
     }
 
     @keyframes floatFlower {
       0%, 100% { transform: translateY(0) scale(1); }
-      50% { transform: translateY(-7px) scale(1.1); }
+      50% { transform: translateY(-8px) scale(1.1); }
     }
 
     .tag-sub {
-      color: #ffe680; font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase;
-      margin-bottom: 8px; font-weight: 600; opacity: 0.95;
+      color: #ffe899; font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase;
+      margin-bottom: 8px; font-weight: 700; opacity: 0.95;
     }
 
     .card h1 {
-      color: #ffffff; font-size: 1.5rem; letter-spacing: 1px; margin-bottom: 14px;
-      text-shadow: 0 0 20px rgba(255, 215, 0, 0.9); font-weight: 800; line-height: 1.3;
+      color: #ffffff; font-size: 1.55rem; letter-spacing: 1px; margin-bottom: 14px;
+      text-shadow: 0 0 25px rgba(255, 215, 0, 0.95); font-weight: 800; line-height: 1.3;
     }
 
     .dedication-text {
-      color: #fff3b0; font-size: 0.9rem; line-height: 1.5; margin-bottom: 28px;
+      color: #fff6cb; font-size: 0.92rem; line-height: 1.5; margin-bottom: 28px;
       font-style: italic; opacity: 0.95;
     }
 
     .btn-start {
       background: linear-gradient(45deg, #ffd700, #ff8c00);
-      color: #1a1300; border: none; padding: 14px 38px; border-radius: 30px;
+      color: #1a1000; border: none; padding: 15px 40px; border-radius: 30px;
       font-weight: 800; cursor: pointer; font-size: 0.95rem; letter-spacing: 1.5px;
-      box-shadow: 0 0 25px rgba(255, 215, 0, 0.7);
-      transition: all 0.2s ease; outline: none;
-      position: relative;
-      z-index: 10001;
-      pointer-events: auto;
+      box-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+      transition: all 0.3s ease; outline: none;
+      position: relative; z-index: 10001; pointer-events: auto;
       -webkit-tap-highlight-color: transparent;
     }
-    .btn-start:hover { transform: scale(1.06); box-shadow: 0 0 35px rgba(255, 215, 0, 1); }
-    .btn-start:active { transform: scale(0.96); }
+    .btn-start:hover { transform: scale(1.08); box-shadow: 0 0 45px rgba(255, 215, 0, 1); }
+    .btn-start:active { transform: scale(0.95); }
 
     #canvas-container { width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 1; }
 
@@ -81,45 +79,34 @@
       top: 50%; left: 50%;
       transform: translate(-50%, -50%) scale(0);
       background: radial-gradient(circle, #ffd700 0%, #ff8c00 100%);
-      color: #111; border: 2px solid #fff;
-      padding: 10px 20px; border-radius: 50px;
-      font-weight: bold; font-size: 0.85rem; cursor: pointer;
-      box-shadow: 0 0 30px #ffd700, inset 0 0 10px #fff;
+      color: #111; border: 2px solid #ffffff;
+      padding: 12px 24px; border-radius: 50px;
+      font-weight: bold; font-size: 0.88rem; cursor: pointer;
+      box-shadow: 0 0 35px #ffd700, inset 0 0 12px #ffffff;
       z-index: 10;
-      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease;
-      opacity: 0;
-      pointer-events: none;
-      letter-spacing: 1px;
-      white-space: nowrap;
+      transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.5s ease;
+      opacity: 0; pointer-events: none; letter-spacing: 1px; white-space: nowrap;
     }
     #core-button.visible {
       transform: translate(-50%, -50%) scale(1);
-      opacity: 1;
-      pointer-events: auto;
+      opacity: 1; pointer-events: auto;
     }
-    #core-button:hover { transform: translate(-50%, -50%) scale(1.1); box-shadow: 0 0 50px #ffd700; }
+    #core-button:hover { transform: translate(-50%, -50%) scale(1.12); box-shadow: 0 0 55px #ffd700; }
 
     .galaxy-3d-phrase {
       position: absolute;
-      background: rgba(20, 15, 5, 0.88);
-      border: 1px solid rgba(255, 215, 0, 0.7);
+      background: rgba(25, 18, 2, 0.88);
+      border: 1px solid rgba(255, 215, 0, 0.75);
       backdrop-filter: blur(8px);
-      padding: 6px 14px;
-      border-radius: 14px;
-      color: #fff8d6;
-      font-size: 0.75rem;
-      font-weight: 600;
-      pointer-events: none;
-      z-index: 5;
-      opacity: 0;
+      padding: 7px 15px; border-radius: 16px;
+      color: #fffadb; font-size: 0.75rem; font-weight: 600;
+      pointer-events: none; z-index: 5; opacity: 0;
       transform: translate(-50%, -50%) scale(0.8);
       transition: opacity 0.5s ease, transform 0.5s ease;
-      white-space: nowrap;
-      box-shadow: 0 0 18px rgba(255, 215, 0, 0.4);
+      white-space: nowrap; box-shadow: 0 0 20px rgba(255, 215, 0, 0.45);
     }
     .galaxy-3d-phrase.visible {
-      opacity: 1;
-      transform: translate(-50%, -50%) scale(1);
+      opacity: 1; transform: translate(-50%, -50%) scale(1);
     }
   </style>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -136,27 +123,25 @@
     </div>
   </div>
 
-  <button id="core-button">🌻 Presiona aquí 🌻</button>
+  <button id="core-button">🌻 Toca las Flores 🌻</button>
   <div id="galaxy-phrases-container"></div>
 
   <div id="canvas-container"></div>
 
   <script>
     let scene, camera, renderer;
-    let tunnelNebulaGroup, galaxyGroup, backgroundStars, giantStars, shootingStarLine, yellowPetalsGroup, bouquetGroup;
+    let stardustEntranceGroup, galaxyGroup, backgroundStars, giantStars, shootingStarLine, yellowPetalsGroup, bouquetGroup, butterfliesGroup;
     let isTraveling = false;
     let travelFinished = false;
     let frasesVisibles = false;
     let isMobile = window.innerWidth <= 768;
 
-    const startZ = 1200;
+    const startZ = 800;
     const targetZ = 0;
     let currentCameraZ = startZ;
 
-    const totalDistance = startZ - targetZ;
-    const tunnelDurationSeconds = 2.0; 
-    const totalFrames = tunnelDurationSeconds * 60;
-    const tunnelSpeed = totalDistance / totalFrames;
+    let travelProgress = 0;
+    const travelSpeed = 0.025;
 
     let isDragging = false;
     let previousMousePosition = { x: 0, y: 0 };
@@ -164,24 +149,23 @@
     let targetRotationY = 0;
 
     let shootingStarData = {
-      active: false,
-      progress: 0,
+      active: false, progress: 0,
       startX: -250, startY: 180, startZ: -300,
       endX: 200, endY: 50, endZ: -250,
-      speed: 0.0012 + Math.random() * 0.001
+      speed: 0.0015
     };
 
     const frasesGalaxia3D = [
-      { text: "Flores amarillas para iluminar tu vida 🌻", pos: new THREE.Vector3(90, 15, -40) },
-      { text: "Tu alegría es tan brillante como el sol ☀️", pos: new THREE.Vector3(-100, -20, 50) },
-      { text: "Gracias por existir y brindar tu luz 💛", pos: new THREE.Vector3(40, 25, 90) },
-      { text: "Que nunca te falten motivos para sonreír 🌟", pos: new THREE.Vector3(-80, 10, -80) },
-      { text: "Un detalle lleno de luz y cariño ✨", pos: new THREE.Vector3(120, -15, -20) },
-      { text: "Florece siempre con alegría y paz 🌼", pos: new THREE.Vector3(-30, 20, -110) },
-      { text: "Luz, armonía y amistad siempre 💫", pos: new THREE.Vector3(70, -25, 60) },
-      { text: "Un universo amarillo lleno de buena vibra 🌻", pos: new THREE.Vector3(-110, 15, 30) },
-      { text: "Infinitos momentos de felicidad ⭐", pos: new THREE.Vector3(20, -30, 110) },
-      { text: "Con mucho cariño para ti 💛", pos: new THREE.Vector3(-60, -15, -60) }
+      { text: "Flores amarillas para iluminar tu vida 🌻", pos: new THREE.Vector3(95, 18, -40) },
+      { text: "Tu alegría es tan brillante como el sol ☀️", pos: new THREE.Vector3(-105, -22, 55) },
+      { text: "Gracias por existir y brindar tu luz 💛", pos: new THREE.Vector3(45, 28, 95) },
+      { text: "Que nunca te falten motivos para sonreír 🌟", pos: new THREE.Vector3(-85, 12, -85) },
+      { text: "Un detalle lleno de luz y cariño ✨", pos: new THREE.Vector3(125, -18, -20) },
+      { text: "Florece siempre con alegría y paz 🌼", pos: new THREE.Vector3(-35, 22, -115) },
+      { text: "Luz, armonía y amistad siempre 💫", pos: new THREE.Vector3(75, -28, 65) },
+      { text: "Un universo amarillo lleno de buena vibra 🌻", pos: new THREE.Vector3(-115, 18, 35) },
+      { text: "Infinitos momentos de felicidad ⭐", pos: new THREE.Vector3(25, -32, 115) },
+      { text: "Con mucho cariño para ti 💛", pos: new THREE.Vector3(-65, -18, -65) }
     ];
     let galaxyPhraseElements = [];
 
@@ -194,7 +178,7 @@
         card.style.opacity = '0';
         card.style.pointerEvents = 'none';
         card.style.transform = 'scale(0.9)';
-        setTimeout(() => { card.style.display = 'none'; }, 300);
+        setTimeout(() => { card.style.display = 'none'; }, 500);
       }
     }
 
@@ -204,81 +188,24 @@
       const ctx = canvas.getContext('2d');
       const grad = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
       grad.addColorStop(0, 'rgba(255,255,255,1)');
-      grad.addColorStop(0.3, 'rgba(255,225,120,0.85)');
+      grad.addColorStop(0.35, 'rgba(255,225,120,0.9)');
       grad.addColorStop(1, 'rgba(0,0,0,0)');
       ctx.fillStyle = grad;
       ctx.fillRect(0, 0, 64, 64);
       return new THREE.CanvasTexture(canvas);
     }
 
-    function crearTexturaGirasolMejorada() {
-      const canvas = document.createElement('canvas');
-      canvas.width = 128; canvas.height = 128;
-      const ctx = canvas.getContext('2d');
-      const cx = 64, cy = 64;
-
-      // Resplandor exterior suave del girasol
-      const bgGrad = ctx.createRadialGradient(cx, cy, 10, cx, cy, 60);
-      bgGrad.addColorStop(0, 'rgba(255, 215, 0, 0.4)');
-      bgGrad.addColorStop(1, 'rgba(255, 215, 0, 0)');
-      ctx.fillStyle = bgGrad;
-      ctx.fillRect(0, 0, 128, 128);
-
-      // Pétalos externos (dorados)
-      const petals = 18;
-      ctx.fillStyle = '#ffcc00';
-      for (let i = 0; i < petals; i++) {
-        const angle = (i * Math.PI * 2) / petals;
-        ctx.save();
-        ctx.translate(cx, cy);
-        ctx.rotate(angle);
-        ctx.beginPath();
-        ctx.ellipse(0, -36, 8, 22, 0, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.restore();
-      }
-
-      // Pétalos internos (amarillo cálido)
-      ctx.fillStyle = '#ffea66';
-      for (let i = 0; i < petals; i++) {
-        const angle = (i * Math.PI * 2) / petals + (Math.PI / petals);
-        ctx.save();
-        ctx.translate(cx, cy);
-        ctx.rotate(angle);
-        ctx.beginPath();
-        ctx.ellipse(0, -30, 7, 17, 0, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.restore();
-      }
-
-      // Centro del girasol
-      const grad = ctx.createRadialGradient(cx, cy, 2, cx, cy, 20);
-      grad.addColorStop(0, '#4a2f0f');
-      grad.addColorStop(0.7, '#2e1b05');
-      grad.addColorStop(1, '#150a00');
-      ctx.fillStyle = grad;
-      ctx.beginPath();
-      ctx.arc(cx, cy, 20, 0, Math.PI * 2);
-      ctx.fill();
-
-      return new THREE.CanvasTexture(canvas);
-    }
-
-    function crearTexturaPetaloAmarillo() {
+    function crearTexturaMariposa() {
       const canvas = document.createElement('canvas');
       canvas.width = 64; canvas.height = 64;
       const ctx = canvas.getContext('2d');
-      
       ctx.fillStyle = '#ffd700';
       ctx.beginPath();
-      ctx.ellipse(32, 32, 18, 9, Math.PI / 4, 0, 2 * Math.PI);
+      ctx.ellipse(22, 25, 12, 18, -Math.PI / 6, 0, Math.PI * 2);
+      ctx.ellipse(42, 25, 12, 18, Math.PI / 6, 0, Math.PI * 2);
+      ctx.ellipse(26, 42, 8, 12, Math.PI / 6, 0, Math.PI * 2);
+      ctx.ellipse(38, 42, 8, 12, -Math.PI / 6, 0, Math.PI * 2);
       ctx.fill();
-
-      ctx.fillStyle = '#ffaa00';
-      ctx.beginPath();
-      ctx.ellipse(30, 30, 12, 5, Math.PI / 4, 0, 2 * Math.PI);
-      ctx.fill();
-
       return new THREE.CanvasTexture(canvas);
     }
 
@@ -302,9 +229,9 @@
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
       document.getElementById('canvas-container').appendChild(renderer.domElement);
 
-      crearFondoEspacialRealista();
-      crearTunelNebulosaHiperRealista();
-      crearGalaxiaMajestuosa();
+      crearFondoEspacial();
+      crearEntradaPolvoEstelar();
+      crearGalaxiaPrincipal();
       crearFrasesEstelaDOM();
       setupInteractions();
 
@@ -335,40 +262,39 @@
       let cMesh = galaxyGroup.getObjectByName("coreMesh");
       if (cMesh) cMesh.visible = false;
       if (bouquetGroup) bouquetGroup.visible = true;
+      if (butterfliesGroup) butterfliesGroup.visible = true;
     }
 
-    function crearFondoEspacialRealista() {
+    function crearFondoEspacial() {
       const starTexture = crearTexturaEstrella();
-      const countDust = 7000;
+      const countDust = 8000;
       const dustGeo = new THREE.BufferGeometry();
       const dustPos = new Float32Array(countDust * 3);
       for (let i = 0; i < countDust; i++) {
-        dustPos[i*3] = (Math.random() - 0.5) * 2000;
-        dustPos[i*3+1] = (Math.random() - 0.5) * 2000;
-        dustPos[i*3+2] = (Math.random() - 0.5) * 2000;
+        dustPos[i*3] = (Math.random() - 0.5) * 2200;
+        dustPos[i*3+1] = (Math.random() - 0.5) * 2200;
+        dustPos[i*3+2] = (Math.random() - 0.5) * 2200;
       }
       dustGeo.setAttribute('position', new THREE.BufferAttribute(dustPos, 3));
       backgroundStars = new THREE.Points(dustGeo, new THREE.PointsMaterial({
-        size: 0.8, map: starTexture, transparent: true, opacity: 0.5,
+        size: 0.9, map: starTexture, transparent: true, opacity: 0.5,
         blending: THREE.AdditiveBlending, depthWrite: false
       }));
       scene.add(backgroundStars);
 
-      const countGiants = 250;
+      const countGiants = 300;
       const giantGeo = new THREE.BufferGeometry();
       const giantPos = new Float32Array(countGiants * 3);
       const giantColors = new Float32Array(countGiants * 3);
-      
-      // Colores armónicos que complementan el amarillo
       const giantPalette = [
         new THREE.Color('#ffffff'), new THREE.Color('#ffd700'),
-        new THREE.Color('#ffaa00'), new THREE.Color('#e0b0ff'), new THREE.Color('#ff8c00')
+        new THREE.Color('#ffaa00'), new THREE.Color('#e0c0ff'), new THREE.Color('#ff8c00')
       ];
 
       for (let i = 0; i < countGiants; i++) {
-        giantPos[i*3] = (Math.random() - 0.5) * 1600;
-        giantPos[i*3+1] = (Math.random() - 0.5) * 1600;
-        giantPos[i*3+2] = (Math.random() - 0.5) * 1600;
+        giantPos[i*3] = (Math.random() - 0.5) * 1800;
+        giantPos[i*3+1] = (Math.random() - 0.5) * 1800;
+        giantPos[i*3+2] = (Math.random() - 0.5) * 1800;
         const col = giantPalette[Math.floor(Math.random() * giantPalette.length)];
         giantColors[i*3] = col.r; giantColors[i*3+1] = col.g; giantColors[i*3+2] = col.b;
       }
@@ -376,120 +302,192 @@
       giantGeo.setAttribute('color', new THREE.BufferAttribute(giantColors, 3));
 
       giantStars = new THREE.Points(giantGeo, new THREE.PointsMaterial({
-        size: 2.2, map: starTexture, vertexColors: true, transparent: true, opacity: 0.9,
+        size: 2.2, map: starTexture, vertexColors: true, transparent: true, opacity: 0.95,
         blending: THREE.AdditiveBlending, depthWrite: false
       }));
       scene.add(giantStars);
 
       const lineGeo = new THREE.BufferGeometry();
       lineGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(6), 3));
-      shootingStarLine = new THREE.Line(lineGeo, new THREE.LineBasicMaterial({ color: 0xffe680, transparent: true, opacity: 0 }));
+      shootingStarLine = new THREE.Line(lineGeo, new THREE.LineBasicMaterial({ color: 0xffe899, transparent: true, opacity: 0 }));
       scene.add(shootingStarLine);
     }
 
-    function crearTunelNebulosaHiperRealista() {
-      tunnelNebulaGroup = new THREE.Group();
+    // Entrada elegante de bruma y destellos dorados (reemplazo del túnel oscuro)
+    function crearEntradaPolvoEstelar() {
+      stardustEntranceGroup = new THREE.Group();
       const starTexture = crearTexturaEstrella();
-      
-      // Anillos más juntos y densos como en la primera foto
-      const layers = 10; 
-      const countPerLayer = isMobile ? 3500 : 7000;
-      const nebulaColors = [
-        new THREE.Color('#ffd700'), new THREE.Color('#ffb700'),
-        new THREE.Color('#ff8c00'), new THREE.Color('#ffffff'),
-        new THREE.Color('#b388ff'), new THREE.Color('#402b00')
+      const count = isMobile ? 8000 : 15000;
+      const geo = new THREE.BufferGeometry();
+      const pos = new Float32Array(count * 3);
+      const colors = new Float32Array(count * 3);
+
+      const palette = [
+        new THREE.Color('#ffd700'), new THREE.Color('#ffffff'),
+        new THREE.Color('#ffb700'), new THREE.Color('#ffa000')
       ];
 
-      for (let l = 0; l < layers; l++) {
-        const geo = new THREE.BufferGeometry();
-        const pos = new Float32Array(countPerLayer * 3);
-        const colors = new Float32Array(countPerLayer * 3);
-        const baseRadius = 8 + l * 2.2; 
+      for (let i = 0; i < count; i++) {
+        pos[i*3] = (Math.random() - 0.5) * 400;
+        pos[i*3+1] = (Math.random() - 0.5) * 400;
+        pos[i*3+2] = Math.random() * 800 - 100;
 
-        for (let i = 0; i < countPerLayer; i++) {
-          const u = i / countPerLayer;
-          const angle = u * Math.PI * 40 + (l * 0.8);
-          const radius = baseRadius + Math.sin(u * Math.PI * 10 + l) * 1.5 + Math.random() * 0.8;
-          const z = (u * 1800) - 300;
-
-          pos[i*3] = Math.cos(angle) * radius;
-          pos[i*3+1] = Math.sin(angle) * radius;
-          pos[i*3+2] = z;
-
-          const c = nebulaColors[Math.floor(Math.random() * nebulaColors.length)];
-          colors[i*3] = c.r; colors[i*3+1] = c.g; colors[i*3+2] = c.b;
-        }
-
-        geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
-        geo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-
-        const mat = new THREE.PointsMaterial({
-          size: 0.55, map: starTexture, vertexColors: true,
-          transparent: true, opacity: 0.85, blending: THREE.AdditiveBlending, depthWrite: false
-        });
-
-        tunnelNebulaGroup.add(new THREE.Points(geo, mat));
+        const c = palette[Math.floor(Math.random() * palette.length)];
+        colors[i*3] = c.r; colors[i*3+1] = c.g; colors[i*3+2] = c.b;
       }
-      scene.add(tunnelNebulaGroup);
+
+      geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+      geo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+      const mat = new THREE.PointsMaterial({
+        size: 1.2, map: starTexture, vertexColors: true,
+        transparent: true, opacity: 0.9, blending: THREE.AdditiveBlending, depthWrite: false
+      });
+
+      stardustEntranceGroup.add(new THREE.Points(geo, mat));
+      scene.add(stardustEntranceGroup);
     }
 
-    function crearRamoGirasoles3D() {
+    // Creación 3D detallada del girasol (pétalos, centro, tallo y hojas)
+    function crearGirasol3DCompleto() {
+      const flowerGroup = new THREE.Group();
+
+      // Centro del Girasol
+      const centerGeo = new THREE.CylinderGeometry(2.5, 2.5, 0.6, 24);
+      const centerMat = new THREE.MeshBasicMaterial({ color: 0x3d2306 });
+      const centerMesh = new THREE.Mesh(centerGeo, centerMat);
+      centerMesh.rotation.x = Math.PI / 2;
+      flowerGroup.add(centerMesh);
+
+      // Pétalos amarillos multicapa
+      const petalCount = 18;
+      const petalMat1 = new THREE.MeshBasicMaterial({ color: 0xffd700, side: THREE.DoubleSide });
+      const petalMat2 = new THREE.MeshBasicMaterial({ color: 0xffb700, side: THREE.DoubleSide });
+
+      for (let i = 0; i < petalCount; i++) {
+        const angle = (i * Math.PI * 2) / petalCount;
+        
+        // Capa principal
+        const petalShape = new THREE.Shape();
+        petalShape.moveTo(0, 0);
+        petalShape.quadraticCurveTo(0.8, 2.5, 0, 5);
+        petalShape.quadraticCurveTo(-0.8, 2.5, 0, 0);
+        const petalGeo = new THREE.ShapeGeometry(petalShape);
+        const petal = new THREE.Mesh(petalGeo, petalMat1);
+        petal.rotation.z = angle;
+        petal.position.z = 0.1;
+        flowerGroup.add(petal);
+
+        // Capa secundaria desfasada
+        const petalInner = new THREE.Mesh(petalGeo, petalMat2);
+        petalInner.rotation.z = angle + Math.PI / petalCount;
+        petalInner.scale.set(0.85, 0.85, 0.85);
+        petalInner.position.z = -0.1;
+        flowerGroup.add(petalInner);
+      }
+
+      // Tallo verde curvado
+      const stemCurve = new THREE.CatmullRomCurve3([
+        new THREE.Vector3(0, -0.2, 0),
+        new THREE.Vector3(0.5, -8, -1),
+        new THREE.Vector3(-0.5, -16, -2),
+        new THREE.Vector3(0, -22, -3)
+      ]);
+      const stemGeo = new THREE.TubeGeometry(stemCurve, 16, 0.35, 8, false);
+      const stemMat = new THREE.MeshBasicMaterial({ color: 0x2e7d32 });
+      const stemMesh = new THREE.Mesh(stemGeo, stemMat);
+      flowerGroup.add(stemMesh);
+
+      // Hojas del tallo
+      const leafShape = new THREE.Shape();
+      leafShape.moveTo(0, 0);
+      leafShape.quadraticCurveTo(2, 2, 0, 4);
+      leafShape.quadraticCurveTo(-2, 2, 0, 0);
+      const leafGeo = new THREE.ShapeGeometry(leafShape);
+      const leafMat = new THREE.MeshBasicMaterial({ color: 0x388e3c, side: THREE.DoubleSide });
+
+      const leaf1 = new THREE.Mesh(leafGeo, leafMat);
+      leaf1.position.set(0.2, -8, -1);
+      leaf1.rotation.set(0.2, 0.4, -Math.PI / 4);
+      leaf1.scale.set(1.2, 1.2, 1.2);
+      flowerGroup.add(leaf1);
+
+      const leaf2 = new THREE.Mesh(leafGeo, leafMat);
+      leaf2.position.set(-0.2, -13, -1.8);
+      leaf2.rotation.set(-0.2, -0.4, Math.PI / 3);
+      leaf2.scale.set(1.2, 1.2, 1.2);
+      flowerGroup.add(leaf2);
+
+      return flowerGroup;
+    }
+
+    function crearRamo3D() {
       bouquetGroup = new THREE.Group();
       bouquetGroup.name = "bouquetGroup";
-      const sunflowerTexture = crearTexturaGirasolMejorada();
-      const sunflowerMat = new THREE.SpriteMaterial({ map: sunflowerTexture, transparent: true, opacity: 0.98 });
 
-      // Ramo armónico y compacto de girasoles
-      const positions = [
-        { x: 0, y: 2, z: 4, scale: 18 },
-        { x: -8, y: 7, z: 2, scale: 15 },
-        { x: 8, y: 7, z: 2, scale: 15 },
-        { x: -10, y: -4, z: 3, scale: 15 },
-        { x: 10, y: -4, z: 3, scale: 15 },
-        { x: 0, y: -8, z: 5, scale: 16 }
+      const coords = [
+        { x: 0, y: 6, z: 2, rx: 0, ry: 0, s: 1.8 },
+        { x: -9, y: 11, z: -2, rx: 0.1, ry: -0.2, s: 1.5 },
+        { x: 9, y: 11, z: -2, rx: 0.1, ry: 0.2, s: 1.5 },
+        { x: -11, y: 1, z: 1, rx: -0.1, ry: -0.3, s: 1.4 },
+        { x: 11, y: 1, z: 1, rx: -0.1, ry: 0.3, s: 1.4 }
       ];
 
-      positions.forEach(p => {
-        const sprite = new THREE.Sprite(sunflowerMat);
-        sprite.position.set(p.x, p.y, p.z);
-        sprite.scale.set(p.scale, p.scale, 1);
-        bouquetGroup.add(sprite);
+      coords.forEach(c => {
+        const flower = crearGirasol3DCompleto();
+        flower.position.set(c.x, c.y, c.z);
+        flower.rotation.set(c.rx, c.ry, 0);
+        flower.scale.set(c.s, c.s, c.s);
+        bouquetGroup.add(flower);
       });
+
+      // Mariposas revoloteando
+      butterfliesGroup = new THREE.Group();
+      const butterflyTex = crearTexturaMariposa();
+      const butterflyMat = new THREE.SpriteMaterial({ map: butterflyTex, transparent: true, opacity: 0.9 });
+      for (let i = 0; i < 8; i++) {
+        const sprite = new THREE.Sprite(butterflyMat);
+        const angle = (i * Math.PI * 2) / 8;
+        sprite.position.set(Math.cos(angle) * 18, Math.sin(angle) * 12 + 5, (Math.random() - 0.5) * 10);
+        sprite.scale.set(4, 4, 1);
+        butterfliesGroup.add(sprite);
+      }
+      butterfliesGroup.visible = false;
+      bouquetGroup.add(butterfliesGroup);
 
       bouquetGroup.visible = false;
       return bouquetGroup;
     }
 
-    function crearGalaxiaMajestuosa() {
+    function crearGalaxiaPrincipal() {
       galaxyGroup = new THREE.Group();
       const starTexture = crearTexturaEstrella();
-      const petalTexture = crearTexturaPetaloAmarillo();
       
-      const count = isMobile ? 65000 : 130000;
+      const count = isMobile ? 70000 : 140000;
       const geo = new THREE.BufferGeometry();
       const pos = new Float32Array(count * 3);
       const colors = new Float32Array(count * 3);
 
       const colorCore = new THREE.Color('#ffffff');
-      const colorInner = new THREE.Color('#fff099');
+      const colorInner = new THREE.Color('#fff2a3');
       const colorYellow = new THREE.Color('#ffd700');
       const colorOrange = new THREE.Color('#ff8c00');
-      const colorPurpleAccent = new THREE.Color('#6a0dad');
-      const colorEdge = new THREE.Color('#0c0900');
+      const colorPurple = new THREE.Color('#7b1fa2');
+      const colorEdge = new THREE.Color('#0a0700');
 
       for (let i = 0; i < count; i++) {
-        const r = Math.pow(Math.random(), 1.4) * 200 + 2;
+        const r = Math.pow(Math.random(), 1.35) * 210 + 2;
         const arms = 2;
         const armAngle = ((i % arms) / arms) * Math.PI * 2;
-        const spiralAngle = r * 0.038;
+        const spiralAngle = r * 0.036;
         const angle = armAngle + spiralAngle + (Math.random() - 0.5) * 0.35;
-        const spreadY = (Math.random() - 0.5) * (200 - r) * 0.08;
+        const spreadY = (Math.random() - 0.5) * (210 - r) * 0.07;
 
         pos[i*3] = Math.cos(angle) * r;
         pos[i*3+1] = spreadY;
         pos[i*3+2] = Math.sin(angle) * r;
 
-        const ratio = r / 200;
+        const ratio = r / 210;
         let mixed;
         if (ratio < 0.08) {
           mixed = colorCore.clone().lerp(colorInner, ratio / 0.08);
@@ -498,9 +496,9 @@
         } else if (ratio < 0.65) {
           mixed = colorYellow.clone().lerp(colorOrange, (ratio - 0.35) / 0.3);
         } else if (ratio < 0.88) {
-          mixed = colorOrange.clone().lerp(colorPurpleAccent, (ratio - 0.65) / 0.23);
+          mixed = colorOrange.clone().lerp(colorPurple, (ratio - 0.65) / 0.23);
         } else {
-          mixed = colorPurpleAccent.clone().lerp(colorEdge, (ratio - 0.88) / 0.12);
+          mixed = colorPurple.clone().lerp(colorEdge, (ratio - 0.88) / 0.12);
         }
 
         colors[i*3] = mixed.r; colors[i*3+1] = mixed.g; colors[i*3+2] = mixed.b;
@@ -517,34 +515,16 @@
       galaxyPoints.name = "galaxyPoints";
       galaxyGroup.add(galaxyPoints);
 
-      const petalCount = 400;
-      const petalGeo = new THREE.BufferGeometry();
-      const petalPos = new Float32Array(petalCount * 3);
-      for(let i=0; i<petalCount; i++) {
-        const r = Math.random() * 170 + 10;
-        const angle = Math.random() * Math.PI * 2;
-        petalPos[i*3] = Math.cos(angle) * r;
-        petalPos[i*3+1] = (Math.random() - 0.5) * 30;
-        petalPos[i*3+2] = Math.sin(angle) * r;
-      }
-      petalGeo.setAttribute('position', new THREE.BufferAttribute(petalPos, 3));
-      const petalMat = new THREE.PointsMaterial({
-        size: 3.2, map: petalTexture, transparent: true, opacity: 0,
-        blending: THREE.AdditiveBlending, depthWrite: false
-      });
-      yellowPetalsGroup = new THREE.Points(petalGeo, petalMat);
-      yellowPetalsGroup.name = "yellowPetals";
-      galaxyGroup.add(yellowPetalsGroup);
-
-      const coreGeo = new THREE.SphereGeometry(5, 32, 32);
-      const coreMat = new THREE.MeshBasicMaterial({ color: 0xfff099, transparent: true, opacity: 0 });
+      // Núcleo luminoso
+      const coreGeo = new THREE.SphereGeometry(6, 32, 32);
+      const coreMat = new THREE.MeshBasicMaterial({ color: 0xfff3b0, transparent: true, opacity: 0 });
       const coreMesh = new THREE.Mesh(coreGeo, coreMat);
       coreMesh.name = "coreMesh";
       galaxyGroup.add(coreMesh);
 
-      galaxyGroup.add(crearRamoGirasoles3D());
+      galaxyGroup.add(crearRamo3D());
 
-      galaxyGroup.scale.set(0.2, 0.2, 0.2);
+      galaxyGroup.scale.set(0.1, 0.1, 0.1);
       galaxyGroup.position.set(0, 0, -200);
       scene.add(galaxyGroup);
     }
@@ -668,7 +648,7 @@
     function actualizarEstrellaFugaz() {
       if (!travelFinished) return;
       if (!shootingStarData.active) {
-        if (Math.random() < 0.015) {
+        if (Math.random() < 0.018) {
           shootingStarData.active = true;
           shootingStarData.progress = 0;
           shootingStarData.startX = (Math.random() - 0.5) * 400;
@@ -677,7 +657,7 @@
           shootingStarData.endX = shootingStarData.startX + (Math.random() * 180 - 90);
           shootingStarData.endY = shootingStarData.startY - 80 - Math.random() * 40;
           shootingStarData.endZ = shootingStarData.startZ;
-          shootingStarData.speed = 0.0012 + Math.random() * 0.001;
+          shootingStarData.speed = 0.0015;
         }
       } else {
         shootingStarData.progress += shootingStarData.speed;
@@ -700,54 +680,44 @@
         positions[0] = curX; positions[1] = curY; positions[2] = curZ;
         positions[3] = tailX; positions[4] = tailY; positions[5] = curZ;
         shootingStarLine.geometry.attributes.position.needsUpdate = true;
-        shootingStarLine.material.opacity = Math.sin(p * Math.PI) * 0.85;
+        shootingStarLine.material.opacity = Math.sin(p * Math.PI) * 0.9;
       }
     }
 
     function animate() {
       requestAnimationFrame(animate);
 
-      if (tunnelNebulaGroup && !travelFinished) {
-        tunnelNebulaGroup.rotation.z += 0.035;
-      }
-
       if (isTraveling && !travelFinished) {
-        if (camera.position.z > targetZ) {
-          camera.position.z -= tunnelSpeed;
-          currentCameraZ = camera.position.z;
+        travelProgress += travelSpeed;
+        
+        // Transición de cámara
+        camera.position.z = THREE.MathUtils.lerp(startZ, 0, travelProgress);
+        currentCameraZ = camera.position.z;
 
-          if (camera.position.z < 300) {
-            let progressFactor = camera.position.z / 300;
-            let alpha = Math.min(1, Math.max(0, 1 - (progressFactor / 1)));
+        // Desvanecimiento suave del polvo estelar inicial y revelado de la galaxia
+        if (stardustEntranceGroup) {
+          stardustEntranceGroup.children[0].material.opacity = 1 - travelProgress;
+        }
 
-            let currentScale = 0.2 + (0.8 * alpha);
-            galaxyGroup.scale.set(currentScale, currentScale, currentScale);
+        let alpha = Math.min(1, travelProgress * 1.5);
+        let scaleVal = 0.1 + (0.9 * alpha);
+        galaxyGroup.scale.set(scaleVal, scaleVal, scaleVal);
 
-            let gPoints = galaxyGroup.getObjectByName("galaxyPoints");
-            let yPetals = galaxyGroup.getObjectByName("yellowPetals");
-            let cMesh = galaxyGroup.getObjectByName("coreMesh");
+        let gPoints = galaxyGroup.getObjectByName("galaxyPoints");
+        let cMesh = galaxyGroup.getObjectByName("coreMesh");
 
-            if(gPoints) gPoints.material.opacity = alpha * 0.95;
-            if(yPetals) yPetals.material.opacity = alpha * 0.9;
-            if(cMesh) cMesh.material.opacity = alpha;
+        if(gPoints) gPoints.material.opacity = alpha * 0.95;
+        if(cMesh) cMesh.material.opacity = alpha;
 
-            tunnelNebulaGroup.children.forEach(mesh => {
-              if (mesh.material.opacity > 0.02) mesh.material.opacity -= 0.03;
-            });
-          }
-        } else {
+        if (travelProgress >= 1) {
           travelFinished = true;
           camera.position.z = 0;
           currentCameraZ = 0;
           galaxyGroup.position.set(0, 0, -200);
           galaxyGroup.scale.set(1, 1, 1);
-          scene.remove(tunnelNebulaGroup);
+          scene.remove(stardustEntranceGroup);
 
-          let gPoints = galaxyGroup.getObjectByName("galaxyPoints");
-          let yPetals = galaxyGroup.getObjectByName("yellowPetals");
-          let cMesh = galaxyGroup.getObjectByName("coreMesh");
           if(gPoints) gPoints.material.opacity = 0.95;
-          if(yPetals) yPetals.material.opacity = 0.9;
           if(cMesh) cMesh.material.opacity = 1.0;
         }
       } else if (travelFinished) {
@@ -761,6 +731,14 @@
         galaxyGroup.rotation.y += (targetRotationY - galaxyGroup.rotation.y) * 0.1;
         galaxyGroup.rotation.x += (targetRotationX - galaxyGroup.rotation.x) * 0.1;
         galaxyGroup.updateMatrixWorld();
+      }
+
+      // Animación suave de mariposas
+      if (butterfliesGroup && butterfliesGroup.visible) {
+        butterfliesGroup.rotation.y += 0.015;
+        butterfliesGroup.children.forEach((b, idx) => {
+          b.position.y += Math.sin(Date.now() * 0.003 + idx) * 0.05;
+        });
       }
 
       if (giantStars) {
