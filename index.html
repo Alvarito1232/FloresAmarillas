@@ -3,21 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Feliz 21 de Septiembre — Flores Amarillas 🌻✨</title>
+  <title>Especial 21 de Septiembre — Universo de Flores Amarillas 🌻✨</title>
   <style>
     /* ==========================================================================
-       1. CONFIGURACIÓN BÁSICA Y VARIABLES DE COLOR
+       1. VARIABLES GLOBALES Y RESET DE ESTILOS
        ========================================================================== */
     :root {
-      --bg-gradient: radial-gradient(circle at center, #1e1805 0%, #080602 100%);
-      --card-bg: rgba(22, 18, 6, 0.92);
-      --card-border: rgba(230, 180, 40, 0.45);
-      --yellow-main: #f3c233;
-      --yellow-soft: #fce893;
+      --bg-dark-radial: radial-gradient(circle at center, #1f1803 0%, #080601 100%);
+      --card-background: rgba(20, 16, 5, 0.93);
+      --card-border-gold: rgba(243, 194, 51, 0.45);
+      --gold-primary: #f3c233;
+      --gold-secondary: #fce893;
       --orange-accent: #e58e26;
-      --text-color: #fff9e6;
-      --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.8);
-      --glow-soft: 0 0 15px rgba(243, 194, 51, 0.25);
+      --green-leaf: #388e3c;
+      --text-bright: #fff9e6;
+      --text-muted: #e0d5b5;
+      --shadow-elevation: 0 12px 40px rgba(0, 0, 0, 0.85);
+      --glow-subtle: 0 0 20px rgba(243, 194, 51, 0.22);
     }
 
     * {
@@ -31,15 +33,15 @@
     body, html {
       width: 100%;
       height: 100%;
-      font-family: 'Segoe UI', system-ui, -apple-system, Roboto, sans-serif;
-      background: var(--bg-gradient);
-      color: var(--text-color);
+      font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+      background: var(--bg-dark-radial);
+      color: var(--text-bright);
       overflow: hidden;
       position: relative;
     }
 
     /* ==========================================================================
-       2. CANVAS DE FONDO Y PÉTALOS
+       2. CANVAS DE EFECTOS VISUALES Y FÍSICA
        ========================================================================== */
     #fx-canvas {
       position: fixed;
@@ -52,97 +54,97 @@
     }
 
     /* ==========================================================================
-       3. PANTALLA DE BIENVENIDA E INICIO
+       3. PANTALLA DE ENTRADA E INTRODUCCIÓN
        ========================================================================== */
-    #intro-screen {
+    #welcome-overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: 50;
+      z-index: 60;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      background: radial-gradient(circle at center, rgba(35, 27, 8, 0.98) 0%, rgba(5, 4, 1, 0.99) 100%);
+      background: radial-gradient(circle at center, rgba(38, 29, 7, 0.98) 0%, rgba(5, 4, 1, 0.99) 100%);
       transition: opacity 0.8s ease, visibility 0.8s ease;
-      padding: 20px;
+      padding: 24px;
       text-align: center;
     }
 
-    .intro-badge {
+    .badge-date {
       display: inline-block;
-      padding: 6px 16px;
+      padding: 7px 18px;
       background: rgba(243, 194, 51, 0.12);
       border: 1px solid rgba(243, 194, 51, 0.4);
-      border-radius: 20px;
-      color: var(--yellow-soft);
+      border-radius: 25px;
+      color: var(--gold-secondary);
       font-size: 0.85rem;
-      font-weight: 600;
+      font-weight: 700;
       letter-spacing: 2px;
       text-transform: uppercase;
-      margin-bottom: 20px;
+      margin-bottom: 22px;
     }
 
-    .sunflower-hero-svg {
-      width: 120px;
-      height: 120px;
+    .hero-sunflower-container {
+      width: 140px;
+      height: 140px;
       margin-bottom: 25px;
-      filter: drop-shadow(0 4px 12px rgba(243, 194, 51, 0.3));
-      animation: gentleRotate 20s linear infinite;
+      filter: drop-shadow(0 6px 16px rgba(243, 194, 51, 0.35));
+      animation: rotateContinuous 24s linear infinite;
     }
 
-    @keyframes gentleRotate {
+    @keyframes rotateContinuous {
       from { transform: rotate(0deg); }
       to { transform: rotate(360deg); }
     }
 
-    .intro-title {
-      font-size: clamp(1.8rem, 5vw, 2.8rem);
+    .intro-heading {
+      font-size: clamp(2rem, 5.5vw, 3rem);
       color: #ffffff;
       font-weight: 800;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
       letter-spacing: 1px;
     }
 
-    .intro-subtitle {
+    .intro-paragraph {
       font-size: clamp(0.95rem, 3vw, 1.15rem);
-      color: var(--yellow-soft);
-      opacity: 0.9;
-      max-width: 450px;
-      line-height: 1.5;
-      margin-bottom: 35px;
+      color: var(--gold-secondary);
+      opacity: 0.92;
+      max-width: 480px;
+      line-height: 1.6;
+      margin-bottom: 38px;
     }
 
-    .btn-start-action {
-      background: linear-gradient(135deg, var(--yellow-main) 0%, var(--orange-accent) 100%);
+    .btn-main-start {
+      background: linear-gradient(135deg, var(--gold-primary) 0%, var(--orange-accent) 100%);
       color: #120e02;
       border: none;
-      padding: 16px 42px;
-      font-size: 1.05rem;
+      padding: 18px 46px;
+      font-size: 1.1rem;
       font-weight: 800;
       border-radius: 50px;
       cursor: pointer;
-      box-shadow: 0 6px 20px rgba(229, 142, 38, 0.35);
+      box-shadow: 0 6px 25px rgba(229, 142, 38, 0.4);
       letter-spacing: 1.5px;
       text-transform: uppercase;
       transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
-    .btn-start-action:hover {
-      transform: translateY(-3px) scale(1.03);
-      box-shadow: 0 10px 25px rgba(243, 194, 51, 0.45);
+    .btn-main-start:hover {
+      transform: translateY(-3px) scale(1.04);
+      box-shadow: 0 10px 30px rgba(243, 194, 51, 0.55);
     }
 
-    .btn-start-action:active {
+    .btn-main-start:active {
       transform: translateY(1px) scale(0.98);
     }
 
     /* ==========================================================================
-       4. MARCO DE FLORES Y CARTILLA PRINCIPAL
+       4. CONTENEDOR Y MARCO DE LA CARTILLA PRINCIPAL
        ========================================================================== */
-    #main-content {
+    #app-viewport {
       position: absolute;
       top: 0;
       left: 0;
@@ -152,70 +154,69 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 15px;
+      padding: 16px;
       opacity: 0;
       visibility: hidden;
       transition: opacity 1s ease, transform 1s ease;
       transform: translateY(20px);
     }
 
-    #main-content.active {
+    #app-viewport.active {
       opacity: 1;
       visibility: visible;
       transform: translateY(0);
     }
 
-    /* Contenedor Adaptable de la Carta */
-    .card-container {
+    .card-master-wrapper {
       position: relative;
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      max-width: 650px;
+      background: var(--card-background);
+      border: 1px solid var(--card-border-gold);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      max-width: 680px;
       width: 100%;
       max-height: 88vh;
-      border-radius: 28px;
-      padding: 40px 28px 30px 28px;
-      box-shadow: var(--shadow-soft), var(--glow-soft);
+      border-radius: 32px;
+      padding: 42px 30px 32px 30px;
+      box-shadow: var(--shadow-elevation), var(--glow-subtle);
       overflow-y: auto;
       scrollbar-width: thin;
-      scrollbar-color: var(--yellow-main) rgba(255, 255, 255, 0.05);
+      scrollbar-color: var(--gold-primary) rgba(255, 255, 255, 0.05);
     }
 
-    .card-container::-webkit-scrollbar {
+    .card-master-wrapper::-webkit-scrollbar {
       width: 5px;
     }
 
-    .card-container::-webkit-scrollbar-thumb {
-      background-color: var(--yellow-main);
+    .card-master-wrapper::-webkit-scrollbar-thumb {
+      background-color: var(--gold-primary);
       border-radius: 10px;
     }
 
-    /* Flores Gigantes Vectoriales en las Esquinas */
-    .corner-sunflower {
+    /* Girasoles Gigantes Vectoriales Decotativos en las Esquinas */
+    .giant-corner-sunflower {
       position: absolute;
-      width: 90px;
-      height: 90px;
+      width: 100px;
+      height: 100px;
       pointer-events: none;
-      opacity: 0.85;
-      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
+      opacity: 0.88;
+      filter: drop-shadow(0 3px 10px rgba(0,0,0,0.6));
     }
 
-    .corner-sunflower.top-l { top: -20px; left: -20px; transform: rotate(-15deg); }
-    .corner-sunflower.top-r { top: -20px; right: -20px; transform: rotate(15deg); }
-    .corner-sunflower.bot-l { bottom: -20px; left: -20px; transform: rotate(-105deg); }
-    .corner-sunflower.bot-r { bottom: -20px; right: -20px; transform: rotate(105deg); }
+    .giant-corner-sunflower.tl { top: -25px; left: -25px; transform: rotate(-20deg); }
+    .giant-corner-sunflower.tr { top: -25px; right: -25px; transform: rotate(20deg); }
+    .giant-corner-sunflower.bl { bottom: -25px; left: -25px; transform: rotate(-110deg); }
+    .giant-corner-sunflower.br { bottom: -25px; right: -25px; transform: rotate(110deg); }
 
-    /* Encabezado de la Carta */
-    .card-header {
+    /* Encabezado */
+    .header-block {
       text-align: center;
-      margin-bottom: 25px;
+      margin-bottom: 28px;
     }
 
-    .date-tag {
-      font-size: 0.8rem;
-      color: var(--yellow-soft);
+    .header-subtag {
+      font-size: 0.82rem;
+      color: var(--gold-secondary);
       letter-spacing: 2px;
       text-transform: uppercase;
       font-weight: 700;
@@ -224,78 +225,84 @@
       display: block;
     }
 
-    .card-title {
-      font-size: clamp(1.35rem, 4vw, 1.85rem);
-      color: var(--yellow-main);
+    .header-title {
+      font-size: clamp(1.4rem, 4vw, 1.95rem);
+      color: var(--gold-primary);
       font-weight: 800;
       letter-spacing: 0.5px;
-      line-height: 1.3;
+      line-height: 1.35;
     }
 
-    /* Cuerpo del Texto */
-    .card-body-text {
-      font-size: clamp(0.95rem, 2.5vw, 1.05rem);
-      line-height: 1.85;
-      color: var(--text-color);
+    /* Texto exacto proporcionado */
+    .dedication-content-block {
+      font-size: clamp(0.96rem, 2.5vw, 1.06rem);
+      line-height: 1.9;
+      color: var(--text-bright);
       text-align: left;
     }
 
-    .card-body-text p {
-      margin-bottom: 16px;
-      opacity: 0.92;
+    .dedication-content-block p {
+      margin-bottom: 18px;
+      opacity: 0.94;
     }
 
     /* ==========================================================================
-       5. BOTONES E SECCIONES INTERACTIVAS
+       5. PANEL INTERACTIVO Y MINI-JUEGOS
        ========================================================================== */
-    .interactive-section {
-      margin-top: 30px;
-      padding-top: 20px;
-      border-top: 1px dashed rgba(243, 194, 51, 0.25);
+    .interactive-hub {
+      margin-top: 35px;
+      padding-top: 24px;
+      border-top: 1px dashed rgba(243, 194, 51, 0.3);
       text-align: center;
     }
 
-    .action-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 12px;
-      margin-top: 15px;
+    .hub-title {
+      font-size: 1.05rem;
+      color: var(--gold-secondary);
+      margin-bottom: 16px;
+      font-weight: 700;
     }
 
-    .btn-sub-action {
+    .hub-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 12px;
+    }
+
+    .btn-hub-item {
       background: rgba(243, 194, 51, 0.1);
-      border: 1px solid rgba(243, 194, 51, 0.35);
-      color: var(--yellow-soft);
-      padding: 12px 18px;
-      border-radius: 18px;
+      border: 1px solid rgba(243, 194, 51, 0.38);
+      color: var(--gold-secondary);
+      padding: 14px 18px;
+      border-radius: 20px;
       font-size: 0.88rem;
       font-weight: 700;
       cursor: pointer;
-      transition: all 0.25 ease;
+      transition: all 0.25s ease;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
     }
 
-    .btn-sub-action:hover {
+    .btn-hub-item:hover {
       background: rgba(243, 194, 51, 0.22);
-      border-color: var(--yellow-main);
-      transform: translateY(-2deg);
+      border-color: var(--gold-primary);
+      transform: translateY(-2px);
     }
 
     /* ==========================================================================
-       6. MODAL INTERACTIVO DE SORPRESA / JUEGO
+       6. MODALES Y VENTANAS FLOTANTES PARA JUEGOS
        ========================================================================== */
-    .modal-overlay {
+    .modal-backdrop {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.75);
+      background: rgba(0, 0, 0, 0.8);
       backdrop-filter: blur(8px);
-      z-index: 100;
+      z-index: 120;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -305,119 +312,201 @@
       transition: opacity 0.4s ease, visibility 0.4s ease;
     }
 
-    .modal-overlay.open {
+    .modal-backdrop.active {
       opacity: 1;
       visibility: visible;
     }
 
-    .modal-card {
+    .modal-window {
       background: #181305;
-      border: 1.5px solid var(--yellow-main);
-      border-radius: 24px;
-      padding: 30px 24px;
-      max-width: 420px;
+      border: 1.5px solid var(--gold-primary);
+      border-radius: 28px;
+      padding: 32px 26px;
+      max-width: 450px;
       width: 100%;
       text-align: center;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.9);
+      box-shadow: 0 10px 50px rgba(0,0,0,0.9);
       transform: scale(0.85);
       transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
     }
 
-    .modal-overlay.open .modal-card {
+    .modal-backdrop.active .modal-window {
       transform: scale(1);
     }
 
-    .modal-icon {
-      width: 60px;
-      height: 60px;
-      margin: 0 auto 15px auto;
+    .modal-icon-svg {
+      width: 65px;
+      height: 65px;
+      margin: 0 auto 16px auto;
     }
 
-    .modal-title {
-      font-size: 1.35rem;
-      color: var(--yellow-main);
+    .modal-heading {
+      font-size: 1.4rem;
+      color: var(--gold-primary);
       font-weight: 800;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
 
-    .modal-desc {
-      font-size: 0.95rem;
-      line-height: 1.6;
-      color: var(--text-color);
-      opacity: 0.9;
-      margin-bottom: 22px;
+    .modal-body-text {
+      font-size: 0.98rem;
+      line-height: 1.65;
+      color: var(--text-bright);
+      opacity: 0.92;
+      margin-bottom: 24px;
     }
 
-    .btn-modal-close {
-      background: var(--yellow-main);
+    .btn-modal-action {
+      background: var(--gold-primary);
       color: #120e02;
       border: none;
-      padding: 10px 28px;
-      font-size: 0.9rem;
+      padding: 12px 30px;
+      font-size: 0.92rem;
       font-weight: 800;
-      border-radius: 20px;
+      border-radius: 22px;
       cursor: pointer;
+      transition: transform 0.2s ease;
     }
 
-    /* Reproductor de Audio Invisible */
+    .btn-modal-action:hover {
+      transform: scale(1.05);
+    }
+
+    /* Área del Juego "Atrapa el Girasol" */
+    #catch-game-area {
+      width: 100%;
+      height: 220px;
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px dashed var(--gold-primary);
+      border-radius: 18px;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .target-flower {
+      position: absolute;
+      width: 45px;
+      height: 45px;
+      cursor: pointer;
+      transition: transform 0.1s ease;
+    }
+
+    .target-flower:active {
+      transform: scale(1.3);
+    }
+
+    .game-score-board {
+      font-size: 1rem;
+      color: var(--gold-secondary);
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    /* Creador de Ramos */
+    .bouquet-canvas-view {
+      width: 100%;
+      height: 180px;
+      background: rgba(10, 8, 2, 0.6);
+      border-radius: 18px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+
+    .bouquet-item-svg {
+      width: 50px;
+      height: 80px;
+      animation: popIn 0.3s ease;
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0); }
+      to { transform: scale(1); }
+    }
+
     audio { display: none; }
   </style>
 </head>
 <body>
 
-  <!-- Audio de Floricienta configurado -->
+  <!-- Audio de Floricienta -->
   <audio id="audio-player" loop preload="auto">
     <source src="Floricienta — Flores Amarillas [Letra].mp3" type="audio/mpeg">
   </audio>
 
-  <!-- Canvas Principal para Caída de Pétalos -->
+  <!-- Canvas de Partículas y Pétalos -->
   <canvas id="fx-canvas"></canvas>
 
-  <!-- Pantalla de Entrada -->
-  <div id="intro-screen">
-    <span class="intro-badge">21 de Septiembre</span>
+  <!-- Pantalla de Entrada / Inicio -->
+  <div id="welcome-overlay">
+    <span class="badge-date">21 de Septiembre</span>
     
-    <!-- SVG Girasol Heroico -->
-    <svg class="sunflower-hero-svg" viewBox="0 0 100 100">
+    <!-- SVG Girasol Gigante Ilustrado -->
+    <svg class="hero-sunflower-container" viewBox="0 0 100 100">
       <g transform="translate(50,50)">
-        <!-- Pétalos -->
-        <g id="petals-hero">
-          <path d="M0,-45 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-45 Z" fill="#f3c233" />
-          <path d="M0,-45 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-45 Z" fill="#f3c233" transform="rotate(20)" />
-          <path d="M0,-45 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-45 Z" fill="#e58e26" transform="rotate(40)" />
-          <path d="M0,-45 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-45 Z" fill="#f3c233" transform="rotate(60)" />
-          <path d="M0,-45 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-45 Z" fill="#f3c233" transform="rotate(80)" />
-          <path d="M0,-45 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-45 Z" fill="#e58e26" transform="rotate(100)" />
-          <path d="M0,-45 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-45 Z" fill="#f3c233" transform="rotate(120)" />
-          <path d="M0,-45 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-45 Z" fill="#f3c233" transform="rotate(140)" />
-          <path d="M0,-45 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-45 Z" fill="#e58e26" transform="rotate(160)" />
-          <path d="M0,-45 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-45 Z" fill="#f3c233" transform="rotate(180)" />
-          <path d="M0,-45 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-45 Z" fill="#f3c233" transform="rotate(200)" />
-          <path d="M0,-45 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-45 Z" fill="#e58e26" transform="rotate(220)" />
-          <path d="M0,-45 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-45 Z" fill="#f3c233" transform="rotate(240)" />
-          <path d="M0,-45 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-45 Z" fill="#f3c233" transform="rotate(260)" />
-          <path d="M0,-45 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-45 Z" fill="#e58e26" transform="rotate(280)" />
-          <path d="M0,-45 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-45 Z" fill="#f3c233" transform="rotate(300)" />
-          <path d="M0,-45 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-45 Z" fill="#f3c233" transform="rotate(320)" />
-          <path d="M0,-45 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-45 Z" fill="#e58e26" transform="rotate(340)" />
+        <!-- Capa Externa de Pétalos -->
+        <g id="hero-petals-layer-1">
+          <path d="M0,-46 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-46 Z" fill="#f3c233" />
+          <path d="M0,-46 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-46 Z" fill="#f3c233" transform="rotate(20)" />
+          <path d="M0,-46 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-46 Z" fill="#e58e26" transform="rotate(40)" />
+          <path d="M0,-46 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-46 Z" fill="#f3c233" transform="rotate(60)" />
+          <path d="M0,-46 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-46 Z" fill="#f3c233" transform="rotate(80)" />
+          <path d="M0,-46 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-46 Z" fill="#e58e26" transform="rotate(100)" />
+          <path d="M0,-46 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-46 Z" fill="#f3c233" transform="rotate(120)" />
+          <path d="M0,-46 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-46 Z" fill="#f3c233" transform="rotate(140)" />
+          <path d="M0,-46 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-46 Z" fill="#e58e26" transform="rotate(160)" />
+          <path d="M0,-46 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-46 Z" fill="#f3c233" transform="rotate(180)" />
+          <path d="M0,-46 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-46 Z" fill="#f3c233" transform="rotate(200)" />
+          <path d="M0,-46 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-46 Z" fill="#e58e26" transform="rotate(220)" />
+          <path d="M0,-46 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-46 Z" fill="#f3c233" transform="rotate(240)" />
+          <path d="M0,-46 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-46 Z" fill="#f3c233" transform="rotate(260)" />
+          <path d="M0,-46 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-46 Z" fill="#e58e26" transform="rotate(280)" />
+          <path d="M0,-46 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-46 Z" fill="#f3c233" transform="rotate(300)" />
+          <path d="M0,-46 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-46 Z" fill="#f3c233" transform="rotate(320)" />
+          <path d="M0,-46 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-46 Z" fill="#e58e26" transform="rotate(340)" />
+        </g>
+        <!-- Capa Interna de Pétalos -->
+        <g id="hero-petals-layer-2" transform="scale(0.85)">
+          <path d="M0,-46 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-46 Z" fill="#fce893" transform="rotate(10)" />
+          <path d="M0,-46 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-46 Z" fill="#fce893" transform="rotate(30)" />
+          <path d="M0,-46 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-46 Z" fill="#fce893" transform="rotate(50)" />
+          <path d="M0,-46 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-46 Z" fill="#fce893" transform="rotate(70)" />
+          <path d="M0,-46 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-46 Z" fill="#fce893" transform="rotate(90)" />
+          <path d="M0,-46 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-46 Z" fill="#fce893" transform="rotate(110)" />
+          <path d="M0,-46 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-46 Z" fill="#fce893" transform="rotate(130)" />
+          <path d="M0,-46 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-46 Z" fill="#fce893" transform="rotate(150)" />
+          <path d="M0,-46 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-46 Z" fill="#fce893" transform="rotate(170)" />
+          <path d="M0,-46 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-46 Z" fill="#fce893" transform="rotate(190)" />
+          <path d="M0,-46 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-46 Z" fill="#fce893" transform="rotate(210)" />
+          <path d="M0,-46 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-46 Z" fill="#fce893" transform="rotate(230)" />
+          <path d="M0,-46 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-46 Z" fill="#fce893" transform="rotate(250)" />
+          <path d="M0,-46 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-46 Z" fill="#fce893" transform="rotate(270)" />
+          <path d="M0,-46 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-46 Z" fill="#fce893" transform="rotate(290)" />
+          <path d="M0,-46 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-46 Z" fill="#fce893" transform="rotate(310)" />
+          <path d="M0,-46 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-46 Z" fill="#fce893" transform="rotate(330)" />
+          <path d="M0,-46 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-46 Z" fill="#fce893" transform="rotate(350)" />
         </g>
         <!-- Centro Semilla -->
-        <circle cx="0" cy="0" r="16" fill="#3a2307" />
-        <circle cx="0" cy="0" r="12" fill="#241402" />
+        <circle cx="0" cy="0" r="18" fill="#3a2307" />
+        <circle cx="0" cy="0" r="14" fill="#241402" />
       </g>
     </svg>
 
-    <h1 class="intro-title">Flores Amarillas para Ti</h1>
-    <p class="intro-subtitle">Un detalle especial preparado para celebrar la amistad, la alegría y los bonitos momentos compartidos.</p>
-    <button class="btn-start-action" id="btn-start">ABRIR DETALLE ✨</button>
+    <h1 class="intro-heading">Flores Amarillas para Ti</h1>
+    <p class="intro-paragraph">Un detalle especial preparado para celebrar la amistad, la alegría y los bonitos momentos compartidos este 21 de septiembre.</p>
+    <button class="btn-main-start" id="btn-start-exp">ABRIR DETALLE ✨</button>
   </div>
 
-  <!-- Contenido Principal: Cartilla -->
-  <div id="main-content">
-    <div class="card-container">
+  <!-- Vista Principal: Cartilla -->
+  <div id="app-viewport">
+    <div class="card-master-wrapper">
       
-      <!-- Girasoles Gigantes Vectoriales en las Esquinas -->
-      <svg class="corner-sunflower top-l" viewBox="0 0 100 100">
+      <!-- Esquinas Decoradas con Girasoles Gigantes -->
+      <svg class="giant-corner-sunflower tl" viewBox="0 0 100 100">
         <g transform="translate(50,50)">
           <path d="M0,-45 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-45 Z" fill="#f3c233" />
           <path d="M0,-45 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-45 Z" fill="#f3c233" transform="rotate(30)" />
@@ -435,7 +524,7 @@
         </g>
       </svg>
 
-      <svg class="corner-sunflower top-r" viewBox="0 0 100 100">
+      <svg class="giant-corner-sunflower tr" viewBox="0 0 100 100">
         <g transform="translate(50,50)">
           <path d="M0,-45 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-45 Z" fill="#f3c233" />
           <path d="M0,-45 C4,-30 4,-15 0,-10 C-4,-15 -4,-30 0,-45 Z" fill="#f3c233" transform="rotate(30)" />
@@ -453,13 +542,13 @@
         </g>
       </svg>
 
-      <div class="card-header">
-        <span class="date-tag">21 de Septiembre</span>
-        <h2 class="card-title">Para Alguien Muy Especial ✨</h2>
+      <div class="header-block">
+        <span class="header-subtag">21 de Septiembre</span>
+        <h2 class="header-title">Para Alguien Muy Especial ✨</h2>
       </div>
 
-      <!-- Texto Exacto Proporcionado -->
-      <div class="card-body-text">
+      <!-- Texto Completo Solicitado -->
+      <div class="dedication-content-block">
         <p>Quería agradecerte por tu amistad y por todos los momentos que hemos compartido. 🤍</p>
         <p>De verdad, me alegra mucho haberte conocido y tenerte presente en mi vida.</p>
         <p>Gracias por cada conversación, cada risa y cada momento que hemos pasado juntas/os.</p>
@@ -478,14 +567,18 @@
         <p>Y espero que nuestra amistad siga siendo parte de muchas historias bonitas. ❤️</p>
       </div>
 
-      <!-- Opciones Interactivas -->
-      <div class="interactive-section">
-        <div class="action-grid">
-          <button class="btn-sub-action" id="btn-wish">
-            <span>🎁</span> Un Deseo Especial
+      <!-- Panel de Interacciones y Mini-Juegos -->
+      <div class="interactive-hub">
+        <h4 class="hub-title">🌻 Actividades Interactivas del Día</h4>
+        <div class="hub-grid">
+          <button class="btn-hub-item" id="btn-open-game">
+            <span>🎮</span> Atrapa Girasoles
           </button>
-          <button class="btn-sub-action" id="btn-bloom">
-            <span>🌻</span> Lluvia de Girasoles
+          <button class="btn-hub-item" id="btn-open-bouquet">
+            <span>💐</span> Crear tu Ramo
+          </button>
+          <button class="btn-hub-item" id="btn-open-wish">
+            <span>🎁</span> Deseo Sorpresa
           </button>
         </div>
       </div>
@@ -493,10 +586,35 @@
     </div>
   </div>
 
-  <!-- Modal Interactivo -->
-  <div class="modal-overlay" id="modal-wish">
-    <div class="modal-card">
-      <svg class="modal-icon" viewBox="0 0 100 100">
+  <!-- Modal 1: Mini-Juego "Atrapa Girasoles" -->
+  <div class="modal-backdrop" id="modal-game">
+    <div class="modal-window">
+      <h3 class="modal-heading">🎮 Atrapa los Girasoles</h3>
+      <p class="game-score-board">Puntos de Cariño: <span id="game-score">0</span> 🌻</p>
+      <div id="catch-game-area"></div>
+      <button class="btn-modal-action" id="btn-close-game">Finalizar Juego 🤍</button>
+    </div>
+  </div>
+
+  <!-- Modal 2: Taller "Crea tu Ramo de Flores" -->
+  <div class="modal-backdrop" id="modal-bouquet">
+    <div class="modal-window">
+      <h3 class="modal-heading">💐 Diseña tu Ramo Amarillo</h3>
+      <p class="modal-body-text">Toca las flores para agregarlas a tu ramo personalizado:</p>
+      <div class="bouquet-canvas-view" id="bouquet-view"></div>
+      <div style="display: flex; gap: 10px; justify-content: center; margin-bottom: 20px;">
+        <button class="btn-modal-action" onclick="addFlowerToBouquet('girasol')">+ Girasol</button>
+        <button class="btn-modal-action" onclick="addFlowerToBouquet('rosa')">+ Rosa</button>
+        <button class="btn-modal-action" onclick="addFlowerToBouquet('tulipan')">+ Tulipán</button>
+      </div>
+      <button class="btn-modal-action" id="btn-close-bouquet">Guardar Ramo 💛</button>
+    </div>
+  </div>
+
+  <!-- Modal 3: Cofre de Deseos -->
+  <div class="modal-backdrop" id="modal-wish">
+    <div class="modal-window">
+      <svg class="modal-icon-svg" viewBox="0 0 100 100">
         <g transform="translate(50,50)">
           <path d="M0,-40 C4,-25 4,-10 0,-5 C-4,-10 -4,-25 0,-40 Z" fill="#f3c233" />
           <path d="M0,-40 C4,-25 4,-10 0,-5 C-4,-10 -4,-25 0,-40 Z" fill="#f3c233" transform="rotate(45)" />
@@ -509,74 +627,119 @@
           <circle cx="0" cy="0" r="12" fill="#3a2307" />
         </g>
       </svg>
-      <h3 class="modal-title">¡Un Recordatorio Bonito!</h3>
-      <p class="modal-desc">"Que este 21 de septiembre esté lleno de la misma alegría, calidez y momentos especiales que le regalas a quienes te rodean. ¡Nunca dejes de brillar a tu propia manera!" 🌻✨</p>
-      <button class="btn-modal-close" id="btn-modal-close">Cerrar 🤍</button>
+      <h3 class="modal-heading">¡Mensaje del 21 de Septiembre!</h3>
+      <p class="modal-body-text">"Que este día esté repleto de la misma calidez, luz y energía bonita que le entregas a las personas que tienen la fortuna de tenerte en sus vidas. ¡Nunca dejes de florecer!" 🌻✨</p>
+      <button class="btn-modal-action" id="btn-close-wish">Cerrar con Cariño 🤍</button>
     </div>
   </div>
 
-  <!-- Script Lógico Completo y Extenso -->
+  <!-- Script Lógico Integral (Amplia arquitectura funcional) -->
   <script>
     /* ==========================================================================
-       LÓGICA PRINCIPAL Y CONTROL DE INTERACCIONES
+       LÓGICA PRINCIPAL DEL SISTEMA
        ========================================================================== */
     document.addEventListener('DOMContentLoaded', () => {
       
-      // Elementos DOM
-      const btnStart = document.getElementById('btn-start');
-      const introScreen = document.getElementById('intro-screen');
-      const mainContent = document.getElementById('main-content');
+      // Controladores Principales
+      const btnStartExp = document.getElementById('btn-start-exp');
+      const welcomeOverlay = document.getElementById('welcome-overlay');
+      const appViewport = document.getElementById('app-viewport');
       const audioPlayer = document.getElementById('audio-player');
-      
-      const btnWish = document.getElementById('btn-wish');
-      const btnBloom = document.getElementById('btn-bloom');
-      const modalWish = document.getElementById('modal-wish');
-      const btnModalClose = document.getElementById('btn-modal-close');
 
-      // Iniciar Experiencia al presionar el Botón Principal
-      btnStart.addEventListener('click', () => {
-        // Intento suave de reproducción de Audio
+      // Modales y Botones
+      const btnOpenGame = document.getElementById('btn-open-game');
+      const modalGame = document.getElementById('modal-game');
+      const btnCloseGame = document.getElementById('btn-close-game');
+
+      const btnOpenBouquet = document.getElementById('btn-open-bouquet');
+      const modalBouquet = document.getElementById('modal-bouquet');
+      const btnCloseBouquet = document.getElementById('btn-close-bouquet');
+
+      const btnOpenWish = document.getElementById('btn-open-wish');
+      const modalWish = document.getElementById('modal-wish');
+      const btnCloseWish = document.getElementById('btn-close-wish');
+
+      // 1. Apertura con Audio y Transición
+      btnStartExp.addEventListener('click', () => {
         if (audioPlayer) {
-          audioPlayer.play().catch(err => {
-            console.log("Aviso: La reproducción automática fue bloqueada o el archivo no se encontró localmente.", err);
-          });
+          audioPlayer.play().catch(e => console.log("Aviso reproducción audio:", e));
         }
 
-        // Transición de pantalla
-        introScreen.style.opacity = '0';
-        introScreen.style.visibility = 'hidden';
+        welcomeOverlay.style.opacity = '0';
+        welcomeOverlay.style.visibility = 'hidden';
 
         setTimeout(() => {
-          mainContent.classList.add('active');
-          triggerFlowerBurst(window.innerWidth / 2, window.innerHeight / 2, 25);
+          appViewport.classList.add('active');
+          triggerPetalBurst(window.innerWidth / 2, window.innerHeight / 2, 25);
         }, 400);
       });
 
-      // Modal Deseo
-      btnWish.addEventListener('click', () => {
-        modalWish.classList.add('open');
-        triggerFlowerBurst(window.innerWidth / 2, window.innerHeight / 2, 15);
+      // 2. Controladores de Ventanas Modales
+      btnOpenWish.addEventListener('click', () => {
+        modalWish.classList.add('active');
+        triggerPetalBurst(window.innerWidth / 2, window.innerHeight / 2, 15);
       });
+      btnCloseWish.addEventListener('click', () => modalWish.classList.remove('active'));
 
-      btnModalClose.addEventListener('click', () => {
-        modalWish.classList.remove('open');
+      btnOpenBouquet.addEventListener('click', () => modalBouquet.classList.add('active'));
+      btnCloseBouquet.addEventListener('click', () => modalBouquet.classList.remove('active'));
+
+      btnOpenGame.addEventListener('click', () => {
+        modalGame.classList.add('active');
+        startGameLoop();
       });
-
-      // Lluvia de Girasoles Extra
-      btnBloom.addEventListener('click', (e) => {
-        const rect = e.target.getBoundingClientRect();
-        triggerFlowerBurst(rect.left + rect.width / 2, rect.top, 30);
-      });
-
-      // Disparo de Pétalos al hacer clic en pantalla
-      window.addEventListener('click', (e) => {
-        if (mainContent.classList.contains('active') && !modalWish.classList.contains('open')) {
-          triggerFlowerBurst(e.clientX, e.clientY, 8);
-        }
+      btnCloseGame.addEventListener('click', () => {
+        modalGame.classList.remove('active');
+        stopGameLoop();
       });
 
       /* ==========================================================================
-         CANVAS DE PÉTALOS Y PARTÍCULAS
+         LÓGICA DEL MINI-JUEGO "ATRAPA GIRASOLES"
+         ========================================================================== */
+      const gameArea = document.getElementById('catch-game-area');
+      const scoreEl = document.getElementById('game-score');
+      let score = 0;
+      let gameInterval = null;
+
+      function startGameLoop() {
+        score = 0;
+        scoreEl.innerText = score;
+        gameArea.innerHTML = '';
+        gameInterval = setInterval(spawnTargetFlower, 700);
+      }
+
+      function stopGameLoop() {
+        clearInterval(gameInterval);
+        gameArea.innerHTML = '';
+      }
+
+      function spawnTargetFlower() {
+        const flower = document.createElement('div');
+        flower.className = 'target-flower';
+        flower.style.left = Math.random() * (gameArea.clientWidth - 50) + 'px';
+        flower.style.top = Math.random() * (gameArea.clientHeight - 50) + 'px';
+        flower.innerHTML = `
+          <svg viewBox="0 0 100 100" width="100%" height="100%">
+            <g transform="translate(50,50)">
+              <circle cx="0" cy="0" r="40" fill="#f3c233"/>
+              <circle cx="0" cy="0" r="20" fill="#3a2307"/>
+            </g>
+          </svg>
+        `;
+
+        flower.addEventListener('click', () => {
+          score += 10;
+          scoreEl.innerText = score;
+          flower.remove();
+          triggerPetalBurst(window.innerWidth / 2, window.innerHeight / 2, 5);
+        });
+
+        gameArea.appendChild(flower);
+        setTimeout(() => { if (flower.parentNode) flower.remove(); }, 1200);
+      }
+
+      /* ==========================================================================
+         CANVAS DE FÍSICA Y PARTICULAS
          ========================================================================== */
       const canvas = document.getElementById('fx-canvas');
       const ctx = canvas.getContext('2d');
@@ -590,8 +753,7 @@
       window.addEventListener('resize', resizeCanvas);
       resizeCanvas();
 
-      // Clase Pétalo Flotante con Dinámica Física
-      class FallingPetal {
+      class PetalParticle {
         constructor(x, y) {
           this.reset(x, y);
         }
@@ -599,18 +761,18 @@
         reset(x, y) {
           this.x = x !== undefined ? x : Math.random() * canvas.width;
           this.y = y !== undefined ? y : -20;
-          this.size = Math.random() * 7 + 5;
+          this.size = Math.random() * 8 + 5;
           this.speedY = Math.random() * 1.2 + 0.6;
           this.speedX = Math.random() * 0.8 - 0.4;
           this.angle = Math.random() * Math.PI * 2;
           this.spin = (Math.random() - 0.5) * 0.02;
           this.opacity = Math.random() * 0.6 + 0.35;
-          this.color = Math.random() > 0.3 ? '#f3c233' : '#e58e26';
+          this.color = Math.random() > 0.35 ? '#f3c233' : '#e58e26';
         }
 
         update() {
           this.y += this.speedY;
-          this.x += Math.sin(this.angle) * 0.6 + this.speedX;
+          this.x += Math.sin(this.angle) * 0.7 + this.speedX;
           this.angle += this.spin;
 
           if (this.y > canvas.height + 20) {
@@ -631,8 +793,7 @@
         }
       }
 
-      // Partículas suaves de brillo
-      class SoftSparkle {
+      class StarDustParticle {
         constructor() {
           this.reset();
         }
@@ -662,22 +823,19 @@
         }
       }
 
-      // Función de Explosión/Ráfaga de Pétalos
-      function triggerFlowerBurst(originX, originY, count) {
+      function triggerPetalBurst(x, y, count) {
         for (let i = 0; i < count; i++) {
-          let p = new FallingPetal(originX, originY);
+          let p = new PetalParticle(x, y);
           p.speedY = (Math.random() - 0.5) * 5;
           p.speedX = (Math.random() - 0.5) * 5;
           petals.push(p);
         }
       }
 
-      // Población inicial de partículas
-      for (let i = 0; i < 35; i++) petals.push(new FallingPetal());
-      for (let i = 0; i < 45; i++) particles.push(new SoftSparkle());
+      for (let i = 0; i < 40; i++) petals.push(new PetalParticle());
+      for (let i = 0; i < 50; i++) particles.push(new StarDustParticle());
 
-      // Bucle de Animación
-      function renderLoop() {
+      function mainAnimationLoop() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         particles.forEach(p => {
@@ -690,11 +848,32 @@
           p.draw();
         });
 
-        requestAnimationFrame(renderLoop);
+        requestAnimationFrame(mainAnimationLoop);
       }
 
-      renderLoop();
+      mainAnimationLoop();
     });
+
+    /* ==========================================================================
+       LÓGICA EXTERNA DEL CREADOR DE RAMOS
+       ========================================================================== */
+    function addFlowerToBouquet(type) {
+      const bouquetView = document.getElementById('bouquet-view');
+      const item = document.createElement('div');
+      item.className = 'bouquet-item-svg';
+
+      if (type === 'girasol') {
+        item.innerHTML = `<svg viewBox="0 0 100 100" width="100%"><circle cx="50" cy="50" r="35" fill="#f3c233"/><circle cx="50" cy="50" r="18" fill="#3a2307"/></svg>`;
+      } else if (type === 'rosa') {
+        item.innerHTML = `<svg viewBox="0 0 100 100" width="100%"><circle cx="50" cy="50" r="30" fill="#ffb700"/><circle cx="50" cy="50" r="15" fill="#e58e26"/></svg>`;
+      } else {
+        item.innerHTML = `<svg viewBox="0 0 100 100" width="100%"><ellipse cx="50" cy="50" rx="20" ry="35" fill="#fce893"/></svg>`;
+      }
+
+      if (bouquetView.children.length < 6) {
+        bouquetView.appendChild(item);
+      }
+    }
   </script>
 </body>
 </html>
